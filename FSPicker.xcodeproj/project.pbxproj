@@ -1,0 +1,778 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		B214AB731C98011E004D6978 /* FSActivityIndicatorView.h in Headers */ = {isa = PBXBuildFile; fileRef = B214AB711C98011E004D6978 /* FSActivityIndicatorView.h */; };
+		B214AB741C98011E004D6978 /* FSActivityIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = B214AB721C98011E004D6978 /* FSActivityIndicatorView.m */; };
+		B214AB7B1C980EDB004D6978 /* FSContentItem.h in Headers */ = {isa = PBXBuildFile; fileRef = B214AB791C980EDB004D6978 /* FSContentItem.h */; };
+		B214AB7C1C980EDB004D6978 /* FSContentItem.m in Sources */ = {isa = PBXBuildFile; fileRef = B214AB7A1C980EDB004D6978 /* FSContentItem.m */; };
+		B214AB7E1C9853B5004D6978 /* FSTableViewCellTag.h in Headers */ = {isa = PBXBuildFile; fileRef = B214AB7D1C9853B5004D6978 /* FSTableViewCellTag.h */; };
+		B217374D1C998B1900FE263F /* FSImage.h in Headers */ = {isa = PBXBuildFile; fileRef = B217374B1C998B1900FE263F /* FSImage.h */; };
+		B217374E1C998B1900FE263F /* FSImage.m in Sources */ = {isa = PBXBuildFile; fileRef = B217374C1C998B1900FE263F /* FSImage.m */; };
+		B21737551C99A85D00FE263F /* UIAlertController+FSPicker.h in Headers */ = {isa = PBXBuildFile; fileRef = B21737531C99A85D00FE263F /* UIAlertController+FSPicker.h */; };
+		B21737561C99A85D00FE263F /* UIAlertController+FSPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = B21737541C99A85D00FE263F /* UIAlertController+FSPicker.m */; };
+		B22667361C872B6E002E5BBA /* FSSourceListViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = B22667341C872B6E002E5BBA /* FSSourceListViewController.h */; };
+		B22667371C872B6E002E5BBA /* FSSourceListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B22667351C872B6E002E5BBA /* FSSourceListViewController.m */; };
+		B226673E1C873367002E5BBA /* FSSource.h in Headers */ = {isa = PBXBuildFile; fileRef = B226673C1C873367002E5BBA /* FSSource.h */; };
+		B226673F1C873367002E5BBA /* FSSource.m in Sources */ = {isa = PBXBuildFile; fileRef = B226673D1C873367002E5BBA /* FSSource.m */; };
+		B22667441C873B76002E5BBA /* FSConfig+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = B22667421C873B76002E5BBA /* FSConfig+Private.h */; };
+		B22667451C873B76002E5BBA /* FSConfig+Private.m in Sources */ = {isa = PBXBuildFile; fileRef = B22667431C873B76002E5BBA /* FSConfig+Private.m */; };
+		B232742A1C8EDCDA00EBD2BE /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B23274291C8EDCDA00EBD2BE /* Images.xcassets */; };
+		B25519DD1CBF8DCF00B16D46 /* FSUploader.h in Headers */ = {isa = PBXBuildFile; fileRef = B25519DB1CBF8DCF00B16D46 /* FSUploader.h */; };
+		B25519DE1CBF8DCF00B16D46 /* FSUploader.m in Sources */ = {isa = PBXBuildFile; fileRef = B25519DC1CBF8DCF00B16D46 /* FSUploader.m */; };
+		B25519E81CBFAC1A00B16D46 /* KAProgressLabel.h in Headers */ = {isa = PBXBuildFile; fileRef = B25519E41CBFAC1A00B16D46 /* KAProgressLabel.h */; };
+		B25519E91CBFAC1A00B16D46 /* KAProgressLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = B25519E51CBFAC1A00B16D46 /* KAProgressLabel.m */; settings = {COMPILER_FLAGS = "-w"; }; };
+		B25519EA1CBFAC1A00B16D46 /* TPPropertyAnimation.h in Headers */ = {isa = PBXBuildFile; fileRef = B25519E61CBFAC1A00B16D46 /* TPPropertyAnimation.h */; };
+		B25519EB1CBFAC1A00B16D46 /* TPPropertyAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = B25519E71CBFAC1A00B16D46 /* TPPropertyAnimation.m */; settings = {COMPILER_FLAGS = "-w"; }; };
+		B25519EE1CBFACDA00B16D46 /* FSUploadModalViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = B25519EC1CBFACDA00B16D46 /* FSUploadModalViewController.h */; };
+		B25519EF1CBFACDA00B16D46 /* FSUploadModalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B25519ED1CBFACDA00B16D46 /* FSUploadModalViewController.m */; };
+		B26C6ACB1CCE14EB00CED799 /* FSPickerController+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = B26C6AC91CCE14EB00CED799 /* FSPickerController+Private.h */; };
+		B26C6ACC1CCE14EB00CED799 /* FSPickerController+Private.m in Sources */ = {isa = PBXBuildFile; fileRef = B26C6ACA1CCE14EB00CED799 /* FSPickerController+Private.m */; };
+		B27569851C8879A700BF4254 /* FSSourceTableViewCell.h in Headers */ = {isa = PBXBuildFile; fileRef = B27569831C8879A700BF4254 /* FSSourceTableViewCell.h */; };
+		B27569861C8879A700BF4254 /* FSSourceTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B27569841C8879A700BF4254 /* FSSourceTableViewCell.m */; };
+		B2787A121C9B02B300F05378 /* FSListTableViewCell.h in Headers */ = {isa = PBXBuildFile; fileRef = B2787A101C9B02B300F05378 /* FSListTableViewCell.h */; };
+		B2787A131C9B02B300F05378 /* FSListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B2787A111C9B02B300F05378 /* FSListTableViewCell.m */; };
+		B2858C7A1C7C933D00AE3690 /* FSPickerController.h in Headers */ = {isa = PBXBuildFile; fileRef = B2858C781C7C933D00AE3690 /* FSPickerController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B2858C7B1C7C933D00AE3690 /* FSPickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2858C791C7C933D00AE3690 /* FSPickerController.m */; };
+		B293FA1B1CCF680A006CAD47 /* FilestackIOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B293FA141CCF6802006CAD47 /* FilestackIOS.framework */; };
+		B29B44651CCA57B000844026 /* FSProtocols.h in Headers */ = {isa = PBXBuildFile; fileRef = B29B44641CCA57B000844026 /* FSProtocols.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B29B446B1CCA584C00844026 /* FSProtocols+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = B29B446A1CCA584600844026 /* FSProtocols+Private.h */; };
+		B2A0423E1CAE6BAD0013BC41 /* FSSearchViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = B2A0423C1CAE6BAD0013BC41 /* FSSearchViewController.h */; };
+		B2A0423F1CAE6BAD0013BC41 /* FSSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2A0423D1CAE6BAD0013BC41 /* FSSearchViewController.m */; };
+		B2A042421CAEAEBB0013BC41 /* UICollectionViewFlowLayout+FSPicker.h in Headers */ = {isa = PBXBuildFile; fileRef = B2A042401CAEAEBB0013BC41 /* UICollectionViewFlowLayout+FSPicker.h */; };
+		B2A042431CAEAEBB0013BC41 /* UICollectionViewFlowLayout+FSPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = B2A042411CAEAEBB0013BC41 /* UICollectionViewFlowLayout+FSPicker.m */; };
+		B2BC57AA1C92B78D00317154 /* FSAuthViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = B2BC57A81C92B78D00317154 /* FSAuthViewController.h */; };
+		B2BC57AB1C92B78D00317154 /* FSAuthViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2BC57A91C92B78D00317154 /* FSAuthViewController.m */; };
+		B2BC57B21C92C6FE00317154 /* FSProgressView.h in Headers */ = {isa = PBXBuildFile; fileRef = B2BC57B01C92C6FE00317154 /* FSProgressView.h */; };
+		B2BC57B31C92C6FE00317154 /* FSProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = B2BC57B11C92C6FE00317154 /* FSProgressView.m */; };
+		B2BC57B51C92DC4100317154 /* allowedUrlPrefix.plist in Resources */ = {isa = PBXBuildFile; fileRef = B2BC57B41C92DC4100317154 /* allowedUrlPrefix.plist */; };
+		B2BC57B81C92DD7700317154 /* FSSettings.h in Headers */ = {isa = PBXBuildFile; fileRef = B2BC57B61C92DD7700317154 /* FSSettings.h */; };
+		B2BC57B91C92DD7700317154 /* FSSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = B2BC57B71C92DD7700317154 /* FSSettings.m */; };
+		B2BC57BC1C9300EA00317154 /* UINavigationController+Progress.h in Headers */ = {isa = PBXBuildFile; fileRef = B2BC57BA1C9300EA00317154 /* UINavigationController+Progress.h */; };
+		B2BC57BD1C9300EA00317154 /* UINavigationController+Progress.m in Sources */ = {isa = PBXBuildFile; fileRef = B2BC57BB1C9300EA00317154 /* UINavigationController+Progress.m */; };
+		B2BEBBAF1C97025D00E6248F /* FSSession.h in Headers */ = {isa = PBXBuildFile; fileRef = B2BEBBAD1C97025D00E6248F /* FSSession.h */; };
+		B2BEBBB01C97025D00E6248F /* FSSession.m in Sources */ = {isa = PBXBuildFile; fileRef = B2BEBBAE1C97025D00E6248F /* FSSession.m */; };
+		B2BED14E1C84494E0041403E /* FSCollectionViewCell.h in Headers */ = {isa = PBXBuildFile; fileRef = B2BED14C1C84494E0041403E /* FSCollectionViewCell.h */; };
+		B2BED14F1C84494E0041403E /* FSCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B2BED14D1C84494E0041403E /* FSCollectionViewCell.m */; };
+		B2BED1521C8451D90041403E /* FSImageFetcher.h in Headers */ = {isa = PBXBuildFile; fileRef = B2BED1501C8451D90041403E /* FSImageFetcher.h */; };
+		B2BED1531C8451D90041403E /* FSImageFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = B2BED1511C8451D90041403E /* FSImageFetcher.m */; };
+		B2BFEB131C8F21480037571D /* FSSourceViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = B2BFEB111C8F21480037571D /* FSSourceViewController.h */; };
+		B2BFEB141C8F21480037571D /* FSSourceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2BFEB121C8F21480037571D /* FSSourceViewController.m */; };
+		B2BFEB1C1C9034680037571D /* UIRefreshControl+Appearance.h in Headers */ = {isa = PBXBuildFile; fileRef = B2BFEB1A1C9034680037571D /* UIRefreshControl+Appearance.h */; };
+		B2BFEB1D1C9034680037571D /* UIRefreshControl+Appearance.m in Sources */ = {isa = PBXBuildFile; fileRef = B2BFEB1B1C9034680037571D /* UIRefreshControl+Appearance.m */; };
+		B2BFEB2A1C9189630037571D /* FSSourceCollectionViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = B2BFEB281C9189630037571D /* FSSourceCollectionViewController.h */; };
+		B2BFEB2B1C9189630037571D /* FSSourceCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2BFEB291C9189630037571D /* FSSourceCollectionViewController.m */; };
+		B2BFEB2E1C9189980037571D /* FSSourceTableViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = B2BFEB2C1C9189980037571D /* FSSourceTableViewController.h */; };
+		B2BFEB2F1C9189980037571D /* FSSourceTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2BFEB2D1C9189980037571D /* FSSourceTableViewController.m */; };
+		B2CA0CC61C7C97A800162F98 /* FSConfig.h in Headers */ = {isa = PBXBuildFile; fileRef = B2CA0CC41C7C97A800162F98 /* FSConfig.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B2CA0CC71C7C97A800162F98 /* FSConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = B2CA0CC51C7C97A800162F98 /* FSConfig.m */; };
+		B2E92D921C7C875500542C34 /* FSPicker.h in Headers */ = {isa = PBXBuildFile; fileRef = B2E92D911C7C875500542C34 /* FSPicker.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		BEEE31D881DE310DC5D426D5 /* FSMimeTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = BEEE3879225C066776D76D56 /* FSMimeTypes.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		BEEE31F785CB0341D6ABAB14 /* UILabel+Appearance.m in Sources */ = {isa = PBXBuildFile; fileRef = BEEE3B3BD70CE3255F5BF9C9 /* UILabel+Appearance.m */; };
+		BEEE327256C4E7A922B21B00 /* FSGridViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = BEEE302B464536041EABA65C /* FSGridViewController.h */; };
+		BEEE34435BE8A6BCF1566D48 /* FSGridViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BEEE34DC0AF28F591E97E86E /* FSGridViewController.m */; };
+		BEEE368A96F146712103D909 /* FSBarButtonItem.h in Headers */ = {isa = PBXBuildFile; fileRef = BEEE324DE4D24E5374BF222B /* FSBarButtonItem.h */; };
+		BEEE36A3BC964D1DE312F77F /* FSBarButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = BEEE388ED6A18615A786ECBC /* FSBarButtonItem.m */; };
+		BEEE39990F80F868FD568AF9 /* FSAlbumsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BEEE35DBABBA0BB09A772DA8 /* FSAlbumsViewController.m */; };
+		BEEE3B48FB879B48B42A35D6 /* FSTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BEEE30B4CF591CF41A3CD5E6 /* FSTableViewCell.m */; };
+		BEEE3B810E65997C63D88B41 /* FSAlbumsViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = BEEE39BA8DAEBAA562101184 /* FSAlbumsViewController.h */; };
+		BEEE3BE15F759B206AC573CB /* FSTheme.m in Sources */ = {isa = PBXBuildFile; fileRef = BEEE36C0A040E159AEC696CC /* FSTheme.m */; };
+		BEEE3BEE39BA046F9371E5E3 /* UILabel+Appearance.h in Headers */ = {isa = PBXBuildFile; fileRef = BEEE3D0CF343513EE4DE71DD /* UILabel+Appearance.h */; };
+		BEEE3D47E01AACA74D36EB1B /* FSTheme.h in Headers */ = {isa = PBXBuildFile; fileRef = BEEE3A6C57889784DB1FD074 /* FSTheme.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		BEEE3FCE119E2A7A40052FDE /* FSTableViewCell.h in Headers */ = {isa = PBXBuildFile; fileRef = BEEE317079B1C1EF09166E9B /* FSTableViewCell.h */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		B293FA131CCF6802006CAD47 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B293FA0C1CCF6802006CAD47 /* Filestack.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = B2253D0D1C4F9A1F008E47A3;
+			remoteInfo = FilestackIOS;
+		};
+		B293FA151CCF6802006CAD47 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B293FA0C1CCF6802006CAD47 /* Filestack.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = B273A9FE1C57A52400232972;
+			remoteInfo = FilestackMac;
+		};
+		B293FA171CCF6802006CAD47 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B293FA0C1CCF6802006CAD47 /* Filestack.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = B273A9EA1C57A07C00232972;
+			remoteInfo = FilestackIOSTests;
+		};
+		B293FA191CCF6802006CAD47 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B293FA0C1CCF6802006CAD47 /* Filestack.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = B268BF711C7321010094B993;
+			remoteInfo = FilestackMacTests;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		2180CFE20200D55E74A04DB7 /* libPods-FSPicker.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-FSPicker.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		97B57DC97B24C3B228F193C4 /* Pods-FSPicker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FSPicker.release.xcconfig"; path = "../Pods/Target Support Files/Pods-FSPicker/Pods-FSPicker.release.xcconfig"; sourceTree = "<group>"; };
+		B214AB711C98011E004D6978 /* FSActivityIndicatorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSActivityIndicatorView.h; sourceTree = "<group>"; };
+		B214AB721C98011E004D6978 /* FSActivityIndicatorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSActivityIndicatorView.m; sourceTree = "<group>"; };
+		B214AB791C980EDB004D6978 /* FSContentItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSContentItem.h; sourceTree = "<group>"; };
+		B214AB7A1C980EDB004D6978 /* FSContentItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSContentItem.m; sourceTree = "<group>"; };
+		B214AB7D1C9853B5004D6978 /* FSTableViewCellTag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSTableViewCellTag.h; sourceTree = "<group>"; };
+		B217374B1C998B1900FE263F /* FSImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSImage.h; sourceTree = "<group>"; };
+		B217374C1C998B1900FE263F /* FSImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSImage.m; sourceTree = "<group>"; };
+		B21737531C99A85D00FE263F /* UIAlertController+FSPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIAlertController+FSPicker.h"; sourceTree = "<group>"; };
+		B21737541C99A85D00FE263F /* UIAlertController+FSPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIAlertController+FSPicker.m"; sourceTree = "<group>"; };
+		B22667341C872B6E002E5BBA /* FSSourceListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSSourceListViewController.h; sourceTree = "<group>"; };
+		B22667351C872B6E002E5BBA /* FSSourceListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSSourceListViewController.m; sourceTree = "<group>"; };
+		B226673C1C873367002E5BBA /* FSSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSSource.h; sourceTree = "<group>"; };
+		B226673D1C873367002E5BBA /* FSSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSSource.m; sourceTree = "<group>"; };
+		B22667421C873B76002E5BBA /* FSConfig+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FSConfig+Private.h"; sourceTree = "<group>"; };
+		B22667431C873B76002E5BBA /* FSConfig+Private.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FSConfig+Private.m"; sourceTree = "<group>"; };
+		B23274291C8EDCDA00EBD2BE /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		B25519DB1CBF8DCF00B16D46 /* FSUploader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSUploader.h; sourceTree = "<group>"; };
+		B25519DC1CBF8DCF00B16D46 /* FSUploader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSUploader.m; sourceTree = "<group>"; };
+		B25519E41CBFAC1A00B16D46 /* KAProgressLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KAProgressLabel.h; sourceTree = "<group>"; };
+		B25519E51CBFAC1A00B16D46 /* KAProgressLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KAProgressLabel.m; sourceTree = "<group>"; };
+		B25519E61CBFAC1A00B16D46 /* TPPropertyAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPPropertyAnimation.h; sourceTree = "<group>"; };
+		B25519E71CBFAC1A00B16D46 /* TPPropertyAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPPropertyAnimation.m; sourceTree = "<group>"; };
+		B25519EC1CBFACDA00B16D46 /* FSUploadModalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSUploadModalViewController.h; sourceTree = "<group>"; };
+		B25519ED1CBFACDA00B16D46 /* FSUploadModalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSUploadModalViewController.m; sourceTree = "<group>"; };
+		B26C6AC91CCE14EB00CED799 /* FSPickerController+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FSPickerController+Private.h"; sourceTree = "<group>"; };
+		B26C6ACA1CCE14EB00CED799 /* FSPickerController+Private.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FSPickerController+Private.m"; sourceTree = "<group>"; };
+		B27569831C8879A700BF4254 /* FSSourceTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSSourceTableViewCell.h; sourceTree = "<group>"; };
+		B27569841C8879A700BF4254 /* FSSourceTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSSourceTableViewCell.m; sourceTree = "<group>"; };
+		B2787A101C9B02B300F05378 /* FSListTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSListTableViewCell.h; sourceTree = "<group>"; };
+		B2787A111C9B02B300F05378 /* FSListTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSListTableViewCell.m; sourceTree = "<group>"; };
+		B2858C781C7C933D00AE3690 /* FSPickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSPickerController.h; sourceTree = "<group>"; };
+		B2858C791C7C933D00AE3690 /* FSPickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSPickerController.m; sourceTree = "<group>"; };
+		B293FA0C1CCF6802006CAD47 /* Filestack.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Filestack.xcodeproj; path = /Users/lukasz/projects/FSPickerFilestack/../Filestack/Filestack.xcodeproj; sourceTree = "<absolute>"; };
+		B29B44641CCA57B000844026 /* FSProtocols.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSProtocols.h; sourceTree = "<group>"; };
+		B29B446A1CCA584600844026 /* FSProtocols+Private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FSProtocols+Private.h"; sourceTree = "<group>"; };
+		B2A0423C1CAE6BAD0013BC41 /* FSSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSSearchViewController.h; sourceTree = "<group>"; };
+		B2A0423D1CAE6BAD0013BC41 /* FSSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSSearchViewController.m; sourceTree = "<group>"; };
+		B2A042401CAEAEBB0013BC41 /* UICollectionViewFlowLayout+FSPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UICollectionViewFlowLayout+FSPicker.h"; sourceTree = "<group>"; };
+		B2A042411CAEAEBB0013BC41 /* UICollectionViewFlowLayout+FSPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UICollectionViewFlowLayout+FSPicker.m"; sourceTree = "<group>"; };
+		B2BC57A81C92B78D00317154 /* FSAuthViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSAuthViewController.h; sourceTree = "<group>"; };
+		B2BC57A91C92B78D00317154 /* FSAuthViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSAuthViewController.m; sourceTree = "<group>"; };
+		B2BC57B01C92C6FE00317154 /* FSProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSProgressView.h; sourceTree = "<group>"; };
+		B2BC57B11C92C6FE00317154 /* FSProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSProgressView.m; sourceTree = "<group>"; };
+		B2BC57B41C92DC4100317154 /* allowedUrlPrefix.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = allowedUrlPrefix.plist; sourceTree = "<group>"; };
+		B2BC57B61C92DD7700317154 /* FSSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSSettings.h; sourceTree = "<group>"; };
+		B2BC57B71C92DD7700317154 /* FSSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSSettings.m; sourceTree = "<group>"; };
+		B2BC57BA1C9300EA00317154 /* UINavigationController+Progress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+Progress.h"; sourceTree = "<group>"; };
+		B2BC57BB1C9300EA00317154 /* UINavigationController+Progress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+Progress.m"; sourceTree = "<group>"; };
+		B2BEBBAD1C97025D00E6248F /* FSSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSSession.h; sourceTree = "<group>"; };
+		B2BEBBAE1C97025D00E6248F /* FSSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSSession.m; sourceTree = "<group>"; };
+		B2BED14C1C84494E0041403E /* FSCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSCollectionViewCell.h; sourceTree = "<group>"; };
+		B2BED14D1C84494E0041403E /* FSCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSCollectionViewCell.m; sourceTree = "<group>"; };
+		B2BED1501C8451D90041403E /* FSImageFetcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSImageFetcher.h; sourceTree = "<group>"; };
+		B2BED1511C8451D90041403E /* FSImageFetcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSImageFetcher.m; sourceTree = "<group>"; };
+		B2BFEB111C8F21480037571D /* FSSourceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSSourceViewController.h; sourceTree = "<group>"; };
+		B2BFEB121C8F21480037571D /* FSSourceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSSourceViewController.m; sourceTree = "<group>"; };
+		B2BFEB1A1C9034680037571D /* UIRefreshControl+Appearance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIRefreshControl+Appearance.h"; sourceTree = "<group>"; };
+		B2BFEB1B1C9034680037571D /* UIRefreshControl+Appearance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIRefreshControl+Appearance.m"; sourceTree = "<group>"; };
+		B2BFEB281C9189630037571D /* FSSourceCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSSourceCollectionViewController.h; sourceTree = "<group>"; };
+		B2BFEB291C9189630037571D /* FSSourceCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSSourceCollectionViewController.m; sourceTree = "<group>"; };
+		B2BFEB2C1C9189980037571D /* FSSourceTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSSourceTableViewController.h; sourceTree = "<group>"; };
+		B2BFEB2D1C9189980037571D /* FSSourceTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSSourceTableViewController.m; sourceTree = "<group>"; };
+		B2CA0CC41C7C97A800162F98 /* FSConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSConfig.h; sourceTree = "<group>"; };
+		B2CA0CC51C7C97A800162F98 /* FSConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSConfig.m; sourceTree = "<group>"; };
+		B2E92D8E1C7C875500542C34 /* FSPicker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = FSPicker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B2E92D911C7C875500542C34 /* FSPicker.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSPicker.h; sourceTree = "<group>"; };
+		B2E92D931C7C875500542C34 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BEEE302B464536041EABA65C /* FSGridViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSGridViewController.h; sourceTree = "<group>"; };
+		BEEE30B4CF591CF41A3CD5E6 /* FSTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSTableViewCell.m; sourceTree = "<group>"; };
+		BEEE317079B1C1EF09166E9B /* FSTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSTableViewCell.h; sourceTree = "<group>"; };
+		BEEE324DE4D24E5374BF222B /* FSBarButtonItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSBarButtonItem.h; sourceTree = "<group>"; };
+		BEEE34DC0AF28F591E97E86E /* FSGridViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSGridViewController.m; sourceTree = "<group>"; };
+		BEEE35DBABBA0BB09A772DA8 /* FSAlbumsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSAlbumsViewController.m; sourceTree = "<group>"; };
+		BEEE36C0A040E159AEC696CC /* FSTheme.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSTheme.m; sourceTree = "<group>"; };
+		BEEE3879225C066776D76D56 /* FSMimeTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSMimeTypes.h; sourceTree = "<group>"; };
+		BEEE388ED6A18615A786ECBC /* FSBarButtonItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSBarButtonItem.m; sourceTree = "<group>"; };
+		BEEE39BA8DAEBAA562101184 /* FSAlbumsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSAlbumsViewController.h; sourceTree = "<group>"; };
+		BEEE3A6C57889784DB1FD074 /* FSTheme.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSTheme.h; sourceTree = "<group>"; };
+		BEEE3B3BD70CE3255F5BF9C9 /* UILabel+Appearance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+Appearance.m"; sourceTree = "<group>"; };
+		BEEE3D0CF343513EE4DE71DD /* UILabel+Appearance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+Appearance.h"; sourceTree = "<group>"; };
+		CA04E448FD552409025F5729 /* Pods-FSPicker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FSPicker.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-FSPicker/Pods-FSPicker.debug.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		B2E92D8A1C7C875500542C34 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B293FA1B1CCF680A006CAD47 /* FilestackIOS.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		60535194EE176AD5B59786A8 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				CA04E448FD552409025F5729 /* Pods-FSPicker.debug.xcconfig */,
+				97B57DC97B24C3B228F193C4 /* Pods-FSPicker.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		7FAA51D3577CDD33AF66EAB6 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2180CFE20200D55E74A04DB7 /* libPods-FSPicker.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B21AFBEC1C7C8AEF00E2DFED /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				B2858C781C7C933D00AE3690 /* FSPickerController.h */,
+				B2858C791C7C933D00AE3690 /* FSPickerController.m */,
+				B2BFEB111C8F21480037571D /* FSSourceViewController.h */,
+				B2BFEB121C8F21480037571D /* FSSourceViewController.m */,
+				B2BFEB281C9189630037571D /* FSSourceCollectionViewController.h */,
+				B2BFEB291C9189630037571D /* FSSourceCollectionViewController.m */,
+				B2BFEB2C1C9189980037571D /* FSSourceTableViewController.h */,
+				B2BFEB2D1C9189980037571D /* FSSourceTableViewController.m */,
+				B22667341C872B6E002E5BBA /* FSSourceListViewController.h */,
+				B22667351C872B6E002E5BBA /* FSSourceListViewController.m */,
+				B2BC57A81C92B78D00317154 /* FSAuthViewController.h */,
+				B2BC57A91C92B78D00317154 /* FSAuthViewController.m */,
+				B2A0423C1CAE6BAD0013BC41 /* FSSearchViewController.h */,
+				B2A0423D1CAE6BAD0013BC41 /* FSSearchViewController.m */,
+				B25519EC1CBFACDA00B16D46 /* FSUploadModalViewController.h */,
+				B25519ED1CBFACDA00B16D46 /* FSUploadModalViewController.m */,
+				B26C6AC91CCE14EB00CED799 /* FSPickerController+Private.h */,
+				B26C6ACA1CCE14EB00CED799 /* FSPickerController+Private.m */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		B21AFBED1C7C8B0700E2DFED /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				BEEE3879225C066776D76D56 /* FSMimeTypes.h */,
+				B217374B1C998B1900FE263F /* FSImage.h */,
+				B217374C1C998B1900FE263F /* FSImage.m */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		B23274241C8EDCB100EBD2BE /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				B23274291C8EDCDA00EBD2BE /* Images.xcassets */,
+				B2BC57B41C92DC4100317154 /* allowedUrlPrefix.plist */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		B25519E31CBFABBC00B16D46 /* KAProgressLabel */ = {
+			isa = PBXGroup;
+			children = (
+				B25519E41CBFAC1A00B16D46 /* KAProgressLabel.h */,
+				B25519E51CBFAC1A00B16D46 /* KAProgressLabel.m */,
+				B25519E61CBFAC1A00B16D46 /* TPPropertyAnimation.h */,
+				B25519E71CBFAC1A00B16D46 /* TPPropertyAnimation.m */,
+			);
+			path = KAProgressLabel;
+			sourceTree = "<group>";
+		};
+		B2858C801C7C942600AE3690 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				B23274241C8EDCB100EBD2BE /* Resources */,
+				B21AFBED1C7C8B0700E2DFED /* Models */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		B2858C811C7C948400AE3690 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				B25519E31CBFABBC00B16D46 /* KAProgressLabel */,
+				B2CA0CBF1C7C975E00162F98 /* Models */,
+				B21AFBEC1C7C8AEF00E2DFED /* ViewControllers */,
+				B2E92D911C7C875500542C34 /* FSPicker.h */,
+				B2E92D931C7C875500542C34 /* Info.plist */,
+				BEEE37D91CDB727E79821731 /* Views */,
+				BEEE3DAE6995A292A62A3155 /* FSImageVideoPicker */,
+				B29B44641CCA57B000844026 /* FSProtocols.h */,
+				B29B446A1CCA584600844026 /* FSProtocols+Private.h */,
+			);
+			name = iOS;
+			path = Platforms/iOS;
+			sourceTree = "<group>";
+		};
+		B293FA0D1CCF6802006CAD47 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B293FA141CCF6802006CAD47 /* FilestackIOS.framework */,
+				B293FA161CCF6802006CAD47 /* FilestackMac.framework */,
+				B293FA181CCF6802006CAD47 /* FilestackIOSTests.xctest */,
+				B293FA1A1CCF6802006CAD47 /* FilestackMacTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		B2CA0CBF1C7C975E00162F98 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				B214AB7D1C9853B5004D6978 /* FSTableViewCellTag.h */,
+				BEEE3A6C57889784DB1FD074 /* FSTheme.h */,
+				BEEE36C0A040E159AEC696CC /* FSTheme.m */,
+				B226673C1C873367002E5BBA /* FSSource.h */,
+				B226673D1C873367002E5BBA /* FSSource.m */,
+				B2CA0CC41C7C97A800162F98 /* FSConfig.h */,
+				B2CA0CC51C7C97A800162F98 /* FSConfig.m */,
+				B22667421C873B76002E5BBA /* FSConfig+Private.h */,
+				B22667431C873B76002E5BBA /* FSConfig+Private.m */,
+				B214AB791C980EDB004D6978 /* FSContentItem.h */,
+				B214AB7A1C980EDB004D6978 /* FSContentItem.m */,
+				B2BC57B61C92DD7700317154 /* FSSettings.h */,
+				B2BC57B71C92DD7700317154 /* FSSettings.m */,
+				B2BEBBAD1C97025D00E6248F /* FSSession.h */,
+				B2BEBBAE1C97025D00E6248F /* FSSession.m */,
+				B25519DB1CBF8DCF00B16D46 /* FSUploader.h */,
+				B25519DC1CBF8DCF00B16D46 /* FSUploader.m */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		B2E92D841C7C875500542C34 = {
+			isa = PBXGroup;
+			children = (
+				B293FA0C1CCF6802006CAD47 /* Filestack.xcodeproj */,
+				B2E92D901C7C875500542C34 /* FSPicker */,
+				B2E92D8F1C7C875500542C34 /* Products */,
+				60535194EE176AD5B59786A8 /* Pods */,
+				7FAA51D3577CDD33AF66EAB6 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		B2E92D8F1C7C875500542C34 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B2E92D8E1C7C875500542C34 /* FSPicker.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		B2E92D901C7C875500542C34 /* FSPicker */ = {
+			isa = PBXGroup;
+			children = (
+				B2858C801C7C942600AE3690 /* Shared */,
+				B2858C811C7C948400AE3690 /* iOS */,
+			);
+			path = FSPicker;
+			sourceTree = "<group>";
+		};
+		BEEE37D91CDB727E79821731 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				B2BC57B01C92C6FE00317154 /* FSProgressView.h */,
+				B2BC57B11C92C6FE00317154 /* FSProgressView.m */,
+				BEEE324DE4D24E5374BF222B /* FSBarButtonItem.h */,
+				BEEE388ED6A18615A786ECBC /* FSBarButtonItem.m */,
+				BEEE3D0CF343513EE4DE71DD /* UILabel+Appearance.h */,
+				BEEE3B3BD70CE3255F5BF9C9 /* UILabel+Appearance.m */,
+				B2BED14C1C84494E0041403E /* FSCollectionViewCell.h */,
+				B2BED14D1C84494E0041403E /* FSCollectionViewCell.m */,
+				B27569831C8879A700BF4254 /* FSSourceTableViewCell.h */,
+				B27569841C8879A700BF4254 /* FSSourceTableViewCell.m */,
+				BEEE317079B1C1EF09166E9B /* FSTableViewCell.h */,
+				BEEE30B4CF591CF41A3CD5E6 /* FSTableViewCell.m */,
+				B2787A101C9B02B300F05378 /* FSListTableViewCell.h */,
+				B2787A111C9B02B300F05378 /* FSListTableViewCell.m */,
+				B214AB711C98011E004D6978 /* FSActivityIndicatorView.h */,
+				B214AB721C98011E004D6978 /* FSActivityIndicatorView.m */,
+				B2BFEB1A1C9034680037571D /* UIRefreshControl+Appearance.h */,
+				B2BFEB1B1C9034680037571D /* UIRefreshControl+Appearance.m */,
+				B2BC57BA1C9300EA00317154 /* UINavigationController+Progress.h */,
+				B2BC57BB1C9300EA00317154 /* UINavigationController+Progress.m */,
+				B21737531C99A85D00FE263F /* UIAlertController+FSPicker.h */,
+				B21737541C99A85D00FE263F /* UIAlertController+FSPicker.m */,
+				B2A042401CAEAEBB0013BC41 /* UICollectionViewFlowLayout+FSPicker.h */,
+				B2A042411CAEAEBB0013BC41 /* UICollectionViewFlowLayout+FSPicker.m */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		BEEE3DAE6995A292A62A3155 /* FSImageVideoPicker */ = {
+			isa = PBXGroup;
+			children = (
+				BEEE39BA8DAEBAA562101184 /* FSAlbumsViewController.h */,
+				BEEE35DBABBA0BB09A772DA8 /* FSAlbumsViewController.m */,
+				BEEE302B464536041EABA65C /* FSGridViewController.h */,
+				BEEE34DC0AF28F591E97E86E /* FSGridViewController.m */,
+				B2BED1501C8451D90041403E /* FSImageFetcher.h */,
+				B2BED1511C8451D90041403E /* FSImageFetcher.m */,
+			);
+			path = FSImageVideoPicker;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		B2E92D8B1C7C875500542C34 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B2E92D921C7C875500542C34 /* FSPicker.h in Headers */,
+				B2858C7A1C7C933D00AE3690 /* FSPickerController.h in Headers */,
+				B214AB7B1C980EDB004D6978 /* FSContentItem.h in Headers */,
+				B2787A121C9B02B300F05378 /* FSListTableViewCell.h in Headers */,
+				B2CA0CC61C7C97A800162F98 /* FSConfig.h in Headers */,
+				BEEE3D47E01AACA74D36EB1B /* FSTheme.h in Headers */,
+				BEEE3FCE119E2A7A40052FDE /* FSTableViewCell.h in Headers */,
+				B226673E1C873367002E5BBA /* FSSource.h in Headers */,
+				B2BC57AA1C92B78D00317154 /* FSAuthViewController.h in Headers */,
+				B25519DD1CBF8DCF00B16D46 /* FSUploader.h in Headers */,
+				BEEE368A96F146712103D909 /* FSBarButtonItem.h in Headers */,
+				B22667361C872B6E002E5BBA /* FSSourceListViewController.h in Headers */,
+				B25519EA1CBFAC1A00B16D46 /* TPPropertyAnimation.h in Headers */,
+				B2BFEB2A1C9189630037571D /* FSSourceCollectionViewController.h in Headers */,
+				B22667441C873B76002E5BBA /* FSConfig+Private.h in Headers */,
+				B25519E81CBFAC1A00B16D46 /* KAProgressLabel.h in Headers */,
+				B29B446B1CCA584C00844026 /* FSProtocols+Private.h in Headers */,
+				BEEE3BEE39BA046F9371E5E3 /* UILabel+Appearance.h in Headers */,
+				B27569851C8879A700BF4254 /* FSSourceTableViewCell.h in Headers */,
+				B217374D1C998B1900FE263F /* FSImage.h in Headers */,
+				B214AB731C98011E004D6978 /* FSActivityIndicatorView.h in Headers */,
+				B2BFEB2E1C9189980037571D /* FSSourceTableViewController.h in Headers */,
+				B2BC57B81C92DD7700317154 /* FSSettings.h in Headers */,
+				B2BED1521C8451D90041403E /* FSImageFetcher.h in Headers */,
+				B2BEBBAF1C97025D00E6248F /* FSSession.h in Headers */,
+				B25519EE1CBFACDA00B16D46 /* FSUploadModalViewController.h in Headers */,
+				B2A042421CAEAEBB0013BC41 /* UICollectionViewFlowLayout+FSPicker.h in Headers */,
+				B2BFEB131C8F21480037571D /* FSSourceViewController.h in Headers */,
+				B2BED14E1C84494E0041403E /* FSCollectionViewCell.h in Headers */,
+				BEEE3B810E65997C63D88B41 /* FSAlbumsViewController.h in Headers */,
+				B214AB7E1C9853B5004D6978 /* FSTableViewCellTag.h in Headers */,
+				B2BC57BC1C9300EA00317154 /* UINavigationController+Progress.h in Headers */,
+				B29B44651CCA57B000844026 /* FSProtocols.h in Headers */,
+				BEEE327256C4E7A922B21B00 /* FSGridViewController.h in Headers */,
+				BEEE31D881DE310DC5D426D5 /* FSMimeTypes.h in Headers */,
+				B26C6ACB1CCE14EB00CED799 /* FSPickerController+Private.h in Headers */,
+				B2A0423E1CAE6BAD0013BC41 /* FSSearchViewController.h in Headers */,
+				B2BFEB1C1C9034680037571D /* UIRefreshControl+Appearance.h in Headers */,
+				B21737551C99A85D00FE263F /* UIAlertController+FSPicker.h in Headers */,
+				B2BC57B21C92C6FE00317154 /* FSProgressView.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		B2E92D8D1C7C875500542C34 /* FSPicker */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B2E92D961C7C875500542C34 /* Build configuration list for PBXNativeTarget "FSPicker" */;
+			buildPhases = (
+				B2E92D891C7C875500542C34 /* Sources */,
+				B2E92D8A1C7C875500542C34 /* Frameworks */,
+				B2E92D8B1C7C875500542C34 /* Headers */,
+				B2E92D8C1C7C875500542C34 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = FSPicker;
+			productName = FSPicker;
+			productReference = B2E92D8E1C7C875500542C34 /* FSPicker.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		B2E92D851C7C875500542C34 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0720;
+				ORGANIZATIONNAME = Filestack;
+				TargetAttributes = {
+					B2E92D8D1C7C875500542C34 = {
+						CreatedOnToolsVersion = 7.2;
+					};
+				};
+			};
+			buildConfigurationList = B2E92D881C7C875500542C34 /* Build configuration list for PBXProject "FSPicker" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = B2E92D841C7C875500542C34;
+			productRefGroup = B2E92D8F1C7C875500542C34 /* Products */;
+			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = B293FA0D1CCF6802006CAD47 /* Products */;
+					ProjectRef = B293FA0C1CCF6802006CAD47 /* Filestack.xcodeproj */;
+				},
+			);
+			projectRoot = "";
+			targets = (
+				B2E92D8D1C7C875500542C34 /* FSPicker */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		B293FA141CCF6802006CAD47 /* FilestackIOS.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = FilestackIOS.framework;
+			remoteRef = B293FA131CCF6802006CAD47 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		B293FA161CCF6802006CAD47 /* FilestackMac.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = FilestackMac.framework;
+			remoteRef = B293FA151CCF6802006CAD47 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		B293FA181CCF6802006CAD47 /* FilestackIOSTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = FilestackIOSTests.xctest;
+			remoteRef = B293FA171CCF6802006CAD47 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		B293FA1A1CCF6802006CAD47 /* FilestackMacTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = FilestackMacTests.xctest;
+			remoteRef = B293FA191CCF6802006CAD47 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
+/* Begin PBXResourcesBuildPhase section */
+		B2E92D8C1C7C875500542C34 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B232742A1C8EDCDA00EBD2BE /* Images.xcassets in Resources */,
+				B2BC57B51C92DC4100317154 /* allowedUrlPrefix.plist in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		B2E92D891C7C875500542C34 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B2BC57B31C92C6FE00317154 /* FSProgressView.m in Sources */,
+				B2BFEB2B1C9189630037571D /* FSSourceCollectionViewController.m in Sources */,
+				B2BC57BD1C9300EA00317154 /* UINavigationController+Progress.m in Sources */,
+				B25519EB1CBFAC1A00B16D46 /* TPPropertyAnimation.m in Sources */,
+				B22667451C873B76002E5BBA /* FSConfig+Private.m in Sources */,
+				B2BEBBB01C97025D00E6248F /* FSSession.m in Sources */,
+				B2858C7B1C7C933D00AE3690 /* FSPickerController.m in Sources */,
+				B2A0423F1CAE6BAD0013BC41 /* FSSearchViewController.m in Sources */,
+				B2CA0CC71C7C97A800162F98 /* FSConfig.m in Sources */,
+				B2BED14F1C84494E0041403E /* FSCollectionViewCell.m in Sources */,
+				B26C6ACC1CCE14EB00CED799 /* FSPickerController+Private.m in Sources */,
+				BEEE3BE15F759B206AC573CB /* FSTheme.m in Sources */,
+				BEEE3B48FB879B48B42A35D6 /* FSTableViewCell.m in Sources */,
+				B21737561C99A85D00FE263F /* UIAlertController+FSPicker.m in Sources */,
+				BEEE36A3BC964D1DE312F77F /* FSBarButtonItem.m in Sources */,
+				B25519E91CBFAC1A00B16D46 /* KAProgressLabel.m in Sources */,
+				BEEE31F785CB0341D6ABAB14 /* UILabel+Appearance.m in Sources */,
+				B226673F1C873367002E5BBA /* FSSource.m in Sources */,
+				BEEE39990F80F868FD568AF9 /* FSAlbumsViewController.m in Sources */,
+				B2BED1531C8451D90041403E /* FSImageFetcher.m in Sources */,
+				B25519EF1CBFACDA00B16D46 /* FSUploadModalViewController.m in Sources */,
+				B2BC57B91C92DD7700317154 /* FSSettings.m in Sources */,
+				B217374E1C998B1900FE263F /* FSImage.m in Sources */,
+				B25519DE1CBF8DCF00B16D46 /* FSUploader.m in Sources */,
+				B2BFEB1D1C9034680037571D /* UIRefreshControl+Appearance.m in Sources */,
+				B214AB7C1C980EDB004D6978 /* FSContentItem.m in Sources */,
+				B2A042431CAEAEBB0013BC41 /* UICollectionViewFlowLayout+FSPicker.m in Sources */,
+				B2BFEB2F1C9189980037571D /* FSSourceTableViewController.m in Sources */,
+				B214AB741C98011E004D6978 /* FSActivityIndicatorView.m in Sources */,
+				B2BFEB141C8F21480037571D /* FSSourceViewController.m in Sources */,
+				B2787A131C9B02B300F05378 /* FSListTableViewCell.m in Sources */,
+				B2BC57AB1C92B78D00317154 /* FSAuthViewController.m in Sources */,
+				B27569861C8879A700BF4254 /* FSSourceTableViewCell.m in Sources */,
+				BEEE34435BE8A6BCF1566D48 /* FSGridViewController.m in Sources */,
+				B22667371C872B6E002E5BBA /* FSSourceListViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		B2E92D941C7C875500542C34 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		B2E92D951C7C875500542C34 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		B2E92D971C7C875500542C34 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "$(SRCROOT)/FSPicker/Platforms/iOS/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				OTHER_CFLAGS = "";
+				PRODUCT_BUNDLE_IDENTIFIER = com.filestack.FSPicker;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				WARNING_CFLAGS = (
+					"-Weverything",
+					"-Wno-objc-missing-property-synthesis",
+				);
+			};
+			name = Debug;
+		};
+		B2E92D981C7C875500542C34 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "$(SRCROOT)/FSPicker/Platforms/iOS/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.filestack.FSPicker;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				WARNING_CFLAGS = (
+					"-Weverything",
+					"-Wno-objc-missing-property-synthesis",
+				);
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		B2E92D881C7C875500542C34 /* Build configuration list for PBXProject "FSPicker" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B2E92D941C7C875500542C34 /* Debug */,
+				B2E92D951C7C875500542C34 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B2E92D961C7C875500542C34 /* Build configuration list for PBXNativeTarget "FSPicker" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B2E92D971C7C875500542C34 /* Debug */,
+				B2E92D981C7C875500542C34 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = B2E92D851C7C875500542C34 /* Project object */;
+}
