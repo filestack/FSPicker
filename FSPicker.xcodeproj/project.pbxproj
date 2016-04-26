@@ -16,6 +16,7 @@
 		B217374E1C998B1900FE263F /* FSImage.m in Sources */ = {isa = PBXBuildFile; fileRef = B217374C1C998B1900FE263F /* FSImage.m */; };
 		B21737551C99A85D00FE263F /* UIAlertController+FSPicker.h in Headers */ = {isa = PBXBuildFile; fileRef = B21737531C99A85D00FE263F /* UIAlertController+FSPicker.h */; };
 		B21737561C99A85D00FE263F /* UIAlertController+FSPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = B21737541C99A85D00FE263F /* UIAlertController+FSPicker.m */; };
+		B21DCBB01CCF72BC00AA008C /* FilestackIOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B293FA141CCF6802006CAD47 /* FilestackIOS.framework */; };
 		B22667361C872B6E002E5BBA /* FSSourceListViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = B22667341C872B6E002E5BBA /* FSSourceListViewController.h */; };
 		B22667371C872B6E002E5BBA /* FSSourceListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B22667351C872B6E002E5BBA /* FSSourceListViewController.m */; };
 		B226673E1C873367002E5BBA /* FSSource.h in Headers */ = {isa = PBXBuildFile; fileRef = B226673C1C873367002E5BBA /* FSSource.h */; };
@@ -39,7 +40,6 @@
 		B2787A131C9B02B300F05378 /* FSListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B2787A111C9B02B300F05378 /* FSListTableViewCell.m */; };
 		B2858C7A1C7C933D00AE3690 /* FSPickerController.h in Headers */ = {isa = PBXBuildFile; fileRef = B2858C781C7C933D00AE3690 /* FSPickerController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B2858C7B1C7C933D00AE3690 /* FSPickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2858C791C7C933D00AE3690 /* FSPickerController.m */; };
-		B293FA1B1CCF680A006CAD47 /* FilestackIOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B293FA141CCF6802006CAD47 /* FilestackIOS.framework */; };
 		B29B44651CCA57B000844026 /* FSProtocols.h in Headers */ = {isa = PBXBuildFile; fileRef = B29B44641CCA57B000844026 /* FSProtocols.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B29B446B1CCA584C00844026 /* FSProtocols+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = B29B446A1CCA584600844026 /* FSProtocols+Private.h */; };
 		B2A0423E1CAE6BAD0013BC41 /* FSSearchViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = B2A0423C1CAE6BAD0013BC41 /* FSSearchViewController.h */; };
@@ -209,7 +209,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B293FA1B1CCF680A006CAD47 /* FilestackIOS.framework in Frameworks */,
+				B21DCBB01CCF72BC00AA008C /* FilestackIOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -722,10 +722,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.filestack.FSPicker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				WARNING_CFLAGS = (
-					"-Weverything",
-					"-Wno-objc-missing-property-synthesis",
-				);
+				WARNING_CFLAGS = "";
 			};
 			name = Debug;
 		};
@@ -744,10 +741,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.filestack.FSPicker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				WARNING_CFLAGS = (
-					"-Weverything",
-					"-Wno-objc-missing-property-synthesis",
-				);
+				WARNING_CFLAGS = "";
 			};
 			name = Release;
 		};
