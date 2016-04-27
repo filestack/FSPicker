@@ -27,7 +27,7 @@ NSString *const FSSourceCloudDrive = @"clouddrive";
 
 @implementation FSConfig
 
-- (instancetype)initWithApiKey:(NSString *)apiKey storeOptions:(FSStoreOptions *)storeOptions security:(FSSecurity *)security {
+- (instancetype)initWithApiKey:(NSString *)apiKey storeOptions:(FSStoreOptions *)storeOptions {
     if ((self = [super init])) {
         _apiKey = apiKey;
         _storeOptions = storeOptions;
@@ -36,7 +36,7 @@ NSString *const FSSourceCloudDrive = @"clouddrive";
 }
 
 - (instancetype)initWithApiKey:(NSString *)apiKey {
-    return [self initWithApiKey:apiKey storeOptions:nil security:nil];
+    return [self initWithApiKey:apiKey storeOptions:nil];
 }
 
 - (NSArray<FSMimeType> *)mimeTypes {

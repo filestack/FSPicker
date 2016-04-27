@@ -76,6 +76,7 @@
     FSStoreOptions *storeOptions = [self.config.storeOptions copy];
 
     storeOptions.fileName = fileName;
+    storeOptions.mimeType = nil;
 
     [filestack store:itemData withOptions:storeOptions progress:^(NSProgress *uploadProgress) {
         if (delegateRespondsToUploadProgress) {
@@ -115,6 +116,7 @@
 
     Filestack *filestack = [[Filestack alloc] initWithApiKey:self.config.apiKey];
     FSStoreOptions *storeOptions = [self.config.storeOptions copy];
+    storeOptions.mimeType = nil;
 
     PHVideoRequestOptions *options=[[PHVideoRequestOptions alloc] init];
     options.version = PHVideoRequestOptionsVersionOriginal;

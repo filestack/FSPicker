@@ -31,15 +31,15 @@ extern NSString *const FSSourceCloudDrive;
 @interface FSConfig : NSObject
 
 @property (nonatomic, copy) NSString *apiKey;
-@property (nonatomic, copy) NSArray<FSMimeType> *mimeTypes;
 @property (nonatomic, copy) NSArray<NSString *> *sources;
-@property (nonatomic, strong) FSStoreOptions *storeOptions;
+@property (nonatomic, copy) NSArray<FSMimeType> *mimeTypes;
+@property (nonatomic, assign) NSInteger maxFiles;
 @property (nonatomic, assign) BOOL selectMultiple;
 @property (nonatomic, assign) BOOL shouldDownload;
 @property (nonatomic, assign) BOOL shouldUpload;
-@property (nonatomic, assign) NSInteger maxFiles;
+@property (nonatomic, strong) FSStoreOptions *storeOptions;
 
-- (instancetype)initWithApiKey:(NSString *)apiKey storeOptions:(FSStoreOptions *)storeOptions security:(FSSecurity *)security;
+- (instancetype)initWithApiKey:(NSString *)apiKey storeOptions:(FSStoreOptions *)storeOptions;
 - (instancetype)initWithApiKey:(NSString *)apiKey;
 
 @end
