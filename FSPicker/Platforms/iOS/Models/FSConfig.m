@@ -8,7 +8,7 @@
 
 #import "FSConfig.h"
 
-NSString *const FSSourceFilesystem = @"filesystem";
+// NSString *const FSSourceFilesystem = @"filesystem";
 NSString *const FSSourceBox = @"box";
 NSString *const FSSourceCameraRoll = @"cameraroll";
 NSString *const FSSourceDropbox = @"dropbox";

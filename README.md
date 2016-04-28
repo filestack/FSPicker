@@ -109,9 +109,8 @@ The most important property is ```apiKey``` also it is the only property you nee
 #### Sources names constants:
 
 ```objectivec
-FSSourceFilesystem // Mac only
 FSSourceBox
-FSSourceCameraRoll // iOS only
+FSSourceCameraRoll
 FSSourceDropbox
 FSSourceFacebook
 FSSourceGithub

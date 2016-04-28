@@ -11,7 +11,7 @@
 @import UIKit;
 #import "FSMimeTypes.h"
 
-extern NSString *const FSSourceFilesystem;
+// extern NSString *const FSSourceFilesystem;
 extern NSString *const FSSourceBox;
 extern NSString *const FSSourceCameraRoll;
 extern NSString *const FSSourceDropbox;
