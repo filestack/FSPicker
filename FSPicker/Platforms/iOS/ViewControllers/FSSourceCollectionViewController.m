@@ -225,6 +225,7 @@ static NSString * const reuseIdentifier = @"fsCell";
 
 - (void)configureCell:(FSCollectionViewCell *)cell forItem:(FSContentItem *)item atIndexPath:(NSIndexPath *)indexPath {
     [cell.activityIndicator stopAnimating];
+    cell.taskHash = 0;
 
     if (!item) {
         [self configureLoadingCell:cell];
@@ -261,16 +262,20 @@ static NSString * const reuseIdentifier = @"fsCell";
             cell.imageView.contentMode = UIViewContentModeScaleAspectFill;
             cell.type = FSCollectionViewCellTypeMedia;
 
-            NSURL *dataTaskURL = [NSURL URLWithString:item.thumbnailURL];
-            NSURLSessionDataTask *task = [[NSURLSession sharedSession] dataTaskWithURL:dataTaskURL completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-                if (data) {
+            NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:item.thumbnailURL] cachePolicy:NSURLRequestReturnCacheDataElseLoad timeoutInterval:120];
+
+            cell.imageTask = [[NSURLSession sharedSession] dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+                if (data && (cell.taskHash == cell.imageTask.hash)) {
                     dispatch_async(dispatch_get_main_queue(), ^{
                         cell.imageView.image = [UIImage imageWithData:data];
                     });
                 }
+
+                cell.imageTask = nil;
             }];
 
-            [task resume];
+            cell.taskHash = cell.imageTask.hash;
+            [cell.imageTask resume];
         }
     }
 }

@@ -10,6 +10,8 @@
 
 @interface FSListTableViewCell : UITableViewCell
 
+@property (nonatomic, assign) NSUInteger taskHash;
+@property (nonatomic, weak) NSURLSessionDataTask *imageTask;
 @property (nonatomic, copy) UIColor *selectedBackgroundColor UI_APPEARANCE_SELECTOR;
 
 @end

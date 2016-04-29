@@ -17,6 +17,8 @@ typedef NS_ENUM(NSInteger, FSCollectionViewCellType) {
 
 @interface FSCollectionViewCell : UICollectionViewCell
 
+@property (nonatomic, weak) NSURLSessionDataTask *imageTask;
+@property (nonatomic, assign) NSUInteger taskHash;
 @property (nonatomic, assign) FSCollectionViewCellType type;
 @property (nonatomic, strong) UIImageView *imageView;
 @property (nonatomic, strong) UIImageView *overlayImageView;
