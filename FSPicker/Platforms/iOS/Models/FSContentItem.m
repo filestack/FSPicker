@@ -52,21 +52,21 @@
     NSMutableArray *description = [[NSMutableArray alloc] init];
     NSString *detailText;
 
-    if (_isDirectory) {
+    if (self.isDirectory) {
         [description addObject:@"Folder"];
 
-        if (_itemCount) {
+        if (self.itemCount) {
             [description addObject:[NSString stringWithFormat:@"%ld %@",
-                                    (long)[_itemCount integerValue],
-                                    [_itemCount integerValue] == 1 ? @"file" : @"files"]];
+                                    (long)self.itemCount.integerValue,
+                                    self.itemCount.integerValue == 1 ? @"file" : @"files"]];
         }
     } else {
-        if (_modified) {
-            [description addObject:[NSString stringWithFormat:@"Modified %@", _modified]];
+        if (self.modified) {
+            [description addObject:[NSString stringWithFormat:@"Modified %@", self.modified]];
         }
 
-        if (_size) {
-            [description addObject:_size];
+        if (self.size) {
+            [description addObject:self.size];
         }
     }
 

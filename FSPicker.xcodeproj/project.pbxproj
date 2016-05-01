@@ -22,6 +22,7 @@
 		B21DCBE91CD36E1100AA008C /* FSConfigTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B21DCBE81CD36E1100AA008C /* FSConfigTests.m */; };
 		B21DCBEB1CD36E3F00AA008C /* FSThemeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B21DCBEA1CD36E3F00AA008C /* FSThemeTests.m */; };
 		B21DCBED1CD36E7100AA008C /* FSContentItemTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B21DCBEC1CD36E7100AA008C /* FSContentItemTests.m */; };
+		B21DCBEF1CD6130B00AA008C /* FSSessionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B21DCBEE1CD6130B00AA008C /* FSSessionTests.m */; };
 		B22667361C872B6E002E5BBA /* FSSourceListViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = B22667341C872B6E002E5BBA /* FSSourceListViewController.h */; };
 		B22667371C872B6E002E5BBA /* FSSourceListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B22667351C872B6E002E5BBA /* FSSourceListViewController.m */; };
 		B226673E1C873367002E5BBA /* FSSource.h in Headers */ = {isa = PBXBuildFile; fileRef = B226673C1C873367002E5BBA /* FSSource.h */; };
@@ -148,6 +149,7 @@
 		B21DCBE81CD36E1100AA008C /* FSConfigTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSConfigTests.m; sourceTree = "<group>"; };
 		B21DCBEA1CD36E3F00AA008C /* FSThemeTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSThemeTests.m; sourceTree = "<group>"; };
 		B21DCBEC1CD36E7100AA008C /* FSContentItemTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSContentItemTests.m; sourceTree = "<group>"; };
+		B21DCBEE1CD6130B00AA008C /* FSSessionTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSSessionTests.m; sourceTree = "<group>"; };
 		B22667341C872B6E002E5BBA /* FSSourceListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSSourceListViewController.h; sourceTree = "<group>"; };
 		B22667351C872B6E002E5BBA /* FSSourceListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSSourceListViewController.m; sourceTree = "<group>"; };
 		B226673C1C873367002E5BBA /* FSSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSSource.h; sourceTree = "<group>"; };
@@ -302,6 +304,7 @@
 				B21DCBE81CD36E1100AA008C /* FSConfigTests.m */,
 				B21DCBEA1CD36E3F00AA008C /* FSThemeTests.m */,
 				B21DCBEC1CD36E7100AA008C /* FSContentItemTests.m */,
+				B21DCBEE1CD6130B00AA008C /* FSSessionTests.m */,
 			);
 			path = FSPickerTests;
 			sourceTree = "<group>";
@@ -650,6 +653,7 @@
 				B21DCBEB1CD36E3F00AA008C /* FSThemeTests.m in Sources */,
 				B21DCBE91CD36E1100AA008C /* FSConfigTests.m in Sources */,
 				B21DCBE71CD36E0300AA008C /* FSSourceTests.m in Sources */,
+				B21DCBEF1CD6130B00AA008C /* FSSessionTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
