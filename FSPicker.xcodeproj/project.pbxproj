@@ -29,7 +29,7 @@
 		B226673F1C873367002E5BBA /* FSSource.m in Sources */ = {isa = PBXBuildFile; fileRef = B226673D1C873367002E5BBA /* FSSource.m */; };
 		B22667441C873B76002E5BBA /* FSConfig+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = B22667421C873B76002E5BBA /* FSConfig+Private.h */; };
 		B22667451C873B76002E5BBA /* FSConfig+Private.m in Sources */ = {isa = PBXBuildFile; fileRef = B22667431C873B76002E5BBA /* FSConfig+Private.m */; };
-		B232742A1C8EDCDA00EBD2BE /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B23274291C8EDCDA00EBD2BE /* Images.xcassets */; };
+		B232742A1C8EDCDA00EBD2BE /* fsImages.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B23274291C8EDCDA00EBD2BE /* fsImages.xcassets */; };
 		B25519DD1CBF8DCF00B16D46 /* FSUploader.h in Headers */ = {isa = PBXBuildFile; fileRef = B25519DB1CBF8DCF00B16D46 /* FSUploader.h */; };
 		B25519DE1CBF8DCF00B16D46 /* FSUploader.m in Sources */ = {isa = PBXBuildFile; fileRef = B25519DC1CBF8DCF00B16D46 /* FSUploader.m */; };
 		B25519E81CBFAC1A00B16D46 /* KAProgressLabel.h in Headers */ = {isa = PBXBuildFile; fileRef = B25519E41CBFAC1A00B16D46 /* KAProgressLabel.h */; };
@@ -56,7 +56,7 @@
 		B2BC57AB1C92B78D00317154 /* FSAuthViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2BC57A91C92B78D00317154 /* FSAuthViewController.m */; };
 		B2BC57B21C92C6FE00317154 /* FSProgressView.h in Headers */ = {isa = PBXBuildFile; fileRef = B2BC57B01C92C6FE00317154 /* FSProgressView.h */; };
 		B2BC57B31C92C6FE00317154 /* FSProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = B2BC57B11C92C6FE00317154 /* FSProgressView.m */; };
-		B2BC57B51C92DC4100317154 /* allowedUrlPrefix.plist in Resources */ = {isa = PBXBuildFile; fileRef = B2BC57B41C92DC4100317154 /* allowedUrlPrefix.plist */; };
+		B2BC57B51C92DC4100317154 /* fsAllowedUrlPrefix.plist in Resources */ = {isa = PBXBuildFile; fileRef = B2BC57B41C92DC4100317154 /* fsAllowedUrlPrefix.plist */; };
 		B2BC57B81C92DD7700317154 /* FSSettings.h in Headers */ = {isa = PBXBuildFile; fileRef = B2BC57B61C92DD7700317154 /* FSSettings.h */; };
 		B2BC57B91C92DD7700317154 /* FSSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = B2BC57B71C92DD7700317154 /* FSSettings.m */; };
 		B2BC57BC1C9300EA00317154 /* UINavigationController+Progress.h in Headers */ = {isa = PBXBuildFile; fileRef = B2BC57BA1C9300EA00317154 /* UINavigationController+Progress.h */; };
@@ -156,7 +156,7 @@
 		B226673D1C873367002E5BBA /* FSSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSSource.m; sourceTree = "<group>"; };
 		B22667421C873B76002E5BBA /* FSConfig+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FSConfig+Private.h"; sourceTree = "<group>"; };
 		B22667431C873B76002E5BBA /* FSConfig+Private.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FSConfig+Private.m"; sourceTree = "<group>"; };
-		B23274291C8EDCDA00EBD2BE /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		B23274291C8EDCDA00EBD2BE /* fsImages.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = fsImages.xcassets; sourceTree = "<group>"; };
 		B25519DB1CBF8DCF00B16D46 /* FSUploader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSUploader.h; sourceTree = "<group>"; };
 		B25519DC1CBF8DCF00B16D46 /* FSUploader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSUploader.m; sourceTree = "<group>"; };
 		B25519E41CBFAC1A00B16D46 /* KAProgressLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KAProgressLabel.h; sourceTree = "<group>"; };
@@ -184,7 +184,7 @@
 		B2BC57A91C92B78D00317154 /* FSAuthViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSAuthViewController.m; sourceTree = "<group>"; };
 		B2BC57B01C92C6FE00317154 /* FSProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSProgressView.h; sourceTree = "<group>"; };
 		B2BC57B11C92C6FE00317154 /* FSProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSProgressView.m; sourceTree = "<group>"; };
-		B2BC57B41C92DC4100317154 /* allowedUrlPrefix.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = allowedUrlPrefix.plist; sourceTree = "<group>"; };
+		B2BC57B41C92DC4100317154 /* fsAllowedUrlPrefix.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = fsAllowedUrlPrefix.plist; sourceTree = "<group>"; };
 		B2BC57B61C92DD7700317154 /* FSSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSSettings.h; sourceTree = "<group>"; };
 		B2BC57B71C92DD7700317154 /* FSSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSSettings.m; sourceTree = "<group>"; };
 		B2BC57BA1C9300EA00317154 /* UINavigationController+Progress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+Progress.h"; sourceTree = "<group>"; };
@@ -312,8 +312,8 @@
 		B23274241C8EDCB100EBD2BE /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				B23274291C8EDCDA00EBD2BE /* Images.xcassets */,
-				B2BC57B41C92DC4100317154 /* allowedUrlPrefix.plist */,
+				B23274291C8EDCDA00EBD2BE /* fsImages.xcassets */,
+				B2BC57B41C92DC4100317154 /* fsAllowedUrlPrefix.plist */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -637,8 +637,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B232742A1C8EDCDA00EBD2BE /* Images.xcassets in Resources */,
-				B2BC57B51C92DC4100317154 /* allowedUrlPrefix.plist in Resources */,
+				B232742A1C8EDCDA00EBD2BE /* fsImages.xcassets in Resources */,
+				B2BC57B51C92DC4100317154 /* fsAllowedUrlPrefix.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -871,6 +871,7 @@
 				B21DCBE01CD355C300AA008C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		B2E92D881C7C875500542C34 /* Build configuration list for PBXProject "FSPicker" */ = {
 			isa = XCConfigurationList;

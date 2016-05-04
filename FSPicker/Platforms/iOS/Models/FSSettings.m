@@ -12,7 +12,7 @@
 
 + (NSArray *)allowedUrlPrefixList {
     NSBundle *bundle = [NSBundle bundleForClass:[self class]];
-    NSURL *url = [bundle URLForResource:@"allowedUrlPrefix" withExtension:@"plist"];
+    NSURL *url = [bundle URLForResource:@"fsAllowedUrlPrefix" withExtension:@"plist"];
 
     return [NSArray arrayWithContentsOfURL:url];
 }

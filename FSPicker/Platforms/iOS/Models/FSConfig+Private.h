@@ -6,7 +6,7 @@
 //  Copyright © 2016 Filestack. All rights reserved.
 //
 
-#import <FSPicker/FSPicker.h>
+#import "FSConfig.h"
 @class FSSource;
 
 @interface FSConfig (Private)

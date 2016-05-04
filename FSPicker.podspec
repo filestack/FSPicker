@@ -20,5 +20,28 @@ Pod::Spec.new do |s|
   s.osx.deployment_target = '10.9'
   s.requires_arc = true
 
-  s.dependency 'Filestack'
+  s.ios.public_header_files = %w(
+    FSPicker/Shared/Models/FSMimeTypes.h
+    FSPicker/Platforms/iOS/FSPicker.h
+    FSPicker/Platforms/iOS/FSProtocols.h
+    FSPicker/Platforms/iOS/Models/FSConfig.h
+    FSPicker/Platforms/iOS/Models/FSTheme.h
+    FSPicker/Platforms/iOS/ViewControllers/FSPickerController.h
+  )
+
+  s.ios.source_files = %w(
+    FSPicker/Shared/Models/*.{h,m}
+    FSPicker/Platforms/iOS/Views/*.{h,m}
+    FSPicker/Platforms/iOS/ViewControllers/*.{h,m}
+    FSPicker/Platforms/iOS/Models/*.{h,m}
+    FSPicker/Platforms/iOS/KAProgressLabel/*.{h,m}
+    FSPicker/Platforms/iOS/FSImageVideoPicker/*.{h,m}
+  )
+
+  s.ios.resource_bundles = {
+    'fsImages' => 'FSPicker/Resources/fsImages.xcassets',
+    'fsAllowedUrlPrefix' => 'FSPicker/Resources/fsAllowedUrlPrefix.plist'
+  }
+
+  s.ios.dependency 'Filestack'
 end
