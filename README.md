@@ -229,3 +229,7 @@ A simple class to store your security policy and signature. **FSSecurity** insta
 [Read more about security and how to generate policies and signatures](https://www.filestack.com/docs/security)
 
 ```- initWithPolicy:signature:```
+
+## License
+
+FSPicker is released under the MIT license. See LICENSE for details.

@@ -6,7 +6,8 @@
 //  Copyright © 2016 Filestack. All rights reserved.
 //
 
-@import FilestackIOS.Filestack_FSPicker;
+//@import FilestackIOS.Filestack_FSPicker;
+#import <FilestackIOS/Filestack+FSPicker.h>
 #import "FSSearchViewController.h"
 #import "FSCollectionViewCell.h"
 #import "UICollectionViewFlowLayout+FSPicker.h"

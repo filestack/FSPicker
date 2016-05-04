@@ -6,8 +6,10 @@
 //  Copyright © 2016 Filestack. All rights reserved.
 //
 
-@import FilestackIOS.FSStoreOptions;
-@import FilestackIOS.FSSecurity;
+#import <FilestackIOS/FSStoreOptions.h>
+#import <FilestackIOS/FSSecurity.h>
+//@import FilestackIOS.FSStoreOptions;
+//@import FilestackIOS.FSSecurity;
 @import UIKit;
 #import "FSMimeTypes.h"
 

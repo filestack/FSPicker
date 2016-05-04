@@ -23,6 +23,8 @@
 		B21DCBEB1CD36E3F00AA008C /* FSThemeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B21DCBEA1CD36E3F00AA008C /* FSThemeTests.m */; };
 		B21DCBED1CD36E7100AA008C /* FSContentItemTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B21DCBEC1CD36E7100AA008C /* FSContentItemTests.m */; };
 		B21DCBEF1CD6130B00AA008C /* FSSessionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B21DCBEE1CD6130B00AA008C /* FSSessionTests.m */; };
+		B21DCC281CDA15AC00AA008C /* FSProtocols.h in Headers */ = {isa = PBXBuildFile; fileRef = B21DCC261CDA15AC00AA008C /* FSProtocols.h */; };
+		B21DCC291CDA15AC00AA008C /* FSProtocols+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = B21DCC271CDA15AC00AA008C /* FSProtocols+Private.h */; };
 		B22667361C872B6E002E5BBA /* FSSourceListViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = B22667341C872B6E002E5BBA /* FSSourceListViewController.h */; };
 		B22667371C872B6E002E5BBA /* FSSourceListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B22667351C872B6E002E5BBA /* FSSourceListViewController.m */; };
 		B226673E1C873367002E5BBA /* FSSource.h in Headers */ = {isa = PBXBuildFile; fileRef = B226673C1C873367002E5BBA /* FSSource.h */; };
@@ -46,8 +48,6 @@
 		B2787A131C9B02B300F05378 /* FSListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B2787A111C9B02B300F05378 /* FSListTableViewCell.m */; };
 		B2858C7A1C7C933D00AE3690 /* FSPickerController.h in Headers */ = {isa = PBXBuildFile; fileRef = B2858C781C7C933D00AE3690 /* FSPickerController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B2858C7B1C7C933D00AE3690 /* FSPickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2858C791C7C933D00AE3690 /* FSPickerController.m */; };
-		B29B44651CCA57B000844026 /* FSProtocols.h in Headers */ = {isa = PBXBuildFile; fileRef = B29B44641CCA57B000844026 /* FSProtocols.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		B29B446B1CCA584C00844026 /* FSProtocols+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = B29B446A1CCA584600844026 /* FSProtocols+Private.h */; };
 		B2A0423E1CAE6BAD0013BC41 /* FSSearchViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = B2A0423C1CAE6BAD0013BC41 /* FSSearchViewController.h */; };
 		B2A0423F1CAE6BAD0013BC41 /* FSSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2A0423D1CAE6BAD0013BC41 /* FSSearchViewController.m */; };
 		B2A042421CAEAEBB0013BC41 /* UICollectionViewFlowLayout+FSPicker.h in Headers */ = {isa = PBXBuildFile; fileRef = B2A042401CAEAEBB0013BC41 /* UICollectionViewFlowLayout+FSPicker.h */; };
@@ -150,6 +150,8 @@
 		B21DCBEA1CD36E3F00AA008C /* FSThemeTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSThemeTests.m; sourceTree = "<group>"; };
 		B21DCBEC1CD36E7100AA008C /* FSContentItemTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSContentItemTests.m; sourceTree = "<group>"; };
 		B21DCBEE1CD6130B00AA008C /* FSSessionTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSSessionTests.m; sourceTree = "<group>"; };
+		B21DCC261CDA15AC00AA008C /* FSProtocols.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSProtocols.h; sourceTree = "<group>"; };
+		B21DCC271CDA15AC00AA008C /* FSProtocols+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FSProtocols+Private.h"; sourceTree = "<group>"; };
 		B22667341C872B6E002E5BBA /* FSSourceListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSSourceListViewController.h; sourceTree = "<group>"; };
 		B22667351C872B6E002E5BBA /* FSSourceListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSSourceListViewController.m; sourceTree = "<group>"; };
 		B226673C1C873367002E5BBA /* FSSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSSource.h; sourceTree = "<group>"; };
@@ -174,8 +176,6 @@
 		B2858C781C7C933D00AE3690 /* FSPickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSPickerController.h; sourceTree = "<group>"; };
 		B2858C791C7C933D00AE3690 /* FSPickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSPickerController.m; sourceTree = "<group>"; };
 		B293FA0C1CCF6802006CAD47 /* Filestack.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Filestack.xcodeproj; path = /Users/lukasz/projects/FSPickerFilestack/../Filestack/Filestack.xcodeproj; sourceTree = "<absolute>"; };
-		B29B44641CCA57B000844026 /* FSProtocols.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSProtocols.h; sourceTree = "<group>"; };
-		B29B446A1CCA584600844026 /* FSProtocols+Private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FSProtocols+Private.h"; sourceTree = "<group>"; };
 		B2A0423C1CAE6BAD0013BC41 /* FSSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSSearchViewController.h; sourceTree = "<group>"; };
 		B2A0423D1CAE6BAD0013BC41 /* FSSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSSearchViewController.m; sourceTree = "<group>"; };
 		B2A042401CAEAEBB0013BC41 /* UICollectionViewFlowLayout+FSPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UICollectionViewFlowLayout+FSPicker.h"; sourceTree = "<group>"; };
@@ -289,6 +289,8 @@
 		B21AFBED1C7C8B0700E2DFED /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				B21DCC261CDA15AC00AA008C /* FSProtocols.h */,
+				B21DCC271CDA15AC00AA008C /* FSProtocols+Private.h */,
 				BEEE3879225C066776D76D56 /* FSMimeTypes.h */,
 				B217374B1C998B1900FE263F /* FSImage.h */,
 				B217374C1C998B1900FE263F /* FSImage.m */,
@@ -348,8 +350,6 @@
 				B2E92D931C7C875500542C34 /* Info.plist */,
 				BEEE37D91CDB727E79821731 /* Views */,
 				BEEE3DAE6995A292A62A3155 /* FSImageVideoPicker */,
-				B29B44641CCA57B000844026 /* FSProtocols.h */,
-				B29B446A1CCA584600844026 /* FSProtocols+Private.h */,
 			);
 			name = iOS;
 			path = Platforms/iOS;
@@ -486,8 +486,9 @@
 				B25519EA1CBFAC1A00B16D46 /* TPPropertyAnimation.h in Headers */,
 				B2BFEB2A1C9189630037571D /* FSSourceCollectionViewController.h in Headers */,
 				B22667441C873B76002E5BBA /* FSConfig+Private.h in Headers */,
+				B21DCC291CDA15AC00AA008C /* FSProtocols+Private.h in Headers */,
+				B21DCC281CDA15AC00AA008C /* FSProtocols.h in Headers */,
 				B25519E81CBFAC1A00B16D46 /* KAProgressLabel.h in Headers */,
-				B29B446B1CCA584C00844026 /* FSProtocols+Private.h in Headers */,
 				BEEE3BEE39BA046F9371E5E3 /* UILabel+Appearance.h in Headers */,
 				B27569851C8879A700BF4254 /* FSSourceTableViewCell.h in Headers */,
 				B217374D1C998B1900FE263F /* FSImage.h in Headers */,
@@ -503,7 +504,6 @@
 				BEEE3B810E65997C63D88B41 /* FSAlbumsViewController.h in Headers */,
 				B214AB7E1C9853B5004D6978 /* FSTableViewCellTag.h in Headers */,
 				B2BC57BC1C9300EA00317154 /* UINavigationController+Progress.h in Headers */,
-				B29B44651CCA57B000844026 /* FSProtocols.h in Headers */,
 				BEEE327256C4E7A922B21B00 /* FSGridViewController.h in Headers */,
 				BEEE31D881DE310DC5D426D5 /* FSMimeTypes.h in Headers */,
 				B26C6ACB1CCE14EB00CED799 /* FSPickerController+Private.h in Headers */,

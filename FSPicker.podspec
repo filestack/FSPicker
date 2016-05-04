@@ -22,8 +22,8 @@ Pod::Spec.new do |s|
 
   s.ios.public_header_files = %w(
     FSPicker/Shared/Models/FSMimeTypes.h
+    FSPicker/Shared/Models/FSProtocols.h
     FSPicker/Platforms/iOS/FSPicker.h
-    FSPicker/Platforms/iOS/FSProtocols.h
     FSPicker/Platforms/iOS/Models/FSConfig.h
     FSPicker/Platforms/iOS/Models/FSTheme.h
     FSPicker/Platforms/iOS/ViewControllers/FSPickerController.h

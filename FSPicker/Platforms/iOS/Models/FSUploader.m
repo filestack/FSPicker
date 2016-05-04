@@ -6,8 +6,10 @@
 //  Copyright © 2016 Filestack. All rights reserved.
 //
 
-@import FilestackIOS.Filestack;
-@import FilestackIOS.Filestack_FSPicker;
+//@import FilestackIOS.Filestack;
+#import <FilestackIOS/Filestack.h>
+//@import FilestackIOS.Filestack_FSPicker;
+#import <FilestackIOS/Filestack+FSPicker.h>
 #import "FSSource.h"
 #import "FSConfig.h"
 #import "FSSession.h"
