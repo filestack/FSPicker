@@ -38,10 +38,7 @@ Pod::Spec.new do |s|
     FSPicker/Platforms/iOS/FSImageVideoPicker/*.{h,m}
   )
 
-  s.ios.resource_bundles = {
-    'fsImages' => 'FSPicker/Resources/fsImages.xcassets',
-    'fsAllowedUrlPrefix' => 'FSPicker/Resources/fsAllowedUrlPrefix.plist'
-  }
+  s.resources = 'FSPicker/Shared/Resources/fsImages.xcassets', 'FSPicker/Shared/Resources/fsAllowedUrlPrefix.plist'
 
   s.ios.dependency 'Filestack'
 end
