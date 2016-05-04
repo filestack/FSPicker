@@ -21,8 +21,7 @@
 #import "FSSourceTableViewController.h"
 #import "FSUploadModalViewController.h"
 #import "FSSourceCollectionViewController.h"
-//@import FilestackIOS.Filestack_FSPicker;
-#import <FilestackIOS/Filestack+FSPicker.h>
+#import <Filestack/Filestack+FSPicker.h>
 
 @interface FSSourceViewController () <FSAuthViewControllerDelegate>
 

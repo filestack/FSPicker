@@ -1,3 +1,3 @@
 source 'https://github.com/CocoaPods/Specs.git'
 
-pod 'Filestack'
+pod 'Filestack', path: '~/projects/Filestack'
