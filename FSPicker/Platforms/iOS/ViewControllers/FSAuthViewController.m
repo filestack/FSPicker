@@ -12,11 +12,10 @@
 #import "FSSource.h"
 #import "FSConfig.h"
 #import "FSSettings.h"
-@import WebKit;
 
-@interface FSAuthViewController () <WKNavigationDelegate>
+@interface FSAuthViewController () <UIWebViewDelegate>
 
-@property (nonatomic, strong) WKWebView *webView;
+@property (nonatomic, strong) UIWebView *webView;
 @property (nonatomic, strong) FSSource *source;
 @property (nonatomic, strong) FSConfig *config;
 @property (nonatomic, strong) NSArray *allowedUrls;
@@ -52,65 +51,44 @@ static NSString *const fsAuthURL = @"%@/api/client/%@/auth/open?m=*/*&key=%@&id=
 }
 
 - (void)setupWebView {
-    // Workaround for WKWebView memory leak;
-    WKWebViewConfiguration *config = [[WKWebViewConfiguration alloc] init];
-    config.selectionGranularity = WKSelectionGranularityCharacter;
-    self.webView = [[WKWebView alloc] initWithFrame:self.view.bounds configuration:config];
+    self.webView = [[UIWebView alloc] initWithFrame:self.view.bounds];
     self.webView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-    self.webView.navigationDelegate = self;
+    self.webView.delegate = self;
     [self.view addSubview:self.webView];
-    [self.webView addObserver:self forKeyPath:@"estimatedProgress" options:NSKeyValueObservingOptionNew context:nil];
 }
 
 - (void)loadAuthRequest {
     NSString *urlString = [NSString stringWithFormat:fsAuthURL, fsBaseURL, self.source.service, self.config.apiKey];
     NSURL *requestURL = [NSURL URLWithString:urlString];
-    NSURLRequest *request = [NSURLRequest requestWithURL:requestURL];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:requestURL];
 
     [self.webView loadRequest:request];
 }
 
-- (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation {
-    [self.navigationController.fsProgressView animateFadeOutAndHide];
-}
-
-- (void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler {
-    NSURLRequest *request = navigationAction.request;
+- (BOOL)webView:(UIWebView *)localWebView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType{
     NSString *absoluteString = request.URL.absoluteString;
 
-    NSLog(@"request.URL.path: %@", request.URL.path);
-    NSLog(@"absoluteString: %@", absoluteString);
-
     if ([request.URL.path isEqualToString:@"/dialog/open"]) {
-        decisionHandler(WKNavigationActionPolicyCancel);
-        [self.navigationController popViewControllerAnimated:YES];
+        [self.navigationController popViewControllerAnimated:NO];
+
         if ([self.delegate respondsToSelector:@selector(didAuthenticateWithSource)]) {
             [self.delegate didAuthenticateWithSource];
         }
-        return;
+
+        return NO;
     }
 
     for (NSString *url in self.allowedUrls) {
+        if ([url isEqualToString:@""]) {
+            continue;
+        }
+
         if ([absoluteString containsString:url]) {
-            decisionHandler(WKNavigationActionPolicyAllow);
-            return;
+            return YES;
         }
     }
 
-    decisionHandler(WKNavigationActionPolicyCancel);
-}
-
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSString *,id> *)change context:(void *)context {
-    if ([keyPath isEqualToString:@"estimatedProgress"]) {
-        [self.navigationController.fsProgressView setProgress:(float)self.webView.estimatedProgress animated:YES];
-        if ((int)self.webView.estimatedProgress == 1) {
-            [self.navigationController.fsProgressView animateFadeOutAndHide];
-        }
-    }
-}
-
-- (void)dealloc {
-    [self.webView removeObserver:self forKeyPath:@"estimatedProgress"];
+    return NO;
 }
 
 @end
