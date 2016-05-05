@@ -22,9 +22,9 @@
 
     if (isLandscape && reversed) {
         itemSize = (screenBoundsHeight - totalSpacingPortrait) / itemsPerRowPortrait;
-    } else if (isLandscape && !reversed) {
+    } else if (isLandscape) {
         itemSize = (screenBoundsWidth - totalSpacingLandscape) / itemsPerRowLandscape;
-    } else if (!isLandscape && reversed) {
+    } else if (reversed) {
         itemSize = (screenBoundsHeight - totalSpacingLandscape) / itemsPerRowLandscape;
     } else {
         itemSize = (screenBoundsWidth - totalSpacingPortrait) / itemsPerRowPortrait;

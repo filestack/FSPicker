@@ -46,24 +46,18 @@
 }
 
 - (BOOL)showImages {
-    if ([self.mimeTypes containsObject:FSMimeTypeAll] ||
-        [self.mimeTypes containsObject:FSMimeTypeImageAll] ||
-        [self.mimeTypes containsObject:FSMimeTypeImageJPEG] ||
-        [self.mimeTypes containsObject:FSMimeTypeImagePNG]) {
-        return YES;
-    }
+    return [self.mimeTypes containsObject:FSMimeTypeAll] ||
+    [self.mimeTypes containsObject:FSMimeTypeImageAll] ||
+    [self.mimeTypes containsObject:FSMimeTypeImageJPEG] ||
+    [self.mimeTypes containsObject:FSMimeTypeImagePNG];
 
-    return NO;
 }
 
 - (BOOL)showVideos {
-    if ([self.mimeTypes containsObject:FSMimeTypeAll] ||
-        [self.mimeTypes containsObject:FSMimeTypeVideoAll] ||
-        [self.mimeTypes containsObject:FSMimeTypeVideoQuickTime]) {
-        return YES;
-    }
+    return [self.mimeTypes containsObject:FSMimeTypeAll] ||
+    [self.mimeTypes containsObject:FSMimeTypeVideoAll] ||
+    [self.mimeTypes containsObject:FSMimeTypeVideoQuickTime];
 
-    return  NO;
 }
 
 @end

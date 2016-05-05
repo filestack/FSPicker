@@ -14,7 +14,6 @@
 
 @interface FSSourceTableViewController ()
 
-@property (nonatomic, strong) UIActivityIndicatorView *activityIndicator;
 @property (nonatomic, strong) NSArray<FSContentItem *> *contentData;
 
 @end

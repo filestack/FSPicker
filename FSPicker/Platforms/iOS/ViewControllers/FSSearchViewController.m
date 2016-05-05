@@ -205,18 +205,19 @@ static NSString * const headerReuseIdentifier = @"headerView";
 }
 
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
-    UICollectionReusableView* reusableView;
-
     if (kind == UICollectionElementKindSectionHeader) {
+        UICollectionReusableView* reusableView;
         UICollectionReusableView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader
                                                                                   withReuseIdentifier:headerReuseIdentifier
                                                                                          forIndexPath:indexPath];
 
         [headerView addSubview:self.searchController.searchBar];
         reusableView = headerView;
+
+        return reusableView;
     }
 
-    return reusableView;
+    return [super collectionView:collectionView viewForSupplementaryElementOfKind:kind atIndexPath:indexPath];
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section {

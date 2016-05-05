@@ -26,8 +26,8 @@
     return self;
 }
 
-+ (NSArray<FSContentItem *> *)itemsFromResponseJSON:(NSDictionary *)JSON {
-    NSArray<NSDictionary *> *content = [[NSArray alloc] initWithArray:JSON[@"contents"]];
++ (NSArray<FSContentItem *> *)itemsFromResponseJSON:(NSDictionary *)json {
+    NSArray<NSDictionary *> *content = [[NSArray alloc] initWithArray:json[@"contents"]];
     NSMutableArray<FSContentItem *> *items = [[NSMutableArray alloc] init];
 
     for (NSDictionary *item in content) {

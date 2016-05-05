@@ -323,11 +323,7 @@ static NSString * const reuseIdentifier = @"fsCell";
     CGFloat contentHeight = self.collectionView.contentSize.height;
     CGFloat frameHeight = self.collectionView.frame.size.height;
 
-    if (offsetY > 0.0 && (offsetY > contentHeight - frameHeight)) {
-        return YES;
-    }
-
-    return NO;
+    return offsetY > 0.0 && (offsetY > contentHeight - frameHeight);
 }
 
 #pragma mark - (De)Selection methods

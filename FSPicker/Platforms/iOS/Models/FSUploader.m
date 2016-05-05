@@ -127,7 +127,7 @@
 
         if (item.mediaType == PHAssetMediaTypeImage) {
             [[PHImageManager defaultManager] requestImageDataForAsset:item options:nil resultHandler:^(NSData * imageData, NSString * dataUTI, UIImageOrientation orientation, NSDictionary * info) {
-                NSURL *imageURL = [info objectForKey:@"PHImageFileURLKey"];
+                NSURL *imageURL = info[@"PHImageFileURLKey"];
                 NSString *fileName = imageURL.lastPathComponent;
                 storeOptions.fileName = fileName;
 

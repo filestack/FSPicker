@@ -225,7 +225,7 @@
             self.nextPage = [nextPage respondsToSelector:@selector(stringValue)] ? [nextPage stringValue] : nextPage;
             self.lastPage = NO;
         } else {
-            self.lastPage = !!self.nextPage;
+            self.lastPage = self.nextPage != nil;
             self.nextPage = nil;
         }
 

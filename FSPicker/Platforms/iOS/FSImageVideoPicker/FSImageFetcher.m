@@ -11,7 +11,7 @@
 @implementation FSImageFetcher
 
 + (void)imageForAsset:(PHAsset *)asset withCachingImageManager:(PHCachingImageManager *)cachingManager thumbSize:(CGFloat)thumbSize contentMode:(PHImageContentMode)contentMode imageResult:(void (^)(UIImage *image))imageResult {
-    NSInteger scale = [UIScreen mainScreen].scale;
+    CGFloat scale = [UIScreen mainScreen].scale;
     CGSize scaledThumbSize = CGSizeMake(thumbSize * scale, thumbSize * scale);
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wgnu"

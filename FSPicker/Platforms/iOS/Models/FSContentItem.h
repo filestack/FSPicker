@@ -21,6 +21,6 @@
 @property (nonatomic, assign, readonly) BOOL isDirectory;
 @property (nonatomic, assign, readonly) BOOL thumbExists;
 
-+ (NSArray<FSContentItem *> *)itemsFromResponseJSON:(NSDictionary *)JSON;
++ (NSArray<FSContentItem *> *)itemsFromResponseJSON:(NSDictionary *)json;
 
 @end
