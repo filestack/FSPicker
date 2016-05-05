@@ -19,6 +19,7 @@
 @property (nonatomic, strong) FSSource *source;
 @property (nonatomic, strong) FSConfig *config;
 @property (nonatomic, strong) NSArray *allowedUrls;
+@property (nonatomic, strong) UIActivityIndicatorView *activityIndicator;
 
 @end
 
@@ -41,6 +42,7 @@ static NSString *const fsAuthURL = @"%@/api/client/%@/auth/open?m=*/*&key=%@&id=
     [super viewDidLoad];
     self.title = self.source.name;
     [self setupWebView];
+    [self setupActivityIndicator];
     [self loadAuthRequest];
 }
 
@@ -57,6 +59,11 @@ static NSString *const fsAuthURL = @"%@/api/client/%@/auth/open?m=*/*&key=%@&id=
     [self.view addSubview:self.webView];
 }
 
+- (void)setupActivityIndicator {
+    self.activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.activityIndicator];
+}
+
 - (void)loadAuthRequest {
     NSString *urlString = [NSString stringWithFormat:fsAuthURL, fsBaseURL, self.source.service, self.config.apiKey];
     NSURL *requestURL = [NSURL URLWithString:urlString];
@@ -69,7 +76,7 @@ static NSString *const fsAuthURL = @"%@/api/client/%@/auth/open?m=*/*&key=%@&id=
     NSString *absoluteString = request.URL.absoluteString;
 
     if ([request.URL.path isEqualToString:@"/dialog/open"]) {
-        [self.navigationController popViewControllerAnimated:NO];
+        [self.navigationController popViewControllerAnimated:YES];
 
         if ([self.delegate respondsToSelector:@selector(didAuthenticateWithSource)]) {
             [self.delegate didAuthenticateWithSource];
@@ -89,6 +96,14 @@ static NSString *const fsAuthURL = @"%@/api/client/%@/auth/open?m=*/*&key=%@&id=
     }
 
     return NO;
+}
+
+- (void)webViewDidStartLoad:(UIWebView *)webView {
+    [self.activityIndicator startAnimating];
+}
+
+- (void)webViewDidFinishLoad:(UIWebView *)webView {
+    [self.activityIndicator stopAnimating];
 }
 
 @end
