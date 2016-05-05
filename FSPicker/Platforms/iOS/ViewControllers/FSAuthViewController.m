@@ -49,7 +49,6 @@ static NSString *const fsAuthURL = @"%@/api/client/%@/auth/open?m=*/*&key=%@&id=
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     [self.webView stopLoading];
-    [self.navigationController fsResetProgressView];
 }
 
 - (void)setupWebView {
