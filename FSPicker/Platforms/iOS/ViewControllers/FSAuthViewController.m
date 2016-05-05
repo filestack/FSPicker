@@ -6,18 +6,16 @@
 //  Copyright © 2016 Filestack. All rights reserved.
 //
 
-#import "FSAuthViewController.h"
-#import "FSProgressView.h"
-#import "UINavigationController+Progress.h"
 #import "FSSource.h"
 #import "FSConfig.h"
 #import "FSSettings.h"
+#import "FSAuthViewController.h"
 
 @interface FSAuthViewController () <UIWebViewDelegate>
 
-@property (nonatomic, strong) UIWebView *webView;
 @property (nonatomic, strong) FSSource *source;
 @property (nonatomic, strong) FSConfig *config;
+@property (nonatomic, strong) UIWebView *webView;
 @property (nonatomic, strong) NSArray *allowedUrls;
 @property (nonatomic, strong) UIActivityIndicatorView *activityIndicator;
 

@@ -10,7 +10,7 @@
 #import "FSConfig.h"
 #import "FSConfig+Private.h"
 #import "FSSource.h"
-@import FilestackIOS;
+@import Filestack;
 
 @interface FSConfigTests : XCTestCase
 

@@ -7,7 +7,6 @@
 //
 
 #import "TPPropertyAnimation.h"
-#import <QuartzCore/QuartzCore.h>
 
 #define kRefreshRate 1.0/30.0
 

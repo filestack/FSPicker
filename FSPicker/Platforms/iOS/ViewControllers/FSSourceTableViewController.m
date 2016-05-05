@@ -8,7 +8,6 @@
 
 #import "FSSourceTableViewController.h"
 #import "FSSourceViewController.h"
-#import "FSActivityIndicatorView.h"
 #import "FSListTableViewCell.h"
 #import "FSContentItem.h"
 #import "FSImage.h"

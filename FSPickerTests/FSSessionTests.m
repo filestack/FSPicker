@@ -9,7 +9,7 @@
 #import <XCTest/XCTest.h>
 #import "FSSession.h"
 #import "FSConfig.h"
-@import FilestackIOS;
+@import Filestack;
 
 @interface FSSessionTests : XCTestCase
 

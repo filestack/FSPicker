@@ -9,10 +9,8 @@
 #import <XCTest/XCTest.h>
 #import "FSTheme.h"
 #import "FSTableViewCell.h"
-#import "UILabel+Appearance.h"
 #import "FSCollectionViewCell.h"
 #import "FSBarButtonItem.h"
-#import "KAProgressLabel.h"
 #import "FSSourceTableViewController.h"
 
 @interface FSThemeTests : XCTestCase

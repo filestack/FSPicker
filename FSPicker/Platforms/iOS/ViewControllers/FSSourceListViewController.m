@@ -16,7 +16,6 @@
 #import "FSSearchViewController.h"
 #import "UIAlertController+FSPicker.h"
 #import "FSUploadModalViewController.h"
-#import "FSUploader.h"
 #import "FSPickerController+Private.h"
 
 @interface FSSourceListViewController () <UIImagePickerControllerDelegate, UINavigationControllerDelegate>

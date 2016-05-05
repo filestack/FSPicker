@@ -13,7 +13,6 @@
 #import "FSConfig.h"
 #import "FSSource.h"
 #import "FSConfig+Private.h"
-@import Photos;
 
 @interface FSAlbumsViewController ()
 

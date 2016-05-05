@@ -6,21 +6,19 @@
 //  Copyright © 2016 Filestack. All rights reserved.
 //
 
-#import <Filestack/Filestack+FSPicker.h>
-#import "FSSearchViewController.h"
-#import "FSCollectionViewCell.h"
-#import "UICollectionViewFlowLayout+FSPicker.h"
-#import "FSActivityIndicatorView.h"
-#import "FSContentItem.h"
+#import "FSImage.h"
+#import "FSConfig.h"
 #import "FSSource.h"
 #import "FSSession.h"
-#import "UIAlertController+FSPicker.h"
-#import "FSImage.h"
+#import "FSContentItem.h"
 #import "FSBarButtonItem.h"
-#import "FSConfig.h"
-#import "FSUploadModalViewController.h"
-#import "FSUploader.h"
+#import "FSCollectionViewCell.h"
+#import "FSSearchViewController.h"
 #import "FSPickerController+Private.h"
+#import "UIAlertController+FSPicker.h"
+#import "FSUploadModalViewController.h"
+#import <Filestack/Filestack+FSPicker.h>
+#import "UICollectionViewFlowLayout+FSPicker.h"
 
 @interface FSSearchViewController () <UISearchResultsUpdating, UISearchBarDelegate, UICollectionViewDelegateFlowLayout>
 
@@ -46,8 +44,8 @@ static NSString * const headerReuseIdentifier = @"headerView";
         _config = config;
         _source = source;
         _selectedContent = [[NSMutableArray alloc] init];
-        _selectedIndexPaths = [[NSMutableArray alloc] init];
         _selectedOverlay = [FSImage cellSelectedOverlay];
+        _selectedIndexPaths = [[NSMutableArray alloc] init];
     }
 
     return self;
@@ -55,7 +53,6 @@ static NSString * const headerReuseIdentifier = @"headerView";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
     [self setupSearchController];
     [self setupCollectionView];
     [self setupActivityIndicator];
@@ -68,15 +65,26 @@ static NSString * const headerReuseIdentifier = @"headerView";
     [self.navigationController setToolbarHidden:YES animated:YES];
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [self.searchController setActive:YES];
+    // Hacky, hacky
+    [self performSelector:@selector(showKeyboard) withObject:nil afterDelay:0.1];
+}
+
+- (void)showKeyboard {
+    [self.searchController.searchBar becomeFirstResponder];
+}
+
 #pragma mark - Setup views
 
 - (void)setupSearchController {
     self.searchController = [[UISearchController alloc] initWithSearchResultsController:nil];
+    self.searchController.searchBar.delegate = self;
     self.searchController.searchResultsUpdater = self;
     self.searchController.dimsBackgroundDuringPresentation = YES;
     self.searchController.hidesNavigationBarDuringPresentation = NO;
     self.searchController.searchBar.placeholder = @"Search for images";
-    self.searchController.searchBar.delegate = self;
     self.searchController.searchBar.searchBarStyle = UISearchBarStyleDefault;
     self.searchController.searchBar.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     [self.searchController.searchBar sizeToFit];
@@ -91,8 +99,11 @@ static NSString * const headerReuseIdentifier = @"headerView";
     self.collectionView.collectionViewLayout = layout;
     self.collectionView.alwaysBounceVertical = YES;
     self.collectionView.allowsMultipleSelection = YES;
-    [self.collectionView registerClass:[FSCollectionViewCell class] forCellWithReuseIdentifier:reuseIdentifier];
-    [self.collectionView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:headerReuseIdentifier];
+    [self.collectionView registerClass:[FSCollectionViewCell class]
+            forCellWithReuseIdentifier:reuseIdentifier];
+    [self.collectionView registerClass:[UICollectionReusableView class]
+            forSupplementaryViewOfKind:UICollectionElementKindSectionHeader
+                   withReuseIdentifier:headerReuseIdentifier];
 }
 
 - (void)setupActivityIndicator {
@@ -110,13 +121,13 @@ static NSString * const headerReuseIdentifier = @"headerView";
 }
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
+    self.collectionView.userInteractionEnabled = NO;
+    self.searchController.active = NO;
     [self.searchController.searchBar resignFirstResponder];
     [self.selectedContent removeAllObjects];
     [self.selectedIndexPaths removeAllObjects];
-    self.collectionView.userInteractionEnabled = NO;
     [self updateToolbar];
     [self loadSourceContentWithSearchString:self.searchController.searchBar.text];
-    self.searchController.active = NO;
 }
 
 #pragma mark - Loading data
@@ -163,8 +174,8 @@ static NSString * const headerReuseIdentifier = @"headerView";
 
     cell.imageView.contentMode = UIViewContentModeScaleAspectFill;
     cell.imageView.clipsToBounds = YES;
-    cell.type = FSCollectionViewCellTypeMedia;
     cell.imageView.alpha = 0.0;
+    cell.type = FSCollectionViewCellTypeMedia;
 
     if ([self.selectedIndexPaths containsObject:indexPath]) {
         cell.overlayImageView.image = self.selectedOverlay;
@@ -204,6 +215,7 @@ static NSString * const headerReuseIdentifier = @"headerView";
         [headerView addSubview:self.searchController.searchBar];
         reusableView = headerView;
     }
+
     return reusableView;
 }
 

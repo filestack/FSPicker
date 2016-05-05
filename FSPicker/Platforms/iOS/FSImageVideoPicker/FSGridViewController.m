@@ -14,7 +14,6 @@
 #import "FSConfig.h"
 #import "FSImage.h"
 #import "FSUploader.h"
-#import "FSSession.h"
 #import "FSUploadModalViewController.h"
 #import "FSPickerController+Private.h"
 
