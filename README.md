@@ -132,11 +132,38 @@ FSSourceCloudDrive
 typedef NSString * FSMimeType;
 
 FSMimeTypeAll @"*/*"
+
+FSMimeTypeAudioAll @"audio/*"
+
 FSMimeTypeVideoAll @"video/*"
 FSMimeTypeVideoQuickTime @"video/quicktime"
+
 FSMimeTypeImageAll @"image/*"
 FSMimeTypeImagePNG @"image/png"
 FSMimeTypeImageJPEG @"image/jpeg"
+FSMimeTypeImageBMP @"image/bmp"
+FSMimeTypeImageGIF @"image/gif"
+FSMimeTypeImageSVG @"image/svg+xml"
+FSMimeTypeImageTIFF @"image/tiff"
+FSMimeTypeImagePSD @"image/vnd.adobe.photoshop"
+
+FSMimeTypeApplicationAll @"application/*"
+FSMimeTypeApplicationPDF @"application/pdf"
+FSMimeTypeApplicationDOC @"application/msword"
+FSMimeTypeApplicationDOCX @"application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+FSMimeTypeApplicationODT @"application/vnd.oasis.opendocument.text"
+FSMimeTypeApplicationXLS @"application/vnd.ms-excel"
+FSMimeTypeApplicationXLSX @"application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+FSMimeTypeApplicationODS @"application/vnd.oasis.opendocument.spreadsheet"
+FSMimeTypeApplicationPPT @"application/vnd.ms-powerpoint"
+FSMimeTypeApplicationPPTX @"application/vnd.openxmlformats-officedocument.presentationml.presentation"
+FSMimeTypeApplicationODP @"application/vnd.oasis.opendocument.presentation"
+FSMimeTypeApplicationAI @"application/illustrator"
+FSMimeTypeApplicationJSON @"application/json"
+
+FSMimeTypeTextAll @"text/*"
+FSMimeTypeTextHTML @"text/html"
+FSMimeTypeTextPlain @"text/plain; charset=UTF-8"
 ```
 
 ### FSTheme
