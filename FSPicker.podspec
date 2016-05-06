@@ -7,7 +7,7 @@ Pod::Spec.new do |s|
               Upload images and files of any kind. Transform them into different styles and formats. Deliver them rapidly and responsively to the world.
   DESC
 
-  s.homepage     = 'https://github.com/filepicker/FSPicker'
+  s.homepage     = 'https://github.com/filestack/FSPicker'
   s.license      = { :type => 'MIT', :file => 'LICENSE' }
   s.author       = { 'Filestack' => 'lukasz@filestack.com' }
 
