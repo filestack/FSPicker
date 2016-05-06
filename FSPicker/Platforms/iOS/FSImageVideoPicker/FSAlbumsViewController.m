@@ -31,15 +31,24 @@
         _config = config;
         _source = source;
         _thumbSize = 70.0;
-        _cachingImageManager = [[PHCachingImageManager alloc] init];
     }
 
     return self;
 }
 
+- (PHCachingImageManager *)cachingImageManager {
+    if (!_cachingImageManager) {
+        if ([PHPhotoLibrary authorizationStatus] == PHAuthorizationStatusAuthorized) {
+            _cachingImageManager = [[PHCachingImageManager alloc] init];
+        }
+    }
+
+    return _cachingImageManager;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self fetchAlbumsData];
+    [self fetchAlbumsDataWithReload:NO];
     self.title = @"Albums";
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 }
@@ -53,13 +62,12 @@
 
     if ([PHPhotoLibrary authorizationStatus] == PHAuthorizationStatusNotDetermined) {
         [PHPhotoLibrary requestAuthorization:^(PHAuthorizationStatus status) {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [self fetchAlbumsData];
-            });
+            if (status == PHAuthorizationStatusAuthorized) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [self fetchAlbumsDataWithReload:YES];
+                });
+            }
         }];
-        return;
-    } else {
-        [self fetchAlbumsData];
     }
 }
 
@@ -108,7 +116,7 @@
     [self.navigationController pushViewController:gridViewController animated:YES];
 }
 
-- (void)fetchAlbumsData {
+- (void)fetchAlbumsDataWithReload:(BOOL)reload {
     PHFetchResult *smartAlbums = [PHAssetCollection fetchAssetCollectionsWithType:PHAssetCollectionTypeSmartAlbum subtype:PHAssetCollectionSubtypeAlbumRegular options:nil];
     PHFetchResult *userAlbums = [PHAssetCollection fetchAssetCollectionsWithType:PHAssetCollectionTypeAlbum subtype:PHAssetCollectionSubtypeAny options:nil];
 
@@ -118,6 +126,10 @@
     [self addCollectionFromAlbums:userAlbums toAssetsCollection:assetsCollection withFetchOptions:[self assetsFetchOptions]];
 
     self.albums = assetsCollection;
+
+    if (reload) {
+        [self.tableView reloadData];
+    }
 }
 
 - (PHFetchResult *)fetchAssetsFromCollection:(PHAssetCollection *)collection {
