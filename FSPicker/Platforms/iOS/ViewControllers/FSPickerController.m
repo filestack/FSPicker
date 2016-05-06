@@ -38,6 +38,12 @@
     [super didReceiveMemoryWarning];
 }
 
+- (void)didCancel {
+    if ([self.fsDelegate respondsToSelector:@selector(fsPickerDidCancel:)]) {
+        [self.fsDelegate fsPickerDidCancel:self];
+    }
+}
+
 - (void)fsUploadComplete:(FSBlob *)blob {
     if ([self.fsDelegate respondsToSelector:@selector(fsPicker:pickedMediaWithBlob:)]) {
         [self.fsDelegate fsPicker:self pickedMediaWithBlob:blob];

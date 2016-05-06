@@ -62,7 +62,7 @@ fsPickerController.fsDelegate = self;
 
 ```objectivec
 // Called when user dismisses the picker controller.
-- (void)fsPickerDidCancel:(FSPickerController *)picker; #TODO
+- (void)fsPickerDidCancel:(FSPickerController *)picker;
 
 // Called when picking of a single file resulted in error.
 // This does not mean that picking of the rest of the files (in case of multiple files available) is interrupted.

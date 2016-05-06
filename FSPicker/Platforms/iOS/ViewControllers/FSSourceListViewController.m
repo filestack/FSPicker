@@ -51,6 +51,7 @@
 }
 
 - (void)dismissController {
+    [(FSPickerController *)self.navigationController didCancel];
     [self.navigationController dismissViewControllerAnimated:YES completion:nil];
 }
 

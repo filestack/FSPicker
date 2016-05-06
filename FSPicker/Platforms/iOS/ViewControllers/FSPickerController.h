@@ -19,5 +19,6 @@
 
 - (instancetype)initWithConfig:(FSConfig *)config theme:(FSTheme *)theme;
 - (instancetype)initWithConfig:(FSConfig *)config;
+- (void)didCancel;
 
 @end
