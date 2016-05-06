@@ -1,6 +1,6 @@
 # FSPicker for iOS
 
-[![CocoaPods](https://img.shields.io/cocoapods/v/FSPicker.svg)]() [![CocoaPods](https://img.shields.io/cocoapods/p/FSPicker.svg)]()
+[![CocoaPods](https://img.shields.io/cocoapods/v/FSPicker.svg)]()
 
 FSPicker is a Filestack's reimplementation of [iOS-picker](https://github.com/Ink/ios-picker).
 If you have any feature request or bug to report, please open an issue or PR.
