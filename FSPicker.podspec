@@ -13,7 +13,7 @@ Pod::Spec.new do |s|
 
   s.source       = {
     :git => 'https://github.com/filestack/FSPicker.git',
-    :tag => "#{s.version}"
+    :tag => "#{s.version}-beta"
   }
 
   s.ios.deployment_target = '8.4'
