@@ -87,8 +87,9 @@ NSArray<NSString *> *sources;
 NSArray<FSMimeType> *mimeTypes;
 NSInteger maxFiles;
 BOOL selectMultiple;
-BOOL shouldDownload;
-BOOL shouldUpload;
+BOOL defaultToFrontCamera;
+// BOOL shouldDownload; TODO
+// BOOL shouldUpload; TODO
 FSStoreOptions *storeOptions;
 ```
 
@@ -99,6 +100,10 @@ The most important property is ```apiKey``` also it is the only property you nee
 ```sources``` array allows you to configure sources you'd like to have available in your application. You can find sources names [below](#sources-names-constants). If no or empty array is set - all sources are displayed on the list.
 
 ```mimeTypes``` array is used to constraining displayed files to certain types. There are typedefs [defined](#mimetypes-typedef) for your convenience. If this property is not provided all file types will be available for uploading (*/*).
+
+```selectMultiple``` YES by default. If set to NO, FSPicker will automatically "pick" file on select.
+
+```defaultToFrontCamera``` - set to YES if you want to open "Camera" source with front camera as default.
 
 ```maxFiles``` sets maximum number of files to upload simultaneously. Unlimited by default.
 
