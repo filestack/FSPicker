@@ -31,7 +31,9 @@ NSString *const FSSourceCloudDrive = @"clouddrive";
     if ((self = [super init])) {
         _apiKey = apiKey;
         _storeOptions = storeOptions;
+        _selectMultiple = YES;
     }
+
     return self;
 }
 

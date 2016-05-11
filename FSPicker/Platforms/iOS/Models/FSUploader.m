@@ -43,26 +43,34 @@
 
     for (FSContentItem *item in items) {
         NSDictionary *parameters = [session toQueryParametersWithFormat:@"fpurl"];
+
         [Filestack pickFSURL:item.linkPath parameters:parameters completionHandler:^(FSBlob *blob, NSError *error) {
             uploadedItems++;
+
             if (blob) {
                 [self.blobsArray addObject:blob];
+            }
 
-                if ([self.uploadModalDelegate respondsToSelector:@selector(fsUploadProgress:addToTotalProgress:)]) {
-                    float currentProgress = (float)uploadedItems / totalNumberOfItems;
-                    [self.uploadModalDelegate fsUploadProgress:currentProgress addToTotalProgress:NO];
-                }
+            if ([self.uploadModalDelegate respondsToSelector:@selector(fsUploadProgress:addToTotalProgress:)]) {
+                float currentProgress = (float)uploadedItems / totalNumberOfItems;
+                [self.uploadModalDelegate fsUploadProgress:currentProgress addToTotalProgress:NO];
             }
 
             [self messageDelegateWithBlob:blob error:error];
 
             if (uploadedItems == totalNumberOfItems) {
                 if ([self.uploadModalDelegate respondsToSelector:@selector(fsUploadFinishedWithBlobs:)]) {
-                    [self.uploadModalDelegate fsUploadFinishedWithBlobs:self.blobsArray];
+                    // Dismiss the modal after 1s so user can actually see the 100% progress.
+                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                        [self.uploadModalDelegate fsUploadFinishedWithBlobs:nil];
+                    });
                 }
 
                 if ([self.pickerDelegate respondsToSelector:@selector(fsUploadFinishedWithBlobs:)]) {
-                    [self.pickerDelegate fsUploadFinishedWithBlobs:self.blobsArray];
+                    // Send the message ~1s after dismissing the upload modal.
+                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                        [self.pickerDelegate fsUploadFinishedWithBlobs:self.blobsArray];
+                    });
                 }
             }
         }];
@@ -112,7 +120,7 @@
 - (void)uploadLocalItems:(NSArray<PHAsset *> *)items {
     BOOL delegateRespondsToUploadProgress = [self.uploadModalDelegate respondsToSelector:@selector(fsUploadProgress:addToTotalProgress:)];
     NSUInteger totalNumberOfItems = items.count;
-    NSUInteger __block uploadedItems = 1;
+    NSUInteger __block uploadedItems = 0;
 
     Filestack *filestack = [[Filestack alloc] initWithApiKey:self.config.apiKey];
     FSStoreOptions *storeOptions = [self.config.storeOptions copy];
@@ -146,7 +154,7 @@
 
                     [self messageDelegateWithBlob:blob error:error];
 
-                    if (uploadedItems >= totalNumberOfItems) {
+                    if (uploadedItems == totalNumberOfItems) {
                         [self messageDelegateLocalUploadFinished];
                     }
                 }];
@@ -174,7 +182,7 @@
 
                         [self messageDelegateWithBlob:blob error:error];
 
-                        if (uploadedItems >= totalNumberOfItems) {
+                        if (uploadedItems == totalNumberOfItems) {
                             [self messageDelegateLocalUploadFinished];
                         }
                     }];
@@ -186,7 +194,7 @@
 
 - (void)messageDelegateLocalUploadFinished {
     if ([self.uploadModalDelegate respondsToSelector:@selector(fsUploadFinishedWithBlobs:)]) {
-        [self.uploadModalDelegate fsUploadFinishedWithBlobs:self.blobsArray];
+        [self.uploadModalDelegate fsUploadFinishedWithBlobs:nil];
     }
 
     if ([self.uploadModalDelegate respondsToSelector:@selector(fsUploadProgress:addToTotalProgress:)]) {

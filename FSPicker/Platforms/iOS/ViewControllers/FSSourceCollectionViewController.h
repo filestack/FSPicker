@@ -14,6 +14,7 @@
 
 @property (nonatomic, weak) FSSourceViewController *sourceController;
 @property (nonatomic, assign) BOOL alreadyDisplayed;
+@property (nonatomic, assign) BOOL selectMultiple;
 
 - (void)clearAllCollectionItems;
 - (void)refreshControlEnabled:(BOOL)enabled;

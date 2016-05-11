@@ -39,27 +39,35 @@
 }
 
 - (void)didCancel {
-    if ([self.fsDelegate respondsToSelector:@selector(fsPickerDidCancel:)]) {
-        [self.fsDelegate fsPickerDidCancel:self];
-    }
+    dispatch_async(dispatch_get_main_queue(), ^{
+        if ([self.fsDelegate respondsToSelector:@selector(fsPickerDidCancel:)]) {
+            [self.fsDelegate fsPickerDidCancel:self];
+        }
+    });
 }
 
 - (void)fsUploadComplete:(FSBlob *)blob {
-    if ([self.fsDelegate respondsToSelector:@selector(fsPicker:pickedMediaWithBlob:)]) {
-        [self.fsDelegate fsPicker:self pickedMediaWithBlob:blob];
-    }
+    dispatch_async(dispatch_get_main_queue(), ^{
+        if ([self.fsDelegate respondsToSelector:@selector(fsPicker:pickedMediaWithBlob:)]) {
+            [self.fsDelegate fsPicker:self pickedMediaWithBlob:blob];
+        }
+    });
 }
 
 - (void)fsUploadError:(NSError *)error {
-    if ([self.fsDelegate respondsToSelector:@selector(fsPicker:pickingDidError:)]) {
-        [self.fsDelegate fsPicker:self pickingDidError:error];
-    }
+    dispatch_async(dispatch_get_main_queue(), ^{
+        if ([self.fsDelegate respondsToSelector:@selector(fsPicker:pickingDidError:)]) {
+            [self.fsDelegate fsPicker:self pickingDidError:error];
+        }
+    });
 }
 
 - (void)fsUploadFinishedWithBlobs:(NSArray<FSBlob *> *)blobsArray {
-    if ([self.fsDelegate respondsToSelector:@selector(fsPicker:didFinishedPickingMediaWithBlobs:)]) {
-        [self.fsDelegate fsPicker:self didFinishedPickingMediaWithBlobs:blobsArray];
-    }
+    dispatch_async(dispatch_get_main_queue(), ^{
+        if ([self.fsDelegate respondsToSelector:@selector(fsPicker:didFinishedPickingMediaWithBlobs:)]) {
+            [self.fsDelegate fsPicker:self didFinishedPickingMediaWithBlobs:blobsArray];
+        }
+    });
 }
 
 @end

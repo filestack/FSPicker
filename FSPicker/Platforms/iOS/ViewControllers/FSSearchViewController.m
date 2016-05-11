@@ -87,6 +87,7 @@ static NSString * const headerReuseIdentifier = @"headerView";
     self.searchController.searchBar.placeholder = @"Search for images";
     self.searchController.searchBar.searchBarStyle = UISearchBarStyleDefault;
     self.searchController.searchBar.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+    self.searchController.searchBar.autocapitalizationType = NO;
     [self.searchController.searchBar sizeToFit];
 }
 
@@ -122,12 +123,13 @@ static NSString * const headerReuseIdentifier = @"headerView";
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
     self.collectionView.userInteractionEnabled = NO;
-    self.searchController.active = NO;
     [self.searchController.searchBar resignFirstResponder];
     [self.selectedContent removeAllObjects];
     [self.selectedIndexPaths removeAllObjects];
     [self updateToolbar];
     [self loadSourceContentWithSearchString:self.searchController.searchBar.text];
+
+    self.searchController.active = NO;
 }
 
 #pragma mark - Loading data
@@ -259,7 +261,12 @@ static NSString * const headerReuseIdentifier = @"headerView";
     cell.overlayImageView.image = self.selectedOverlay;
     [self.selectedContent addObject:item];
     [self.selectedIndexPaths addObject:indexPath];
-    [self updateToolbar];
+
+    if (self.config.selectMultiple) {
+        [self updateToolbar];
+    } else {
+        [self uploadSelectedContents];
+    }
 }
 
 - (void)deselectedCell:(FSCollectionViewCell *)cell forItem:(FSContentItem *)item atIndexPath:(NSIndexPath *)indexPath {
@@ -338,9 +345,13 @@ static NSString * const headerReuseIdentifier = @"headerView";
     [uploader uploadCloudItems:self.selectedContent];
 
     [self.selectedContent removeAllObjects];
+
+    for (NSIndexPath *indexPath in self.selectedIndexPaths) {
+        [self collectionView:self.collectionView didDeselectItemAtIndexPath:indexPath];
+    }
+
     [self.selectedIndexPaths removeAllObjects];
     [self updateToolbar];
-    [self.collectionView reloadData];
 }
 
 - (CGFloat)topInset {

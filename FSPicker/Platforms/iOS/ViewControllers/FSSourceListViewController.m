@@ -187,6 +187,10 @@
         [mediaTypes addObject:@"public.movie"];
     }
 
+    if (self.config.defaultToFrontCamera) {
+        pickerController.cameraDevice = UIImagePickerControllerCameraDeviceFront;
+    }
+
     pickerController.mediaTypes = mediaTypes;
     pickerController.delegate = self;
 

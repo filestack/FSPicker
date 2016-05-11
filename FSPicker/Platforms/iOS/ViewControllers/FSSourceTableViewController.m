@@ -97,7 +97,7 @@ static NSString *const reuseIdentifier = @"fsCell";
     CGFloat topInset = [self topInset];
     if (currentInsets.top != 0 || !_alreadyDisplayed) {
         self.tableView.contentInset = UIEdgeInsetsMake(topInset, currentInsets.left, currentInsets.bottom, currentInsets.right);
-        _alreadyDisplayed = YES;
+        self.alreadyDisplayed = YES;
     }
 }
 
@@ -145,14 +145,14 @@ static NSString *const reuseIdentifier = @"fsCell";
 - (void)setContentData:(NSArray<FSContentItem *> *)contentData isNextPage:(BOOL)isNextPage newIndexPaths:(NSArray<NSIndexPath *> *)newIndexPaths {
     _contentData = contentData;
 
-    if (_contentData.count != 0) {
+    if (self.contentData.count != 0) {
         self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
     }
 
     if (isNextPage) {
         [self.tableView beginUpdates];
 
-        if (_sourceController.lastPage) {
+        if (self.sourceController.lastPage) {
             // If this is the last page, remove the "LoadingCell" before inserting new rows.
             NSInteger lastRowIndex = [self.tableView numberOfRowsInSection:0] - 1;
             [self.tableView deleteRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:lastRowIndex inSection:0]]
@@ -177,7 +177,7 @@ static NSString *const reuseIdentifier = @"fsCell";
 
 - (void)refreshData {
     self.tableView.userInteractionEnabled = NO;
-    [_sourceController triggerDataRefresh:^(BOOL success) {
+    [self.sourceController triggerDataRefresh:^(BOOL success) {
         self.tableView.userInteractionEnabled = YES;
         // refreshControl's endRefreshing is called in setContentData in case of success.
         if (!success) {
@@ -191,7 +191,7 @@ static NSString *const reuseIdentifier = @"fsCell";
     NSMutableArray *newIndexPaths;
 
     if (isNextPageData) {
-        NSInteger currentRowCount = _contentData.count;
+        NSInteger currentRowCount = self.contentData.count;
         NSInteger noOfIndexPathsToAdd = contentData.count;
         newIndexPaths = [[NSMutableArray alloc] init];
 
@@ -199,7 +199,7 @@ static NSString *const reuseIdentifier = @"fsCell";
             [newIndexPaths addObject:[NSIndexPath indexPathForRow:currentRowCount + i inSection:0]];
         }
 
-        [data addObjectsFromArray:_contentData];
+        [data addObjectsFromArray:self.contentData];
     }
 
     [data addObjectsFromArray:contentData];
@@ -207,11 +207,11 @@ static NSString *const reuseIdentifier = @"fsCell";
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    if (_sourceController.nextPage && !_sourceController.lastPage) {
-        return _contentData.count + 1;
+    if (self.sourceController.nextPage && !self.sourceController.lastPage) {
+        return self.contentData.count + 1;
     }
 
-    return _contentData.count;
+    return self.contentData.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -222,13 +222,13 @@ static NSString *const reuseIdentifier = @"fsCell";
                                           reuseIdentifier:reuseIdentifier];
     }
 
-    if (indexPath.row == _contentData.count && _sourceController.nextPage) {
+    if (indexPath.row == self.contentData.count && self.sourceController.nextPage) {
         [self configureLoadingCell:cell];
     } else {
         FSContentItem *item = [self itemAtIndexPath:indexPath];
         [self configureCell:cell forItem:item];
 
-        if ([_sourceController isContentItemSelected:item]) {
+        if ([self.sourceController isContentItemSelected:item]) {
             cell.selected = YES;
             [self.tableView selectRowAtIndexPath:indexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
         }
@@ -238,8 +238,8 @@ static NSString *const reuseIdentifier = @"fsCell";
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (![self.refreshControl isRefreshing] && indexPath.row == _contentData.count && _sourceController.nextPage) {
-        [_sourceController loadNextPage];
+    if (![self.refreshControl isRefreshing] && indexPath.row == self.contentData.count && self.sourceController.nextPage) {
+        [self.sourceController loadNextPage];
     }
 }
 
@@ -304,11 +304,11 @@ static NSString *const reuseIdentifier = @"fsCell";
 }
 
 - (FSContentItem *)itemAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.row > _contentData.count - 1) {
+    if (indexPath.row > self.contentData.count - 1) {
         return nil;
     }
 
-    return _contentData[indexPath.row];
+    return self.contentData[indexPath.row];
 }
 
 #pragma mark - Table view delegate
@@ -316,21 +316,22 @@ static NSString *const reuseIdentifier = @"fsCell";
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if (![self.refreshControl isRefreshing]) {
         FSContentItem *item = [self itemAtIndexPath:indexPath];
+
         if (item.isDirectory) {
-            [_sourceController clearSelectedContent];
+            [self.sourceController clearSelectedContent];
             for (NSIndexPath *indexPath in [self.tableView indexPathsForSelectedRows]) {
                 [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
             }
-            [_sourceController loadDirectory:item.linkPath];
+            [self.sourceController loadDirectory:item.linkPath];
         } else {
-            [_sourceController selectContentItem:item atIndexPath:indexPath forTableView:NO collectionView:YES];
+            [self.sourceController selectContentItem:item atIndexPath:indexPath forTableView:NO collectionView:YES];
         }
     }
 }
 
 - (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath {
     if (![self.refreshControl isRefreshing]) {
-        [_sourceController deselectContentItem:[self itemAtIndexPath:indexPath] atIndexPath:indexPath forTableView:NO collectionView:YES];
+        [self.sourceController deselectContentItem:[self itemAtIndexPath:indexPath] atIndexPath:indexPath forTableView:NO collectionView:YES];
     }
 }
 

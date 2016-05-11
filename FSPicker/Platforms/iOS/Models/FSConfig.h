@@ -8,8 +8,8 @@
 
 #import <Filestack/FSStoreOptions.h>
 #import <Filestack/FSSecurity.h>
-@import UIKit;
 #import "FSMimeTypes.h"
+@import UIKit;
 
 // extern NSString *const FSSourceFilesystem;
 extern NSString *const FSSourceBox;
@@ -37,6 +37,7 @@ extern NSString *const FSSourceCloudDrive;
 @property (nonatomic, assign) BOOL selectMultiple;
 @property (nonatomic, assign) BOOL shouldDownload;
 @property (nonatomic, assign) BOOL shouldUpload;
+@property (nonatomic, assign) BOOL defaultToFrontCamera;
 @property (nonatomic, strong) FSStoreOptions *storeOptions;
 
 - (instancetype)initWithApiKey:(NSString *)apiKey storeOptions:(FSStoreOptions *)storeOptions;

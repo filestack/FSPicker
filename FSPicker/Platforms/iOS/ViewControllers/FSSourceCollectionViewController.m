@@ -346,12 +346,16 @@ static NSString * const reuseIdentifier = @"fsCell";
 
 - (void)selectedCell:(FSCollectionViewCell *)cell forItem:(FSContentItem *)item atIndexPath:(NSIndexPath *)indexPath {
     [self addItemToCollection:item indexPath:indexPath];
-    cell.overlayImageView.image = self.selectedOverlay;
+    if (self.selectMultiple) {
+        cell.overlayImageView.image = self.selectedOverlay;
+    }
 }
 
 - (void)deselectedCell:(FSCollectionViewCell *)cell forItem:(FSContentItem *)item atIndexPath:(NSIndexPath *)indexPath {
     [self clearCollectionItem:item indexPath:indexPath];
-    cell.overlayImageView.image = nil;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        cell.overlayImageView.image = nil;
+    });
 }
 
 - (void)clearCollectionItem:(FSContentItem *)item indexPath:(NSIndexPath *)indexPath {

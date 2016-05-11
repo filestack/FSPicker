@@ -108,7 +108,12 @@
     [self markCellAsSelected:cell atIndexPath:indexPath];
     [self.selectedAssets addObject:self.assetsFetchResult[indexPath.row]];
     [self.selectedIndexPaths addObject:indexPath];
-    [self updateToolbar];
+
+    if (self.config.selectMultiple) {
+        [self updateToolbar];
+    } else {
+        [self uploadSelectedAssets];
+    }
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -141,7 +146,14 @@
 }
 
 - (void)clearSelectedAssets {
+    [self.selectedAssets removeAllObjects];
 
+    for (NSIndexPath *indexPath in self.selectedIndexPaths) {
+        [self collectionView:self.collectionView didDeselectItemAtIndexPath:indexPath];
+    }
+
+    [self.selectedIndexPaths removeAllObjects];
+    [self updateToolbar];
 }
 
 #pragma mark - Toolbar

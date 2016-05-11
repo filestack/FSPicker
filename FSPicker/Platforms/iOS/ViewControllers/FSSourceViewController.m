@@ -51,6 +51,7 @@
         _selectedContent = [[NSMutableArray alloc] init];
         _tableViewController = [[FSSourceTableViewController alloc] initWithStyle:UITableViewStylePlain];
         _collectionViewController = [[FSSourceCollectionViewController alloc] initWithCollectionViewLayout:[[UICollectionViewFlowLayout alloc] init]];
+        _collectionViewController.selectMultiple = config.selectMultiple;
     }
 
     return self;
@@ -260,7 +261,6 @@
 
 - (void)selectContentItem:(FSContentItem *)item atIndexPath:(NSIndexPath *)indexPath forTableView:(BOOL)tableView collectionView:(BOOL)collectionView {
     [self.selectedContent addObject:item];
-    [self updateToolbar];
 
     if (tableView) {
         [self.tableViewController reloadRowAtIndexPath:indexPath];
@@ -268,6 +268,12 @@
 
     if (collectionView) {
         [self.collectionViewController reloadCellAtIndexPath:indexPath];
+    }
+
+    if (self.config.selectMultiple) {
+        [self updateToolbar];
+    } else {
+        [self uploadSelectedContents];
     }
 }
 

@@ -91,17 +91,13 @@
 }
 
 - (void)fsUploadFinishedWithBlobs:(NSArray<FSBlob *> *)blobsArray {
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+    dispatch_async(dispatch_get_main_queue(), ^{
         [self dismissViewControllerAnimated:YES completion:nil];
     });
 }
 
-- (void)fsUploadComplete:(FSBlob *)blob {
-    NSLog(@"upload complete with blob: %@", blob);
-}
-
 - (void)fsUploadError:(NSError *)error {
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+    dispatch_async(dispatch_get_main_queue(), ^{
         [self dismissViewControllerAnimated:YES completion:nil];
     });
 }
