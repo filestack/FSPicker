@@ -1,3 +1,9 @@
+## 0.1.3-beta (2016-05-12)
+
+### Fixed:
+
+- Missing FSPicker.h source file added to pod.
+
 ## 0.1.2-beta (2016-05-11)
 
 ### Added:
