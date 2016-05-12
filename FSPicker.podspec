@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = 'FSPicker'
-  s.version      = '0.1.2'
+  s.version      = '0.1.3'
   s.summary      = "Filestack's picker controller implementation."
 
   s.description  = <<-DESC
@@ -31,6 +31,7 @@ Pod::Spec.new do |s|
 
   s.ios.source_files = %w(
     FSPicker/Shared/Models/*.{h,m}
+    FSPicker/Platforms/iOS/*.{h,m}
     FSPicker/Platforms/iOS/Views/*.{h,m}
     FSPicker/Platforms/iOS/ViewControllers/*.{h,m}
     FSPicker/Platforms/iOS/Models/*.{h,m}
