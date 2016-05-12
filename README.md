@@ -37,6 +37,8 @@ $ pod install
 To begin using FSPicker you need to import the module:
 
 ```objectivec
+#import <FSPicker/FSPicker.h>
+// or
 @import FSPicker;
 ```
 
