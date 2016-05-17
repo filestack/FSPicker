@@ -1,3 +1,9 @@
+## 0.1.4-beta (2016-05-17)
+
+### Fixed:
+
+- ```FSSearchViewController``` crash on uploading multiple files.
+
 ## 0.1.3-beta (2016-05-12)
 
 ### Fixed:
