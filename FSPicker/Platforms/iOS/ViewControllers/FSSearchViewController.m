@@ -346,7 +346,7 @@ static NSString * const headerReuseIdentifier = @"headerView";
 
     [self.selectedContent removeAllObjects];
 
-    for (NSIndexPath *indexPath in self.selectedIndexPaths) {
+    for (NSIndexPath *indexPath in [self.selectedIndexPaths copy]) {
         [self collectionView:self.collectionView didDeselectItemAtIndexPath:indexPath];
     }
 
