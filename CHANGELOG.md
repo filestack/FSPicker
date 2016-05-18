@@ -1,3 +1,9 @@
+## 0.1.5-beta (2016-05-18)
+
+### Fixed
+
+- ```FSGridViewController``` crash on uploading multiple files.
+
 ## 0.1.4-beta (2016-05-17)
 
 ### Fixed:
