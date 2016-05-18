@@ -148,7 +148,7 @@
 - (void)clearSelectedAssets {
     [self.selectedAssets removeAllObjects];
 
-    for (NSIndexPath *indexPath in self.selectedIndexPaths) {
+    for (NSIndexPath *indexPath in [self.selectedIndexPaths copy]) {
         [self collectionView:self.collectionView didDeselectItemAtIndexPath:indexPath];
     }
 
