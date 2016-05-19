@@ -1,25 +1,26 @@
 //
-//  FSPickerController.m
+//  FSSaveController.m
 //  FSPicker
 //
-//  Created by Łukasz Cichecki on 23/02/16.
+//  Created by Łukasz Cichecki on 13/05/16.
 //  Copyright © 2016 Filestack. All rights reserved.
 //
 
 #import "FSTheme.h"
-#import "FSPickerController.h"
+#import "FSSaveController.h"
 #import "FSSourceListViewController.h"
 #import "FSProtocols+Private.h"
 
-@interface FSPickerController () <FSUploaderDelegate>
+@interface FSSaveController () <FSExporterDelegate>
 
 @end
-@implementation FSPickerController
+
+@implementation FSSaveController
 
 - (instancetype)initWithConfig:(FSConfig *)config theme:(FSTheme *)theme {
     if ((self = [super initWithRootViewController:[[FSSourceListViewController alloc] initWithConfig:config]])) {
-        _config = config;
         _theme = theme;
+        _config = config;
 
         if (_theme) {
             [_theme applyToController:self];
@@ -49,32 +50,24 @@
 
 - (void)didCancel {
     dispatch_async(dispatch_get_main_queue(), ^{
-        if ([self.fsDelegate respondsToSelector:@selector(fsPickerDidCancel:)]) {
-            [self.fsDelegate fsPickerDidCancel:self];
+        if ([self.fsDelegate respondsToSelector:@selector(fsSaveControllerDidCancel:)]) {
+            [self.fsDelegate fsSaveControllerDidCancel:self];
         }
     });
 }
 
-- (void)fsUploadComplete:(FSBlob *)blob {
+- (void)fsExportComplete:(FSBlob *)blob {
     dispatch_async(dispatch_get_main_queue(), ^{
-        if ([self.fsDelegate respondsToSelector:@selector(fsPicker:pickedMediaWithBlob:)]) {
-            [self.fsDelegate fsPicker:self pickedMediaWithBlob:blob];
+        if ([self.fsDelegate respondsToSelector:@selector(fsSaveController:didFinishSavingMediaWithBlob:)]) {
+            [self.fsDelegate fsSaveController:self didFinishSavingMediaWithBlob:blob];
         }
     });
 }
 
-- (void)fsUploadError:(NSError *)error {
+- (void)fsExportError:(NSError *)error {
     dispatch_async(dispatch_get_main_queue(), ^{
-        if ([self.fsDelegate respondsToSelector:@selector(fsPicker:pickingDidError:)]) {
-            [self.fsDelegate fsPicker:self pickingDidError:error];
-        }
-    });
-}
-
-- (void)fsUploadFinishedWithBlobs:(NSArray<FSBlob *> *)blobsArray {
-    dispatch_async(dispatch_get_main_queue(), ^{
-        if ([self.fsDelegate respondsToSelector:@selector(fsPicker:didFinishPickingMediaWithBlobs:)]) {
-            [self.fsDelegate fsPicker:self didFinishPickingMediaWithBlobs:blobsArray];
+        if ([self.fsDelegate respondsToSelector:@selector(fsSaveController:savingDidError:)]) {
+            [self.fsDelegate fsSaveController:self savingDidError:error];
         }
     });
 }

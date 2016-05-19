@@ -11,9 +11,10 @@
 
 @interface FSConfig (Private)
 
-- (NSArray<FSSource *> *)fsLocalSources;
-- (NSArray<FSSource *> *)fsRemoteSources;
+- (NSArray<FSSource *> *)fsLocalSourcesForSaving:(BOOL)forSaving;
+- (NSArray<FSSource *> *)fsRemoteSourcesForSaving:(BOOL)forSaving;
 - (BOOL)showImages;
 - (BOOL)showVideos;
+- (NSString *)fileExtension;
 
 @end

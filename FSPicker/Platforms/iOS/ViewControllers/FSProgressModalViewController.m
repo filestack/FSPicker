@@ -1,21 +1,21 @@
 //
-//  FSUploadModalViewController.m
+//  FSProgressModalViewController.m
 //  FSPicker
 //
 //  Created by Łukasz Cichecki on 14/04/16.
 //  Copyright © 2016 Filestack. All rights reserved.
 //
 
-#import "FSUploadModalViewController.h"
+#import "FSProgressModalViewController.h"
 #import "KAProgressLabel.h"
 
-@interface FSUploadModalViewController ()
+@interface FSProgressModalViewController ()
 
 @property (nonatomic, strong) KAProgressLabel *progressLabel;
 
 @end
 
-@implementation FSUploadModalViewController
+@implementation FSProgressModalViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -90,6 +90,10 @@
     });
 }
 
+- (void)fsExportProgress:(float)progress addToTotalProgress:(BOOL)addToTotalProgress {
+    [self fsUploadProgress:progress addToTotalProgress:addToTotalProgress];
+}
+
 - (void)fsUploadFinishedWithBlobs:(NSArray<FSBlob *> *)blobsArray {
     dispatch_async(dispatch_get_main_queue(), ^{
         [self dismissViewControllerAnimated:YES completion:nil];
@@ -100,6 +104,14 @@
     dispatch_async(dispatch_get_main_queue(), ^{
         [self dismissViewControllerAnimated:YES completion:nil];
     });
+}
+
+- (void)fsExportComplete:(FSBlob *)blob {
+    [self fsUploadFinishedWithBlobs:nil];
+}
+
+- (void)fsExportError:(NSError *)error {
+    [self fsUploadError:error];
 }
 
 @end

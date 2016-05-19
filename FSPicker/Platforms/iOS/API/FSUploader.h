@@ -7,7 +7,6 @@
 //
 
 @import Foundation;
-#import "FSPickerController.h"
 #import "FSProtocols+Private.h"
 @class FSContentItem;
 @class FSConfig;
@@ -21,7 +20,8 @@
 @property (nonatomic, weak) id <FSUploaderDelegate> pickerDelegate;
 
 - (instancetype)initWithConfig:(FSConfig *)config source:(FSSource *)source;
-- (void)uploadCameraItem:(NSData *)itemData fileName:(NSString *)fileName;
+//- (void)uploadCameraItem:(NSData *)itemData fileName:(NSString *)fileName;
+- (void)uploadCameraItemWithInfo:(NSDictionary<NSString *, id> *)info;
 - (void)uploadCloudItems:(NSArray<FSContentItem *> *)items;
 - (void)uploadLocalItems:(NSArray<PHAsset *> *)items;
 

@@ -8,8 +8,9 @@
 
 #import "FSSourceCollectionViewController.h"
 #import "UICollectionViewFlowLayout+FSPicker.h"
-#import "FSCollectionViewCell.h"
+#import "FSSaveSourceViewController.h"
 #import "FSSourceViewController.h"
+#import "FSCollectionViewCell.h"
 #import "FSContentItem.h"
 #import "FSImage.h"
 
@@ -289,8 +290,10 @@ static NSString * const reuseIdentifier = @"fsCell";
 
         if (item.isDirectory) {
             [self selectedDirectoryCell:cell atIndexPath:indexPath];
-        } else {
+        } else if (![self.sourceController isMemberOfClass:[FSSaveSourceViewController class]]) {
             [self selectedCell:cell forItem:item atIndexPath:indexPath];
+        } else {
+            cell.selected = NO;
         }
     }
 }

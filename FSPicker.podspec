@@ -27,6 +27,7 @@ Pod::Spec.new do |s|
     FSPicker/Platforms/iOS/Models/FSConfig.h
     FSPicker/Platforms/iOS/Models/FSTheme.h
     FSPicker/Platforms/iOS/ViewControllers/FSPickerController.h
+    FSPicker/Platforms/iOS/ViewControllers/FSSaveController.h
   )
 
   s.ios.source_files = %w(
@@ -35,6 +36,7 @@ Pod::Spec.new do |s|
     FSPicker/Platforms/iOS/Views/*.{h,m}
     FSPicker/Platforms/iOS/ViewControllers/*.{h,m}
     FSPicker/Platforms/iOS/Models/*.{h,m}
+    FSPicker/Platforms/iOS/API/*.{h,m}
     FSPicker/Platforms/iOS/KAProgressLabel/*.{h,m}
     FSPicker/Platforms/iOS/FSImageVideoPicker/*.{h,m}
   )

@@ -1,5 +1,5 @@
 //
-//  FSUploadModalViewController.h
+//  FSProgressModalViewController.h
 //  FSPicker
 //
 //  Created by Łukasz Cichecki on 14/04/16.
@@ -8,7 +8,8 @@
 
 @import UIKit;
 #import "FSUploader.h"
+#import "FSExporter.h"
 
-@interface FSUploadModalViewController : UIViewController <FSUploaderDelegate>
+@interface FSProgressModalViewController : UIViewController <FSUploaderDelegate, FSExporterDelegate>
 
 @end

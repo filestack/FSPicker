@@ -76,7 +76,7 @@ fsPickerController.fsDelegate = self;
 - (void)fsPicker:(FSPickerController *)picker pickedMediaWithBlob:(FSBlob *)blob;
 
 // Called when "files picking" is finished. Blobs array will contain blobs of all successfully picked files.
-- (void)fsPicker:(FSPickerController *)picker didFinishedPickingMediaWithBlobs:(NSArray<FSBlob *> *)blobs;
+- (void)fsPicker:(FSPickerController *)picker didFinishPickingMediaWithBlobs:(NSArray<FSBlob *> *)blobs;
 ```
 
 ### FSConfig

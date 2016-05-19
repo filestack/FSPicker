@@ -19,7 +19,7 @@
 #import "UIAlertController+FSPicker.h"
 #import "FSPickerController+Private.h"
 #import "FSSourceTableViewController.h"
-#import "FSUploadModalViewController.h"
+#import "FSProgressModalViewController.h"
 #import "FSSourceCollectionViewController.h"
 #import <Filestack/Filestack+FSPicker.h>
 
@@ -84,7 +84,7 @@
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-    [self.navigationController setToolbarHidden:YES animated:YES];
+    [self.navigationController setToolbarHidden:YES animated:NO];
 }
 
 #pragma mark - Upload button
@@ -144,7 +144,7 @@
 }
 
 - (void)uploadSelectedContents {
-    FSUploadModalViewController *uploadModal = [[FSUploadModalViewController alloc] init];
+    FSProgressModalViewController *uploadModal = [[FSProgressModalViewController alloc] init];
     uploadModal.modalPresentationStyle = UIModalPresentationOverCurrentContext;
 
     FSUploader *uploader = [[FSUploader alloc] initWithConfig:self.config source:self.source];

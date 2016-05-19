@@ -8,6 +8,7 @@
 
 #import "FSSourceTableViewController.h"
 #import "FSSourceViewController.h"
+#import "FSSaveSourceViewController.h"
 #import "FSListTableViewCell.h"
 #import "FSContentItem.h"
 #import "FSImage.h"
@@ -323,8 +324,12 @@ static NSString *const reuseIdentifier = @"fsCell";
                 [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
             }
             [self.sourceController loadDirectory:item.linkPath];
-        } else {
+        } else if (![self.sourceController isMemberOfClass:[FSSaveSourceViewController class]]) {
             [self.sourceController selectContentItem:item atIndexPath:indexPath forTableView:NO collectionView:YES];
+        } else {
+            FSListTableViewCell *cell = (FSListTableViewCell *)[self tableView:self.tableView cellForRowAtIndexPath:indexPath];
+            cell.selected = NO;
+            [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
         }
     }
 }
