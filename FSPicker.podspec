@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = 'FSPicker'
-  s.version      = '0.1.5'
+  s.version      = '1.0.0'
   s.summary      = "Filestack's picker controller implementation."
 
   s.description  = <<-DESC
@@ -13,7 +13,7 @@ Pod::Spec.new do |s|
 
   s.source       = {
     :git => 'https://github.com/filestack/FSPicker.git',
-    :tag => "#{s.version}-beta"
+    :tag => "#{s.version}"
   }
 
   s.ios.deployment_target = '8.4'
@@ -27,6 +27,7 @@ Pod::Spec.new do |s|
     FSPicker/Platforms/iOS/Models/FSConfig.h
     FSPicker/Platforms/iOS/Models/FSTheme.h
     FSPicker/Platforms/iOS/ViewControllers/FSPickerController.h
+    FSPicker/Platforms/iOS/ViewControllers/FSSaveController.h
   )
 
   s.ios.source_files = %w(
@@ -35,6 +36,7 @@ Pod::Spec.new do |s|
     FSPicker/Platforms/iOS/Views/*.{h,m}
     FSPicker/Platforms/iOS/ViewControllers/*.{h,m}
     FSPicker/Platforms/iOS/Models/*.{h,m}
+    FSPicker/Platforms/iOS/API/*.{h,m}
     FSPicker/Platforms/iOS/KAProgressLabel/*.{h,m}
     FSPicker/Platforms/iOS/FSImageVideoPicker/*.{h,m}
   )

@@ -21,6 +21,7 @@
 @property (nonatomic, assign) BOOL overwritePossible;
 @property (nonatomic, assign) BOOL requiresAuth;
 @property (nonatomic, copy, readonly) NSString *service;
+@property (nonatomic, assign, readonly) BOOL isWriteable;
 
 + (NSArray<FSSource *> *)localSourcesWithIdentifiers:(NSArray<NSString *> *)identifiers;
 + (NSArray<FSSource *> *)remoteSourcesWithIdentifiers:(NSArray<NSString *> *)identifiers;
@@ -28,5 +29,6 @@
 + (NSArray<FSSource *> *)allRemoteSources;
 
 - (void)configureMimeTypesForProvidedMimeTypes:(NSArray<NSString *> *)mimeTypes;
+- (BOOL)allowsToSaveDataWithMimeType:(NSString *)mimeType;
 
 @end

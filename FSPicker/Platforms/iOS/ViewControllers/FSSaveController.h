@@ -1,21 +1,21 @@
 //
-//  FSPickerController.h
+//  FSSaveController.h
 //  FSPicker
 //
-//  Created by Łukasz Cichecki on 23/02/16.
+//  Created by Łukasz Cichecki on 13/05/16.
 //  Copyright © 2016 Filestack. All rights reserved.
 //
 
-@import UIKit;
+#import <UIKit/UIKit.h>
 #import "FSProtocols.h"
 @class FSTheme;
 @class FSConfig;
 
-@interface FSPickerController : UINavigationController
+@interface FSSaveController : UINavigationController
 
 @property (nonatomic, copy) FSTheme *theme;
 @property (nonatomic, copy) FSConfig *config;
-@property (nonatomic, weak) id <FSPickerDelegate> fsDelegate;
+@property (nonatomic, weak) id <FSSaveDelegate> fsDelegate;
 
 - (instancetype)initWithConfig:(FSConfig *)config theme:(FSTheme *)theme;
 - (instancetype)initWithConfig:(FSConfig *)config;

@@ -16,7 +16,7 @@
 #import "FSSearchViewController.h"
 #import "FSPickerController+Private.h"
 #import "UIAlertController+FSPicker.h"
-#import "FSUploadModalViewController.h"
+#import "FSProgressModalViewController.h"
 #import <Filestack/Filestack+FSPicker.h>
 #import "UICollectionViewFlowLayout+FSPicker.h"
 
@@ -334,7 +334,7 @@ static NSString * const headerReuseIdentifier = @"headerView";
 #pragma mark - Upload
 
 - (void)uploadSelectedContents {
-    FSUploadModalViewController *uploadModal = [[FSUploadModalViewController alloc] init];
+    FSProgressModalViewController *uploadModal = [[FSProgressModalViewController alloc] init];
     uploadModal.modalPresentationStyle = UIModalPresentationOverCurrentContext;
 
     FSUploader *uploader = [[FSUploader alloc] initWithConfig:self.config source:self.source];

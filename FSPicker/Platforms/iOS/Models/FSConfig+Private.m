@@ -6,12 +6,13 @@
 //  Copyright © 2016 Filestack. All rights reserved.
 //
 
+@import MobileCoreServices;
 #import "FSConfig+Private.h"
 #import "FSSource.h"
 
 @implementation FSConfig (Private)
 
-- (NSArray<FSSource *> *)fsLocalSources {
+- (NSArray<FSSource *> *)fsLocalSourcesForSaving:(BOOL)forSaving {
     NSArray<FSSource *> *sourcesArray;
 
     if (self.sources.count == 0) {
@@ -20,12 +21,17 @@
         sourcesArray = [FSSource localSourcesWithIdentifiers:self.sources];
     }
 
-    [self setupAvailableOpenMimeTypesForSources:sourcesArray];
+    if (forSaving) {
+        // We cannot write to every source.
+        sourcesArray = [self setupAvailableSourcesForSaveMimeTypes:sourcesArray];
+    } else {
+        [self setupAvailableOpenMimeTypesForSources:sourcesArray];
+    }
 
     return sourcesArray;
 }
 
-- (NSArray<FSSource *> *)fsRemoteSources {
+- (NSArray<FSSource *> *)fsRemoteSourcesForSaving:(BOOL)forSaving {
     NSArray<FSSource *> *sourcesArray;
 
     if (self.sources.count == 0) {
@@ -34,7 +40,12 @@
         sourcesArray = [FSSource remoteSourcesWithIdentifiers:self.sources];
     }
 
-    [self setupAvailableOpenMimeTypesForSources:sourcesArray];
+    if (forSaving) {
+        // We cannot write to every source.
+        sourcesArray = [self setupAvailableSourcesForSaveMimeTypes:sourcesArray];
+    } else {
+        [self setupAvailableOpenMimeTypesForSources:sourcesArray];
+    }
 
     return sourcesArray;
 }
@@ -43,6 +54,18 @@
     for (FSSource *source in sourcesArray) {
         [source configureMimeTypesForProvidedMimeTypes:self.mimeTypes];
     }
+}
+
+- (NSArray<FSSource *> *)setupAvailableSourcesForSaveMimeTypes:(NSArray<FSSource *> *)sourcesArray {
+    NSMutableArray<FSSource *> *finalSourcesArray = [[NSMutableArray alloc] init];
+
+    for (FSSource *source in sourcesArray) {
+        if (source.isWriteable && [source allowsToSaveDataWithMimeType:self.dataMimeType]) {
+            [finalSourcesArray addObject:source];
+        }
+    }
+
+    return finalSourcesArray;
 }
 
 - (BOOL)showImages {
@@ -58,6 +81,23 @@
     [self.mimeTypes containsObject:FSMimeTypeVideoAll] ||
     [self.mimeTypes containsObject:FSMimeTypeVideoQuickTime];
 
+}
+
+- (NSString *)fileExtension {
+    if (self.dataExtension) {
+        return [NSString stringWithFormat:@".%@", self.dataExtension];
+    } else if (self.dataMimeType) {
+        CFStringRef mimeType = (__bridge CFStringRef)self.dataMimeType;
+        CFStringRef uti = UTTypeCreatePreferredIdentifierForTag(kUTTagClassMIMEType, mimeType, NULL);
+        CFStringRef extension = UTTypeCopyPreferredTagWithClass(uti, kUTTagClassFilenameExtension);
+        CFRelease(uti);
+
+        if (extension) {
+            return [NSString stringWithFormat:@".%@", (__bridge_transfer NSString *)extension];
+        }
+    }
+
+    return @"";
 }
 
 @end

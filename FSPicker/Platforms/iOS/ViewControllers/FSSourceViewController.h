@@ -13,6 +13,7 @@
 
 @interface FSSourceViewController : UIViewController
 
+@property (nonatomic, assign) BOOL inPickMode;
 @property (nonatomic, copy) NSString *loadPath;
 @property (nonatomic, strong, readonly) NSString *nextPage;
 @property (nonatomic, assign, readonly) BOOL lastPage;

@@ -77,6 +77,24 @@
     }
 }
 
+- (void)uploadCameraItemWithInfo:(NSDictionary<NSString *,id> *)info {
+    if (info[UIImagePickerControllerOriginalImage]) {
+        UIImage *image = info[UIImagePickerControllerOriginalImage];
+        NSData *imageData = UIImagePNGRepresentation(image);
+        NSString *fileName = [NSString stringWithFormat:@"Image_%@.jpg", [NSDateFormatter localizedStringFromDate:[NSDate date] dateStyle:NSDateFormatterShortStyle timeStyle:NSDateFormatterShortStyle]];
+        NSCharacterSet *dateFormat = [NSCharacterSet characterSetWithCharactersInString:@"/: "];
+        fileName = [[fileName componentsSeparatedByCharactersInSet:dateFormat] componentsJoinedByString:@"-"];
+
+        [self uploadCameraItem:imageData fileName:fileName];
+    } else if (info[UIImagePickerControllerMediaURL]) {
+        NSURL *fileURL = info[UIImagePickerControllerMediaURL];
+        NSString *fileName = fileURL.lastPathComponent;
+        NSData *videoData = [NSData dataWithContentsOfURL:fileURL];
+
+        [self uploadCameraItem:videoData fileName:fileName];
+    }
+}
+
 - (void)uploadCameraItem:(NSData *)itemData fileName:(NSString *)fileName {
     BOOL delegateRespondsToUploadProgress = [self.uploadModalDelegate respondsToSelector:@selector(fsUploadProgress:addToTotalProgress:)];
 
@@ -134,62 +152,83 @@
         double __block currentItemProgress = 0.0;
 
         if (item.mediaType == PHAssetMediaTypeImage) {
-            [[PHImageManager defaultManager] requestImageDataForAsset:item options:nil resultHandler:^(NSData * imageData, NSString * dataUTI, UIImageOrientation orientation, NSDictionary * info) {
-                NSURL *imageURL = info[@"PHImageFileURLKey"];
-                NSString *fileName = imageURL.lastPathComponent;
-                storeOptions.fileName = fileName;
+            [self uploadLocalImageAsset:item usingFilestack:filestack storeOptions:storeOptions progress:^(NSProgress *uploadProgress) {
+                if (delegateRespondsToUploadProgress) {
+                    progressToAdd = uploadProgress.fractionCompleted * (1.0 / totalNumberOfItems) - currentItemProgress;
+                    currentItemProgress = uploadProgress.fractionCompleted * (1.0 / totalNumberOfItems);
+                    [self.uploadModalDelegate fsUploadProgress:progressToAdd addToTotalProgress:YES];
+                }
+            } completionHandler:^(FSBlob *blob, NSError *error) {
+                uploadedItems++;
 
-                [filestack store:imageData withOptions:storeOptions progress:^(NSProgress *uploadProgress) {
-                    if (delegateRespondsToUploadProgress) {
-                        progressToAdd = uploadProgress.fractionCompleted * (1.0 / totalNumberOfItems) - currentItemProgress;
-                        currentItemProgress = uploadProgress.fractionCompleted * (1.0 / totalNumberOfItems);
-                        [self.uploadModalDelegate fsUploadProgress:progressToAdd addToTotalProgress:YES];
-                    }
-                } completionHandler:^(FSBlob *blob, NSError *error) {
-                    uploadedItems++;
+                [self messageDelegateWithBlob:blob error:error];
 
-                    if (blob) {
-                        [self.blobsArray addObject:blob];
-                    }
-
-                    [self messageDelegateWithBlob:blob error:error];
-
-                    if (uploadedItems == totalNumberOfItems) {
-                        [self messageDelegateLocalUploadFinished];
-                    }
-                }];
+                if (uploadedItems == totalNumberOfItems) {
+                    [self messageDelegateLocalUploadFinished];
+                }
             }];
         } else if (item.mediaType == PHAssetMediaTypeVideo) {
-            [[PHImageManager defaultManager] requestAVAssetForVideo:item options:options resultHandler:^(AVAsset *asset, AVAudioMix *audioMix, NSDictionary *info) {
-                if ([asset isKindOfClass:[AVURLAsset class]]) {
-                    NSURL *URL = ((AVURLAsset *)asset).URL;
-                    NSData *data = [NSData dataWithContentsOfURL:URL];
-                    NSString *fileName = URL.lastPathComponent;
-                    storeOptions.fileName = fileName;
+            [self uploadLocalVideoAsset:item usingFilestack:filestack storeOptions:storeOptions progress:^(NSProgress *uploadProgress) {
+                if (delegateRespondsToUploadProgress) {
+                    progressToAdd = uploadProgress.fractionCompleted * (1.0 / totalNumberOfItems) - currentItemProgress;
+                    currentItemProgress = uploadProgress.fractionCompleted * (1.0 / totalNumberOfItems);
+                    [self.uploadModalDelegate fsUploadProgress:progressToAdd addToTotalProgress:YES];
+                }
+            } completionHandler:^(FSBlob *blob, NSError *error) {
+                uploadedItems++;
 
-                    [filestack store:data withOptions:storeOptions progress:^(NSProgress *uploadProgress) {
-                        if (delegateRespondsToUploadProgress) {
-                            progressToAdd = uploadProgress.fractionCompleted * (1.0 / totalNumberOfItems) - currentItemProgress;
-                            currentItemProgress = uploadProgress.fractionCompleted * (1.0 / totalNumberOfItems);
-                            [self.uploadModalDelegate fsUploadProgress:progressToAdd addToTotalProgress:YES];
-                        }
-                    } completionHandler:^(FSBlob *blob, NSError *error) {
-                        uploadedItems++;
+                [self messageDelegateWithBlob:blob error:error];
 
-                        if (blob) {
-                            [self.blobsArray addObject:blob];
-                        }
-
-                        [self messageDelegateWithBlob:blob error:error];
-
-                        if (uploadedItems == totalNumberOfItems) {
-                            [self messageDelegateLocalUploadFinished];
-                        }
-                    }];
+                if (uploadedItems == totalNumberOfItems) {
+                    [self messageDelegateLocalUploadFinished];
                 }
             }];
         }
     }
+}
+
+- (void)uploadLocalImageAsset:(PHAsset *)asset
+               usingFilestack:(Filestack *)filestack
+                 storeOptions:(FSStoreOptions *)storeOptions
+                     progress:(void (^)(NSProgress *uploadProgress))progress
+            completionHandler:(void (^)(FSBlob *blob, NSError *error))completionHandler {
+
+    [[PHImageManager defaultManager] requestImageDataForAsset:asset options:nil resultHandler:^(NSData * imageData, NSString * dataUTI, UIImageOrientation orientation, NSDictionary * info) {
+        NSURL *imageURL = info[@"PHImageFileURLKey"];
+        NSString *fileName = imageURL.lastPathComponent;
+        storeOptions.fileName = fileName;
+
+        [filestack store:imageData withOptions:storeOptions progress:^(NSProgress *uploadProgress) {
+            progress(uploadProgress);
+        } completionHandler:^(FSBlob *blob, NSError *error) {
+            completionHandler(blob, error);
+        }];
+    }];
+}
+
+- (void)uploadLocalVideoAsset:(PHAsset *)asset
+               usingFilestack:(Filestack *)filestack
+                 storeOptions:(FSStoreOptions *)storeOptions
+                     progress:(void (^)(NSProgress *uploadProgress))progress
+            completionHandler:(void (^)(FSBlob *blob, NSError *error))completionHandler {
+
+    PHVideoRequestOptions *options=[[PHVideoRequestOptions alloc] init];
+    options.version = PHVideoRequestOptionsVersionOriginal;
+
+    [[PHImageManager defaultManager] requestAVAssetForVideo:asset options:options resultHandler:^(AVAsset *asset, AVAudioMix *audioMix, NSDictionary *info) {
+        if ([asset isKindOfClass:[AVURLAsset class]]) {
+            NSURL *URL = ((AVURLAsset *)asset).URL;
+            NSData *data = [NSData dataWithContentsOfURL:URL];
+            NSString *fileName = URL.lastPathComponent;
+            storeOptions.fileName = fileName;
+
+            [filestack store:data withOptions:storeOptions progress:^(NSProgress *uploadProgress) {
+                progress(uploadProgress);
+            } completionHandler:^(FSBlob *blob, NSError *error) {
+                completionHandler(blob, error);
+            }];
+        }
+    }];
 }
 
 - (void)messageDelegateLocalUploadFinished {
@@ -208,6 +247,8 @@
 
 - (void)messageDelegateWithBlob:(FSBlob *)blob error:(NSError *)error {
     if (blob) {
+        [self.blobsArray addObject:blob];
+
         if ([self.pickerDelegate respondsToSelector:@selector(fsUploadComplete:)]) {
             [self.pickerDelegate fsUploadComplete:blob];
         }

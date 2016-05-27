@@ -23,6 +23,25 @@
     return [self.identifier lowercaseString];
 }
 
+- (BOOL)isWriteable {
+    return self.saveMimeTypes.count != 0;
+}
+
+- (BOOL)allowsToSaveDataWithMimeType:(FSMimeType)mimeType {
+    if ([self.saveMimeTypes containsObject:FSMimeTypeAll]) {
+        return YES;
+    }
+
+    for (NSString *saveMimeType in self.saveMimeTypes) {
+        // comparedMimeType:against: is returning nil if mimeTypes don't "match".
+        if ([self comparedMimeType:mimeType against:saveMimeType]) {
+            return YES;
+        }
+    }
+
+    return NO;
+}
+
 - (void)configureMimeTypesForProvidedMimeTypes:(NSArray<NSString *> *)mimeTypes {
     if ([mimeTypes containsObject:FSMimeTypeAll] || !mimeTypes) {
         self.mimeTypes = self.openMimeTypes; // All mimeTypes or no mimeTypes set - take default.
@@ -65,7 +84,7 @@
         } else if ([splittedMimeType[1] isEqualToString:@"*"]) {
             return otherMimeType; // omts = [image/*, ...], mt = image/png, add image/png
         } else if ([splittedMimeType[1] isEqualToString:splittedOtherMimeType[1]]) {
-            return otherMimeType; // omgts = [image/png, ...], mt = image/png, add image/png
+            return otherMimeType; // omts = [image/png, ...], mt = image/png, add image/png
         }
     }
 

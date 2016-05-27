@@ -41,6 +41,10 @@ NSString *const FSSourceCloudDrive = @"clouddrive";
     return [self initWithApiKey:apiKey storeOptions:nil];
 }
 
+- (instancetype)init {
+    return [self initWithApiKey:nil storeOptions:nil];
+}
+
 - (NSArray<FSMimeType> *)mimeTypes {
     if (!_mimeTypes) {
         return @[FSMimeTypeAll];

@@ -14,7 +14,7 @@
 #import "FSConfig.h"
 #import "FSImage.h"
 #import "FSUploader.h"
-#import "FSUploadModalViewController.h"
+#import "FSProgressModalViewController.h"
 #import "FSPickerController+Private.h"
 
 @interface FSGridViewController ()
@@ -133,7 +133,7 @@
 #pragma mark - Upload
 
 - (void)uploadSelectedAssets {
-    FSUploadModalViewController *uploadModal = [[FSUploadModalViewController alloc] init];
+    FSProgressModalViewController *uploadModal = [[FSProgressModalViewController alloc] init];
     uploadModal.modalPresentationStyle = UIModalPresentationOverCurrentContext;
 
     FSUploader *uploader = [[FSUploader alloc] initWithConfig:self.config source:self.source];

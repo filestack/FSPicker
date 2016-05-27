@@ -31,14 +31,34 @@ extern NSString *const FSSourceCloudDrive;
 @interface FSConfig : NSObject
 
 @property (nonatomic, copy) NSString *apiKey;
+
+/// FSPickerController only.
 @property (nonatomic, copy) NSArray<NSString *> *sources;
+/// FSPickerController only.
 @property (nonatomic, copy) NSArray<FSMimeType> *mimeTypes;
+/// FSPickerController only.
 @property (nonatomic, assign) NSInteger maxFiles;
+/// FSPickerController only.
 @property (nonatomic, assign) BOOL selectMultiple;
+/// FSPickerController only.
 @property (nonatomic, assign) BOOL shouldDownload;
+/// FSPickerController only.
 @property (nonatomic, assign) BOOL shouldUpload;
+/// FSPickerController only.
 @property (nonatomic, assign) BOOL defaultToFrontCamera;
+/// FSPickerController only.
 @property (nonatomic, strong) FSStoreOptions *storeOptions;
+
+/// FSSaveController only.
+@property (nonatomic, strong) NSData *data;
+/// FSSaveController only.
+@property (nonatomic, strong) NSURL *localDataURL;
+/// FSSaveController only.
+@property (nonatomic, copy) FSMimeType dataMimeType;
+/// FSSaveController only.
+@property (nonatomic, copy) NSString *dataExtension;
+/// FSSaveController only.
+@property (nonatomic, copy) NSString *proposedFileName;
 
 - (instancetype)initWithApiKey:(NSString *)apiKey storeOptions:(FSStoreOptions *)storeOptions;
 - (instancetype)initWithApiKey:(NSString *)apiKey;

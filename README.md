@@ -20,7 +20,7 @@ $ gem install cocoapods
 To integrate FSPicker into your Xcode project using CocoaPods, specify it in your `Podfile`:
 
 ```ruby
-pod "FSPicker", "~> 0.1.5"
+pod "FSPicker", "~> 1.0.0"
 ```
 Then, run the following command:
 
@@ -76,7 +76,7 @@ fsPickerController.fsDelegate = self;
 - (void)fsPicker:(FSPickerController *)picker pickedMediaWithBlob:(FSBlob *)blob;
 
 // Called when "files picking" is finished. Blobs array will contain blobs of all successfully picked files.
-- (void)fsPicker:(FSPickerController *)picker didFinishedPickingMediaWithBlobs:(NSArray<FSBlob *> *)blobs;
+- (void)fsPicker:(FSPickerController *)picker didFinishPickingMediaWithBlobs:(NSArray<FSBlob *> *)blobs;
 ```
 
 ### FSConfig
