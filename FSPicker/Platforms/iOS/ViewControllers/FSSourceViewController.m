@@ -16,6 +16,7 @@
 #import "FSAuthViewController.h"
 #import "FSSourceViewController.h"
 #import "FSActivityIndicatorView.h"
+#import "FSSaveController+Private.h"
 #import "UIAlertController+FSPicker.h"
 #import "FSPickerController+Private.h"
 #import "FSSourceTableViewController.h"

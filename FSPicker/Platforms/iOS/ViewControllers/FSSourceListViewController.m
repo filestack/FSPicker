@@ -14,6 +14,7 @@
 #import "FSAlbumsViewController.h"
 #import "FSSourceViewController.h"
 #import "FSSearchViewController.h"
+#import "FSSaveController+Private.h"
 #import "UIAlertController+FSPicker.h"
 #import "FSPickerController+Private.h"
 #import "FSSourceListViewController.h"
@@ -72,7 +73,7 @@
         return;
     }
 
-    BOOL forSaving;
+    BOOL forSaving = NO;
 
     if (!self.inPickMode) {
         forSaving = YES;

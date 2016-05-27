@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B2068CDE1CF88D800029B4AD /* FSSaveController+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = B2068CDC1CF88D800029B4AD /* FSSaveController+Private.h */; };
+		B2068CDF1CF88D800029B4AD /* FSSaveController+Private.m in Sources */ = {isa = PBXBuildFile; fileRef = B2068CDD1CF88D800029B4AD /* FSSaveController+Private.m */; };
 		B214AB731C98011E004D6978 /* FSActivityIndicatorView.h in Headers */ = {isa = PBXBuildFile; fileRef = B214AB711C98011E004D6978 /* FSActivityIndicatorView.h */; };
 		B214AB741C98011E004D6978 /* FSActivityIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = B214AB721C98011E004D6978 /* FSActivityIndicatorView.m */; };
 		B214AB7B1C980EDB004D6978 /* FSContentItem.h in Headers */ = {isa = PBXBuildFile; fileRef = B214AB791C980EDB004D6978 /* FSContentItem.h */; };
@@ -112,6 +114,8 @@
 /* Begin PBXFileReference section */
 		54B5C84F5392440686D859BB /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		97B57DC97B24C3B228F193C4 /* Pods-FSPicker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FSPicker.release.xcconfig"; path = "../Pods/Target Support Files/Pods-FSPicker/Pods-FSPicker.release.xcconfig"; sourceTree = "<group>"; };
+		B2068CDC1CF88D800029B4AD /* FSSaveController+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FSSaveController+Private.h"; sourceTree = "<group>"; };
+		B2068CDD1CF88D800029B4AD /* FSSaveController+Private.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FSSaveController+Private.m"; sourceTree = "<group>"; };
 		B214AB711C98011E004D6978 /* FSActivityIndicatorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSActivityIndicatorView.h; sourceTree = "<group>"; };
 		B214AB721C98011E004D6978 /* FSActivityIndicatorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSActivityIndicatorView.m; sourceTree = "<group>"; };
 		B214AB791C980EDB004D6978 /* FSContentItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSContentItem.h; sourceTree = "<group>"; };
@@ -275,6 +279,8 @@
 				B25519ED1CBFACDA00B16D46 /* FSProgressModalViewController.m */,
 				B26C6AC91CCE14EB00CED799 /* FSPickerController+Private.h */,
 				B26C6ACA1CCE14EB00CED799 /* FSPickerController+Private.m */,
+				B2068CDC1CF88D800029B4AD /* FSSaveController+Private.h */,
+				B2068CDD1CF88D800029B4AD /* FSSaveController+Private.m */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -504,6 +510,7 @@
 				B2BFEB1C1C9034680037571D /* UIRefreshControl+Appearance.h in Headers */,
 				B21737551C99A85D00FE263F /* UIAlertController+FSPicker.h in Headers */,
 				B29CEB311CEDBBA700E1D701 /* FSExporter.h in Headers */,
+				B2068CDE1CF88D800029B4AD /* FSSaveController+Private.h in Headers */,
 				B2BC57B21C92C6FE00317154 /* FSProgressView.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -621,6 +628,7 @@
 				B2BC57B31C92C6FE00317154 /* FSProgressView.m in Sources */,
 				B2BFEB2B1C9189630037571D /* FSSourceCollectionViewController.m in Sources */,
 				B2BC57BD1C9300EA00317154 /* UINavigationController+Progress.m in Sources */,
+				B2068CDF1CF88D800029B4AD /* FSSaveController+Private.m in Sources */,
 				B25519EB1CBFAC1A00B16D46 /* TPPropertyAnimation.m in Sources */,
 				B22667451C873B76002E5BBA /* FSConfig+Private.m in Sources */,
 				B2BEBBB01C97025D00E6248F /* FSSession.m in Sources */,
