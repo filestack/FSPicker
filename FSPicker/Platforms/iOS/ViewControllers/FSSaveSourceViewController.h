@@ -10,6 +10,4 @@
 
 @interface FSSaveSourceViewController : FSSourceViewController
 
-@property (nonatomic, assign, readonly) BOOL inListView;
-
 @end

@@ -8,6 +8,7 @@
 
 #import "FSSaveSourceViewController.h"
 #import "FSProgressModalViewController.h"
+#import "FSSaveController+Private.h"
 #import "FSSaveController.h"
 #import "FSBarButtonItem.h"
 #import "FSExporter.h"
@@ -26,6 +27,8 @@
 @end
 
 @implementation FSSaveSourceViewController
+
+@dynamic inListView;
 
 - (instancetype)initWithConfig:(FSConfig *)config source:(FSSource *)source {
     if ((self = [super initWithConfig:config source:source])) {
