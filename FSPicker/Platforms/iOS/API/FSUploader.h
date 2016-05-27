@@ -20,7 +20,6 @@
 @property (nonatomic, weak) id <FSUploaderDelegate> pickerDelegate;
 
 - (instancetype)initWithConfig:(FSConfig *)config source:(FSSource *)source;
-//- (void)uploadCameraItem:(NSData *)itemData fileName:(NSString *)fileName;
 - (void)uploadCameraItemWithInfo:(NSDictionary<NSString *, id> *)info;
 - (void)uploadCloudItems:(NSArray<FSContentItem *> *)items;
 - (void)uploadLocalItems:(NSArray<PHAsset *> *)items;

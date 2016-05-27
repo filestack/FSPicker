@@ -1,3 +1,9 @@
+## 1.0.0 (2016-05-27)
+
+### Added:
+
+- FSSaveController.
+
 ## 0.1.5-beta (2016-05-18)
 
 ### Fixed

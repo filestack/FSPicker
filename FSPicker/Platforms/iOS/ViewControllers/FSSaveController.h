@@ -20,8 +20,6 @@
 - (instancetype)initWithConfig:(FSConfig *)config theme:(FSTheme *)theme;
 - (instancetype)initWithConfig:(FSConfig *)config;
 
-- (void)saveFileNamed:(NSString *)fileName to:(NSString *)path;
 - (void)didCancel;
-- (NSString *)getExtensionString;
 
 @end

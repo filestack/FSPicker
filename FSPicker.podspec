@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = 'FSPicker'
-  s.version      = '0.1.5'
+  s.version      = '1.0.0'
   s.summary      = "Filestack's picker controller implementation."
 
   s.description  = <<-DESC
@@ -13,7 +13,7 @@ Pod::Spec.new do |s|
 
   s.source       = {
     :git => 'https://github.com/filestack/FSPicker.git',
-    :tag => "#{s.version}-beta"
+    :tag => "#{s.version}"
   }
 
   s.ios.deployment_target = '8.4'
