@@ -79,6 +79,19 @@ fsPickerController.fsDelegate = self;
 - (void)fsPicker:(FSPickerController *)picker didFinishPickingMediaWithBlobs:(NSArray<FSBlob *> *)blobs;
 ```
 
+### FSSaveController
+
+```objectivec
+// Called when user dismisses the save controller.
+- (void)fsSaveControllerDidCancel:(FSSaveController *)saveController;
+
+// Called when saving of data resulted in error.
+- (void)fsSaveController:(FSSaveController *)saveController savingDidError:(NSError *)error;
+
+// Called when saving of data completed with success.
+- (void)fsSaveController:(FSSaveController *)saveController didFinishSavingMediaWithBlob:(FSBlob *)blob;
+```
+
 ### FSConfig
 
 #### Available properties:
@@ -86,6 +99,8 @@ fsPickerController.fsDelegate = self;
 ```objectivec
 NSString *apiKey;
 NSArray<NSString *> *sources;
+
+// FSPickerController
 NSArray<FSMimeType> *mimeTypes;
 NSInteger maxFiles;
 BOOL selectMultiple;
@@ -93,6 +108,13 @@ BOOL defaultToFrontCamera;
 // BOOL shouldDownload; TODO
 // BOOL shouldUpload; TODO
 FSStoreOptions *storeOptions;
+
+// FSSaveController
+NSData *data;
+NSURL *localDataURL;
+FSMimeType dataMimeType;
+NSString *dataExtension;
+NSString *proposedFileName;
 ```
 
 #### "Configuring the config"
@@ -112,6 +134,16 @@ The most important property is ```apiKey``` also it is the only property you nee
 ```shouldUpload``` & ```shouldDownload``` #TODO
 
 ```storeOptions``` [FSStoreOptions](#fsstoreoptions)
+
+```data``` Data to export. You should have either this property or ```localDataURL``` property set, to be able to use FSSaveController.
+
+```localDataURL``` URL to local data. You should have either this property or ```data``` property set, to be able to use FSSaveController.
+
+```dataMimeType``` Mimetype of the data you'd like to export. This setting is not required, but it is highly recommended to provide it or provide ```dataExtension```.
+
+```dataExtension``` Extension of the data you'd like to export. You can use it interchangeably with ```dataMimeType```.
+
+```proposedFileName``` File name that will be set in "file name field". This should be without extension. If no name is provided, end user will be required to provide it.
 
 #### Sources names constants:
 
