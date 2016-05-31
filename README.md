@@ -59,6 +59,21 @@ fsPickerController.fsDelegate = self;
 
 // present the controller
 [self presentViewController:fsPickerController animated:YES completion:nil];
+
+// Or for FSSaveController
+
+// configure the data
+NSString *testImagePath = [[NSBundle mainBundle] pathForResource:@"test" ofType:@"png"];
+NSURL *testImageURL = [NSURL URLWithString:testImagePath];
+
+config.dataMimeType = FSMimeTypeImagePNG;
+config.localDataURL = testImageURL;
+config.proposedFileName = @"newimage";
+
+// present the controller
+FSSaveController *fsSaveController = [[FSSaveController alloc] initWithConfig:config theme:theme];
+fsSaveController.fsDelegate = self;
+[self presentViewController:fsSaveController animated:YES completion:nil];
 ```
 ### FSPickerDelegate
 
@@ -79,7 +94,7 @@ fsPickerController.fsDelegate = self;
 - (void)fsPicker:(FSPickerController *)picker didFinishPickingMediaWithBlobs:(NSArray<FSBlob *> *)blobs;
 ```
 
-### FSSaveController
+### FSSaveDelegate
 
 ```objectivec
 // Called when user dismisses the save controller.
