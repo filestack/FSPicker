@@ -1,3 +1,9 @@
+## 1.0.3 (2016-06-09)
+
+### Fixed
+
+- Initialize "empty" ```FSStoreOptions``` for uploading of local file if no options were provided in config.
+
 ## 1.0.0 (2016-05-27)
 
 ### Added:
