@@ -189,10 +189,9 @@
     FSExporter *exporter = [[FSExporter alloc] initWithConfig:self.config];
     exporter.exporterDelegate = (FSSaveController *)self.navigationController;
     exporter.progressModalDelegate = progressModal;
+    [exporter saveDataNamed:name toPath:path];
 
     [self presentViewController:progressModal animated:YES completion:nil];
-
-    [exporter saveDataNamed:name toPath:path];
 }
 
 - (void)uploadSelectedContents {

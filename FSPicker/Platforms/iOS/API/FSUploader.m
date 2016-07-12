@@ -8,13 +8,13 @@
 
 #import <Filestack/Filestack.h>
 #import <Filestack/Filestack+FSPicker.h>
+#import "UIImage+Rotate.h"
 #import "FSSource.h"
 #import "FSConfig.h"
 #import "FSSession.h"
 #import "FSUploader.h"
 #import "FSContentItem.h"
 @import Photos;
-
 @interface FSUploader ()
 
 @property (nonatomic, strong) FSConfig *config;
@@ -59,18 +59,12 @@
             [self messageDelegateWithBlob:blob error:error];
 
             if (uploadedItems == totalNumberOfItems) {
-                if ([self.uploadModalDelegate respondsToSelector:@selector(fsUploadFinishedWithBlobs:)]) {
-                    // Dismiss the modal after 1s so user can actually see the 100% progress.
-                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                        [self.uploadModalDelegate fsUploadFinishedWithBlobs:nil];
-                    });
-                }
-
-                if ([self.pickerDelegate respondsToSelector:@selector(fsUploadFinishedWithBlobs:)]) {
-                    // Send the message ~1s after dismissing the upload modal.
-                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                        [self.pickerDelegate fsUploadFinishedWithBlobs:self.blobsArray];
-                    });
+                if ([self.uploadModalDelegate respondsToSelector:@selector(fsUploadFinishedWithBlobs:completion:)]) {
+                    [self.uploadModalDelegate fsUploadFinishedWithBlobs:nil completion:^{
+                        if ([self.pickerDelegate respondsToSelector:@selector(fsUploadFinishedWithBlobs:completion:)]) {
+                            [self.pickerDelegate fsUploadFinishedWithBlobs:self.blobsArray completion:nil];
+                        }
+                    }];
                 }
             }
         }];
@@ -80,7 +74,8 @@
 - (void)uploadCameraItemWithInfo:(NSDictionary<NSString *,id> *)info {
     if (info[UIImagePickerControllerOriginalImage]) {
         UIImage *image = info[UIImagePickerControllerOriginalImage];
-        NSData *imageData = UIImagePNGRepresentation(image);
+        UIImage *rotatedImage = [image fixRotation];
+        NSData *imageData = UIImageJPEGRepresentation(rotatedImage, 0.95);
         NSString *fileName = [NSString stringWithFormat:@"Image_%@.jpg", [NSDateFormatter localizedStringFromDate:[NSDate date] dateStyle:NSDateFormatterShortStyle timeStyle:NSDateFormatterShortStyle]];
         NSCharacterSet *dateFormat = [NSCharacterSet characterSetWithCharactersInString:@"/: "];
         fileName = [[fileName componentsSeparatedByCharactersInSet:dateFormat] componentsJoinedByString:@"-"];
@@ -116,21 +111,9 @@
         [self messageDelegateWithBlob:blob error:error];
 
         if (blob) {
-            if ([self.uploadModalDelegate respondsToSelector:@selector(fsUploadFinishedWithBlobs:)]) {
-                [self.uploadModalDelegate fsUploadFinishedWithBlobs:@[blob]];
-            }
-
-            if ([self.pickerDelegate respondsToSelector:@selector(fsUploadFinishedWithBlobs:)]) {
-                [self.pickerDelegate fsUploadFinishedWithBlobs:@[blob]];
-            }
+            [self messageDelegateLocalUploadFinished];
         } else {
-            if ([self.uploadModalDelegate respondsToSelector:@selector(fsUploadError:)]) {
-                [self.uploadModalDelegate fsUploadError:error];
-            }
-
-            if ([self.pickerDelegate respondsToSelector:@selector(fsUploadError:)]) {
-                [self.pickerDelegate fsUploadError:error];
-            }
+            [self messageDelegateWithBlob:nil error:error];
         }
 
         if (delegateRespondsToUploadProgress) {
@@ -241,16 +224,18 @@
 }
 
 - (void)messageDelegateLocalUploadFinished {
-    if ([self.uploadModalDelegate respondsToSelector:@selector(fsUploadFinishedWithBlobs:)]) {
-        [self.uploadModalDelegate fsUploadFinishedWithBlobs:nil];
-    }
-
     if ([self.uploadModalDelegate respondsToSelector:@selector(fsUploadProgress:addToTotalProgress:)]) {
         [self.uploadModalDelegate fsUploadProgress:1.0 addToTotalProgress:NO];
     }
 
-    if ([self.pickerDelegate respondsToSelector:@selector(fsUploadFinishedWithBlobs:)]) {
-        [self.pickerDelegate fsUploadFinishedWithBlobs:self.blobsArray];
+    if ([self.uploadModalDelegate respondsToSelector:@selector(fsUploadFinishedWithBlobs:completion:)]) {
+        [self.uploadModalDelegate fsUploadFinishedWithBlobs:nil completion:^{
+            if ([self.pickerDelegate respondsToSelector:@selector(fsUploadFinishedWithBlobs:completion:)]) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [self.pickerDelegate fsUploadFinishedWithBlobs:self.blobsArray completion:nil];
+                });
+            }
+        }];
     }
 }
 
@@ -258,20 +243,20 @@
     if (blob) {
         [self.blobsArray addObject:blob];
 
-        if ([self.pickerDelegate respondsToSelector:@selector(fsUploadComplete:)]) {
-            [self.pickerDelegate fsUploadComplete:blob];
-        }
-
         if ([self.uploadModalDelegate respondsToSelector:@selector(fsUploadComplete:)]) {
             [self.uploadModalDelegate fsUploadComplete:blob];
         }
-    } else {
-        if ([self.pickerDelegate respondsToSelector:@selector(fsUploadError:)]) {
-            [self.pickerDelegate fsUploadError:error];
-        }
 
+        if ([self.pickerDelegate respondsToSelector:@selector(fsUploadComplete:)]) {
+            [self.pickerDelegate fsUploadComplete:blob];
+        }
+    } else {
         if ([self.uploadModalDelegate respondsToSelector:@selector(fsUploadError:)]) {
             [self.uploadModalDelegate fsUploadError:error];
+        }
+
+        if ([self.pickerDelegate respondsToSelector:@selector(fsUploadError:)]) {
+            [self.pickerDelegate fsUploadError:error];
         }
     }
 }

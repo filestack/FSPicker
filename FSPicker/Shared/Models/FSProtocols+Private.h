@@ -13,7 +13,7 @@
 - (void)fsUploadProgress:(float)progress addToTotalProgress:(BOOL)addToTotalProgress;
 - (void)fsUploadComplete:(FSBlob *)blob;
 - (void)fsUploadError:(NSError *)error;
-- (void)fsUploadFinishedWithBlobs:(NSArray<FSBlob *> *)blobsArray;
+- (void)fsUploadFinishedWithBlobs:(NSArray<FSBlob *> *)blobsArray completion:(void (^)())completion;
 @end
 
 @protocol FSExporterDelegate <NSObject>

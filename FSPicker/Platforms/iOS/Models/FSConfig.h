@@ -31,9 +31,8 @@ extern NSString *const FSSourceCloudDrive;
 @interface FSConfig : NSObject
 
 @property (nonatomic, copy) NSString *apiKey;
-
-/// FSPickerController only.
 @property (nonatomic, copy) NSArray<NSString *> *sources;
+
 /// FSPickerController only.
 @property (nonatomic, copy) NSArray<FSMimeType> *mimeTypes;
 /// FSPickerController only.

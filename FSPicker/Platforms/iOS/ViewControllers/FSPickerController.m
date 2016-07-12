@@ -71,7 +71,7 @@
     });
 }
 
-- (void)fsUploadFinishedWithBlobs:(NSArray<FSBlob *> *)blobsArray {
+- (void)fsUploadFinishedWithBlobs:(NSArray<FSBlob *> *)blobsArray completion:(void (^)())completion {
     dispatch_async(dispatch_get_main_queue(), ^{
         if ([self.fsDelegate respondsToSelector:@selector(fsPicker:didFinishPickingMediaWithBlobs:)]) {
             [self.fsDelegate fsPicker:self didFinishPickingMediaWithBlobs:blobsArray];

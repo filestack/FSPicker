@@ -52,6 +52,8 @@
 		B2787A131C9B02B300F05378 /* FSListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B2787A111C9B02B300F05378 /* FSListTableViewCell.m */; };
 		B2858C7A1C7C933D00AE3690 /* FSPickerController.h in Headers */ = {isa = PBXBuildFile; fileRef = B2858C781C7C933D00AE3690 /* FSPickerController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B2858C7B1C7C933D00AE3690 /* FSPickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2858C791C7C933D00AE3690 /* FSPickerController.m */; };
+		B28F7F691D2BA3DC0006C7C9 /* UIImage+Rotate.h in Headers */ = {isa = PBXBuildFile; fileRef = B28F7F671D2BA3DC0006C7C9 /* UIImage+Rotate.h */; };
+		B28F7F6A1D2BA3DC0006C7C9 /* UIImage+Rotate.m in Sources */ = {isa = PBXBuildFile; fileRef = B28F7F681D2BA3DC0006C7C9 /* UIImage+Rotate.m */; };
 		B29CEB311CEDBBA700E1D701 /* FSExporter.h in Headers */ = {isa = PBXBuildFile; fileRef = B29CEB2F1CEDBBA700E1D701 /* FSExporter.h */; };
 		B29CEB321CEDBBA700E1D701 /* FSExporter.m in Sources */ = {isa = PBXBuildFile; fileRef = B29CEB301CEDBBA700E1D701 /* FSExporter.m */; };
 		B29CEB401CEF41CE00E1D701 /* FSSaveSourceViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = B29CEB3E1CEF41CE00E1D701 /* FSSaveSourceViewController.h */; };
@@ -161,6 +163,8 @@
 		B2787A111C9B02B300F05378 /* FSListTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSListTableViewCell.m; sourceTree = "<group>"; };
 		B2858C781C7C933D00AE3690 /* FSPickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSPickerController.h; sourceTree = "<group>"; };
 		B2858C791C7C933D00AE3690 /* FSPickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSPickerController.m; sourceTree = "<group>"; };
+		B28F7F671D2BA3DC0006C7C9 /* UIImage+Rotate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Rotate.h"; sourceTree = "<group>"; };
+		B28F7F681D2BA3DC0006C7C9 /* UIImage+Rotate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Rotate.m"; sourceTree = "<group>"; };
 		B29CEB2F1CEDBBA700E1D701 /* FSExporter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSExporter.h; sourceTree = "<group>"; };
 		B29CEB301CEDBBA700E1D701 /* FSExporter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSExporter.m; sourceTree = "<group>"; };
 		B29CEB3E1CEF41CE00E1D701 /* FSSaveSourceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSSaveSourceViewController.h; sourceTree = "<group>"; };
@@ -342,6 +346,7 @@
 		B2858C811C7C948400AE3690 /* iOS */ = {
 			isa = PBXGroup;
 			children = (
+				B28F7F641D2BA3240006C7C9 /* Misc */,
 				B29CEB331CEDBBB400E1D701 /* API */,
 				B25519E31CBFABBC00B16D46 /* KAProgressLabel */,
 				B2CA0CBF1C7C975E00162F98 /* Models */,
@@ -353,6 +358,15 @@
 			);
 			name = iOS;
 			path = Platforms/iOS;
+			sourceTree = "<group>";
+		};
+		B28F7F641D2BA3240006C7C9 /* Misc */ = {
+			isa = PBXGroup;
+			children = (
+				B28F7F671D2BA3DC0006C7C9 /* UIImage+Rotate.h */,
+				B28F7F681D2BA3DC0006C7C9 /* UIImage+Rotate.m */,
+			);
+			path = Misc;
 			sourceTree = "<group>";
 		};
 		B29CEB331CEDBBB400E1D701 /* API */ = {
@@ -481,6 +495,7 @@
 				BEEE368A96F146712103D909 /* FSBarButtonItem.h in Headers */,
 				B22667361C872B6E002E5BBA /* FSSourceListViewController.h in Headers */,
 				B25519EA1CBFAC1A00B16D46 /* TPPropertyAnimation.h in Headers */,
+				B28F7F691D2BA3DC0006C7C9 /* UIImage+Rotate.h in Headers */,
 				B2BFEB2A1C9189630037571D /* FSSourceCollectionViewController.h in Headers */,
 				B22667441C873B76002E5BBA /* FSConfig+Private.h in Headers */,
 				B21DCC291CDA15AC00AA008C /* FSProtocols+Private.h in Headers */,
@@ -663,6 +678,7 @@
 				B29CEB321CEDBBA700E1D701 /* FSExporter.m in Sources */,
 				B27569861C8879A700BF4254 /* FSSourceTableViewCell.m in Sources */,
 				BEEE34435BE8A6BCF1566D48 /* FSGridViewController.m in Sources */,
+				B28F7F6A1D2BA3DC0006C7C9 /* UIImage+Rotate.m in Sources */,
 				B22667371C872B6E002E5BBA /* FSSourceListViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -822,6 +838,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				OTHER_CFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.filestack.FSPicker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;

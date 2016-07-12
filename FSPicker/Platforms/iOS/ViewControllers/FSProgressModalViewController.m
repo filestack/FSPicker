@@ -94,9 +94,13 @@
     [self fsUploadProgress:progress addToTotalProgress:addToTotalProgress];
 }
 
-- (void)fsUploadFinishedWithBlobs:(NSArray<FSBlob *> *)blobsArray {
+- (void)fsUploadFinishedWithBlobs:(NSArray<FSBlob *> *)blobsArray completion:(void (^)())completion {
     dispatch_async(dispatch_get_main_queue(), ^{
-        [self dismissViewControllerAnimated:YES completion:nil];
+        [self dismissViewControllerAnimated:YES completion:^{
+            if (completion) {
+                completion();
+            }
+        }];
     });
 }
 
@@ -107,7 +111,7 @@
 }
 
 - (void)fsExportComplete:(FSBlob *)blob {
-    [self fsUploadFinishedWithBlobs:nil];
+    [self fsUploadFinishedWithBlobs:nil completion:nil];
 }
 
 - (void)fsExportError:(NSError *)error {
