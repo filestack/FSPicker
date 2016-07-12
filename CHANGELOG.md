@@ -1,3 +1,10 @@
+## 1.0.4 (2016-07-12)
+
+### Fixed
+
+- Image rotation before uploading.
+- Progress modal dismiss is no longer based on timing.
+
 ## 1.0.3 (2016-06-09)
 
 ### Fixed

@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = 'FSPicker'
-  s.version      = '1.0.3'
+  s.version      = '1.0.4'
   s.summary      = "Filestack's picker controller implementation."
 
   s.description  = <<-DESC
@@ -39,6 +39,7 @@ Pod::Spec.new do |s|
     FSPicker/Platforms/iOS/API/*.{h,m}
     FSPicker/Platforms/iOS/KAProgressLabel/*.{h,m}
     FSPicker/Platforms/iOS/FSImageVideoPicker/*.{h,m}
+    FSPicker/Platforms/iOS/Misc/*.{h,m}
   )
 
   s.resources = 'FSPicker/Shared/Resources/fsImages.xcassets', 'FSPicker/Shared/Resources/fsAllowedUrlPrefix.plist'
