@@ -64,6 +64,10 @@
     Filestack *filestack = [[Filestack alloc] initWithApiKey:self.config.apiKey];
     FSStoreOptions *storeOptions = [self.config.storeOptions copy];
 
+    if (!storeOptions) {
+        storeOptions = [[FSStoreOptions alloc] init];
+    }
+
     storeOptions.fileName = fileNameWithExtension;
     storeOptions.mimeType = self.config.dataMimeType ?: nil;
 
