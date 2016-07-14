@@ -1,3 +1,9 @@
+## 1.0.5 (2016-07-14)
+
+### Fixed
+
+- ```FSExporter``` now creates an empty ```storeOptions``` if copy returns nil.
+
 ## 1.0.4 (2016-07-12)
 
 ### Fixed
