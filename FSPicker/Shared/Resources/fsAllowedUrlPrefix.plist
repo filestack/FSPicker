@@ -46,6 +46,7 @@
 	<string>https://accounts.google.pl/accounts/SetSID</string>
 	<string>https://plus.google.com/u/0/_/notifications/frame</string>
 	<string>https://www.box.com/api/oauth2/authorize</string>
+	<string>https://account.box.com/api/oauth2/authorize</string>
 	<string>https://www.box.com/index.php?rm=box_single_sign_on_login_or_register</string>
 	<string>https://www.box.com/index.php?rm=box_api_auth</string>
 	<string>https://www.box.com/sso/</string>

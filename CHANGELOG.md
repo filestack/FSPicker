@@ -1,3 +1,9 @@
+## 1.0.6 (2016-09-14)
+
+### Added:
+
+- ```New Box authorization path.```
+
 ## 1.0.5 (2016-07-14)
 
 ### Fixed
