@@ -113,11 +113,13 @@ fsSaveController.fsDelegate = self;
 
 ```objectivec
 NSString *apiKey;
+NSString *title;
 NSArray<NSString *> *sources;
 
 // FSPickerController
 NSArray<FSMimeType> *mimeTypes;
 NSInteger maxFiles;
+NSUInteger maxSize;
 BOOL selectMultiple;
 BOOL defaultToFrontCamera;
 // BOOL shouldDownload; TODO
@@ -136,6 +138,8 @@ NSString *proposedFileName;
 
 The most important property is ```apiKey``` also it is the only property you need to provide for FSPicker to actually work. You can find your application's api key in developer portal.
 
+```title``` sets navigation bar title of FSPickerController/FSSaveController. Defaults to "Filestack".
+
 ```sources``` array allows you to configure sources you'd like to have available in your application. You can find sources names [below](#sources-names-constants). If no or empty array is set - all sources are displayed on the list.
 
 ```mimeTypes``` array is used to constraining displayed files to certain types. There are typedefs [defined](#mimetypes-typedef) for your convenience. If this property is not provided all file types will be available for uploading (*/*).
@@ -145,6 +149,8 @@ The most important property is ```apiKey``` also it is the only property you nee
 ```defaultToFrontCamera``` - set to YES if you want to open "Camera" source with front camera as default.
 
 ```maxFiles``` sets maximum number of files to upload simultaneously. Unlimited by default.
+
+```maxSize``` Limit upload file size to be at most maxSize, specified in bytes. By default file size is not limited. If specified, files larger than maxSize won't be displayed in PickerController.
 
 ```shouldUpload``` & ```shouldDownload``` #TODO
 

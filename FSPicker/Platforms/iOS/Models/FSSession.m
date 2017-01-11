@@ -52,6 +52,10 @@
         queryParameters[@"apikey"] = self.config.apiKey;
     }
 
+    if (self.config.maxSize != 0) {
+        queryParameters[@"maxSize"] = [NSString stringWithFormat:@"%lu", self.config.maxSize];
+    }
+
     if (self.mimeTypes) {
         queryParameters[@"mimetypes"] = self.mimeTypes;
     }

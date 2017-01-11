@@ -110,9 +110,7 @@
     self.navigationItem.leftBarButtonItem = cancelButton;
     self.navigationItem.backBarButtonItem = backButton;
 
-    if (!self.title) {
-        self.title = @"Filestack";
-    }
+    self.title = self.config.title ? self.config.title : @"Filestack";
 }
 
 #pragma mark - Table view data source
