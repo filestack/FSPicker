@@ -34,6 +34,10 @@
         if (self.navigationBarTintColor) {
             navigationController.navigationBar.tintColor = self.navigationBarTintColor;
         }
+
+        if (self.navigationBarTitleColor) {
+            [navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : self.navigationBarTitleColor}];
+        }
     }
 
     if (self.headerFooterViewTintColor) {

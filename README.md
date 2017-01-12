@@ -238,6 +238,7 @@ UIBarStyle navigationBarStyle
 NSAttributedString *refreshControlAttributedTitle (11)
 UIColor *navigationBarBackgroundColor (6)
 UIColor *navigationBarTintColor (1)
+UIColor *navigationBarTitleColor
 UIColor *headerFooterViewTintColor (2)
 UIColor *headerFooterViewTextColor (3)
 UIColor *tableViewBackgroundColor

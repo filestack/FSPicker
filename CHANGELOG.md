@@ -1,3 +1,9 @@
+## 1.1.2 (2017-01-12)
+
+### Added:
+
+- Navigation bar title color can now themed.
+
 ## 1.1.0 (2017-01-12)
 
 ### Added:
