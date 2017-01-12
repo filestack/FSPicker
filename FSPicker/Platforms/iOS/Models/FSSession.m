@@ -53,7 +53,7 @@
     }
 
     if (self.config.maxSize != 0) {
-        queryParameters[@"maxSize"] = [NSString stringWithFormat:@"%lu", self.config.maxSize];
+        queryParameters[@"maxSize"] = [NSString stringWithFormat:@"%lu", (unsigned long)self.config.maxSize];
     }
 
     if (self.mimeTypes) {

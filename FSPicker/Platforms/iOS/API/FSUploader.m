@@ -14,6 +14,7 @@
 #import "FSSession.h"
 #import "FSUploader.h"
 #import "FSContentItem.h"
+#import "FSDownloader.h"
 @import Photos;
 @interface FSUploader ()
 
@@ -38,34 +39,66 @@
 - (void)uploadCloudItems:(NSArray<FSContentItem *> *)items {
     NSUInteger totalNumberOfItems = items.count;
     NSUInteger __block uploadedItems = 0;
-
+    FSDownloader *downloader;
     FSSession *session = [[FSSession alloc] initWithConfig:self.config mimeTypes:self.source.mimeTypes];
+
+    // We have to upload AND download the item.
+    if (self.config.shouldDownload) {
+        downloader = [[FSDownloader alloc] init];
+        totalNumberOfItems *= 2;
+    }
 
     for (FSContentItem *item in items) {
         NSDictionary *parameters = [session toQueryParametersWithFormat:@"fpurl"];
 
         [Filestack pickFSURL:item.linkPath parameters:parameters completionHandler:^(FSBlob *blob, NSError *error) {
             uploadedItems++;
-
-            if (blob) {
-                [self.blobsArray addObject:blob];
+            // We won't download if there is an error, but have to "mark" the item as finished.
+            if (self.config.shouldDownload && error) {
+                uploadedItems++;
+                [self messageDelegateWithBlob:blob error:error];
             }
 
-            if ([self.uploadModalDelegate respondsToSelector:@selector(fsUploadProgress:addToTotalProgress:)]) {
-                float currentProgress = (float)uploadedItems / totalNumberOfItems;
-                [self.uploadModalDelegate fsUploadProgress:currentProgress addToTotalProgress:NO];
+            if (self.config.shouldDownload && !error) {
+                // Downloader will modify the blob, setting internalURL on successful download.
+                [downloader download:blob security:self.config.storeOptions.security completionHandler:^(NSString *fileURL, NSError *error) {
+                    uploadedItems++;
+                    blob.internalURL = fileURL;
+
+                    [self updateProgress:uploadedItems total:totalNumberOfItems];
+                    [self messageDelegateWithBlob:blob error:error];
+
+                    if (uploadedItems == totalNumberOfItems) {
+                        [self finishUpload];
+                    }
+                }];
             }
 
-            [self messageDelegateWithBlob:blob error:error];
+            [self updateProgress:uploadedItems total:totalNumberOfItems];
+
+            if (!self.config.shouldDownload) {
+                [self messageDelegateWithBlob:blob error:error];
+            }
 
             if (uploadedItems == totalNumberOfItems) {
-                if ([self.uploadModalDelegate respondsToSelector:@selector(fsUploadFinishedWithBlobs:completion:)]) {
-                    [self.uploadModalDelegate fsUploadFinishedWithBlobs:nil completion:^{
-                        if ([self.pickerDelegate respondsToSelector:@selector(fsUploadFinishedWithBlobs:completion:)]) {
-                            [self.pickerDelegate fsUploadFinishedWithBlobs:self.blobsArray completion:nil];
-                        }
-                    }];
-                }
+                [self finishUpload];
+            }
+        }];
+    }
+}
+
+- (void)updateProgress:(NSUInteger)uploadedItems total:(NSUInteger)totalItems {
+    if ([self.uploadModalDelegate respondsToSelector:@selector(fsUploadProgress:addToTotalProgress:)]) {
+        float currentProgress = (float)uploadedItems / totalItems;
+        [self.uploadModalDelegate fsUploadProgress:currentProgress addToTotalProgress:NO];
+    }
+}
+
+- (void)finishUpload {
+    if ([self.uploadModalDelegate respondsToSelector:@selector(fsUploadFinishedWithBlobs:completion:)]) {
+        [self.uploadModalDelegate fsUploadFinishedWithBlobs:nil completion:^{
+            if ([self.pickerDelegate respondsToSelector:@selector(fsUploadFinishedWithBlobs:completion:)]) {
+                [self.pickerDelegate fsUploadFinishedWithBlobs:self.blobsArray completion:nil];
             }
         }];
     }

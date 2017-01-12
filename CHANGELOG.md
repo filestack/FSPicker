@@ -1,3 +1,11 @@
+## 1.1.0 (2017-01-12)
+
+### Added:
+
+- ```shouldDownload``` now works.
+- Picker/Save controllers navigation bar title is now configurable (```title``` property of ```FSConfig```).
+- Support for ```maxSize```.
+
 ## 1.0.6 (2016-09-14)
 
 ### Added:

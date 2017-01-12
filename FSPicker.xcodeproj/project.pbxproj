@@ -62,6 +62,8 @@
 		B2A0423F1CAE6BAD0013BC41 /* FSSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2A0423D1CAE6BAD0013BC41 /* FSSearchViewController.m */; };
 		B2A042421CAEAEBB0013BC41 /* UICollectionViewFlowLayout+FSPicker.h in Headers */ = {isa = PBXBuildFile; fileRef = B2A042401CAEAEBB0013BC41 /* UICollectionViewFlowLayout+FSPicker.h */; };
 		B2A042431CAEAEBB0013BC41 /* UICollectionViewFlowLayout+FSPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = B2A042411CAEAEBB0013BC41 /* UICollectionViewFlowLayout+FSPicker.m */; };
+		B2ACE0781E278731008107A2 /* FSDownloader.h in Headers */ = {isa = PBXBuildFile; fileRef = B2ACE0761E278731008107A2 /* FSDownloader.h */; };
+		B2ACE0791E278731008107A2 /* FSDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = B2ACE0771E278731008107A2 /* FSDownloader.m */; };
 		B2BC57AA1C92B78D00317154 /* FSAuthViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = B2BC57A81C92B78D00317154 /* FSAuthViewController.h */; };
 		B2BC57AB1C92B78D00317154 /* FSAuthViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2BC57A91C92B78D00317154 /* FSAuthViewController.m */; };
 		B2BC57B21C92C6FE00317154 /* FSProgressView.h in Headers */ = {isa = PBXBuildFile; fileRef = B2BC57B01C92C6FE00317154 /* FSProgressView.h */; };
@@ -173,6 +175,8 @@
 		B2A0423D1CAE6BAD0013BC41 /* FSSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSSearchViewController.m; sourceTree = "<group>"; };
 		B2A042401CAEAEBB0013BC41 /* UICollectionViewFlowLayout+FSPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UICollectionViewFlowLayout+FSPicker.h"; sourceTree = "<group>"; };
 		B2A042411CAEAEBB0013BC41 /* UICollectionViewFlowLayout+FSPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UICollectionViewFlowLayout+FSPicker.m"; sourceTree = "<group>"; };
+		B2ACE0761E278731008107A2 /* FSDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSDownloader.h; sourceTree = "<group>"; };
+		B2ACE0771E278731008107A2 /* FSDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSDownloader.m; sourceTree = "<group>"; };
 		B2BC57A81C92B78D00317154 /* FSAuthViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSAuthViewController.h; sourceTree = "<group>"; };
 		B2BC57A91C92B78D00317154 /* FSAuthViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSAuthViewController.m; sourceTree = "<group>"; };
 		B2BC57B01C92C6FE00317154 /* FSProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSProgressView.h; sourceTree = "<group>"; };
@@ -376,6 +380,8 @@
 				B25519DC1CBF8DCF00B16D46 /* FSUploader.m */,
 				B29CEB2F1CEDBBA700E1D701 /* FSExporter.h */,
 				B29CEB301CEDBBA700E1D701 /* FSExporter.m */,
+				B2ACE0761E278731008107A2 /* FSDownloader.h */,
+				B2ACE0771E278731008107A2 /* FSDownloader.m */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -522,6 +528,7 @@
 				BEEE31D881DE310DC5D426D5 /* FSMimeTypes.h in Headers */,
 				B26C6ACB1CCE14EB00CED799 /* FSPickerController+Private.h in Headers */,
 				B2A0423E1CAE6BAD0013BC41 /* FSSearchViewController.h in Headers */,
+				B2ACE0781E278731008107A2 /* FSDownloader.h in Headers */,
 				B2BFEB1C1C9034680037571D /* UIRefreshControl+Appearance.h in Headers */,
 				B21737551C99A85D00FE263F /* UIAlertController+FSPicker.h in Headers */,
 				B29CEB311CEDBBA700E1D701 /* FSExporter.h in Headers */,
@@ -649,6 +656,7 @@
 				B2BEBBB01C97025D00E6248F /* FSSession.m in Sources */,
 				B2858C7B1C7C933D00AE3690 /* FSPickerController.m in Sources */,
 				B2A0423F1CAE6BAD0013BC41 /* FSSearchViewController.m in Sources */,
+				B2ACE0791E278731008107A2 /* FSDownloader.m in Sources */,
 				B2CA0CC71C7C97A800162F98 /* FSConfig.m in Sources */,
 				B2BED14F1C84494E0041403E /* FSCollectionViewCell.m in Sources */,
 				B26C6ACC1CCE14EB00CED799 /* FSPickerController+Private.m in Sources */,

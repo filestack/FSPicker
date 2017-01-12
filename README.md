@@ -20,7 +20,7 @@ $ gem install cocoapods
 To integrate FSPicker into your Xcode project using CocoaPods, specify it in your `Podfile`:
 
 ```ruby
-pod "FSPicker", "~> 1.0.6"
+pod "FSPicker", "~> 1.1.0"
 ```
 Then, run the following command:
 
@@ -122,7 +122,7 @@ NSInteger maxFiles;
 NSUInteger maxSize;
 BOOL selectMultiple;
 BOOL defaultToFrontCamera;
-// BOOL shouldDownload; TODO
+BOOL shouldDownload;
 // BOOL shouldUpload; TODO
 FSStoreOptions *storeOptions;
 
@@ -152,7 +152,9 @@ The most important property is ```apiKey``` also it is the only property you nee
 
 ```maxSize``` Limit upload file size to be at most maxSize, specified in bytes. By default file size is not limited. If specified, files larger than maxSize won't be displayed in PickerController.
 
-```shouldUpload``` & ```shouldDownload``` #TODO
+```shouldDownload``` After picking a file with PickerController, the file is downloaded to device's temp storage. Path is available at FSBlob's ```internalURL``` property.
+
+```shouldUpload``` #TODO
 
 ```storeOptions``` [FSStoreOptions](#fsstoreoptions)
 
