@@ -7,7 +7,7 @@
 //
 
 #import "FSDownloader.h"
-@import Filestack;
+#import <Filestack/Filestack.h>
 
 @implementation FSDownloader
 

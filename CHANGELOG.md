@@ -1,3 +1,9 @@
+## 1.1.3 (2017-01-17)
+
+### Fixed:
+
+- Import framework, not a module in ```FSDownloader```.
+
 ## 1.1.2 (2017-01-12)
 
 ### Added:

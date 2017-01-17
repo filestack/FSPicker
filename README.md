@@ -20,7 +20,7 @@ $ gem install cocoapods
 To integrate FSPicker into your Xcode project using CocoaPods, specify it in your `Podfile`:
 
 ```ruby
-pod "FSPicker", "~> 1.1.2"
+pod "FSPicker", "~> 1.1.3"
 ```
 Then, run the following command:
 
