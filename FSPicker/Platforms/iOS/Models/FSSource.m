@@ -353,8 +353,8 @@
     FSSource *source = [[FSSource alloc] init];
 
     source.identifier = FSSourcePicasa;
-    source.name = @"Picasa";
-    source.icon = @"icon-picasa";
+    source.name = @"Google Photos";
+    source.icon = @"icon_google_photos";
     source.rootPath = @"/Picasa";
     source.openMimeTypes = @[@"image/*"];
     source.saveMimeTypes = @[@"image/*"];

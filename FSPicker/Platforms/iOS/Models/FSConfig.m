@@ -32,6 +32,9 @@ NSString *const FSSourceCloudDrive = @"clouddrive";
         _apiKey = apiKey;
         _storeOptions = storeOptions;
         _selectMultiple = YES;
+        
+        _service = [GTLRDriveService new];
+        _gmailService = [GTLRGmailService new];
     }
 
     return self;
