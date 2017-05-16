@@ -316,12 +316,10 @@
 - (NSString*)convertedGoogleMIMEType:(NSString*)mimeType{
 
     if ([mimeType isEqualToString:@"application/vnd.google-apps.document"]) {
-        //return @"application/vnd.oasis.opendocument.text";
         return @"application/vnd.openxmlformats-officedocument.wordprocessingml.document";
     }
     
     if ([mimeType isEqualToString:@"application/vnd.google-apps.spreadsheet"]) {
-        //return @"application/x-vnd.oasis.opendocument.spreadsheet";
         return @"application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
     }
     

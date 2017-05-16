@@ -144,7 +144,6 @@
 }
 
 + (NSArray<FSContentItem *> *)itemsFromGTLRDriveFileList:(GTLRDrive_FileList *)fileList {
-    //NSArray<NSDictionary *> *content = [[NSArray alloc] initWithArray:json[@"contents"]];
     NSMutableArray<FSContentItem *> *items = [[NSMutableArray alloc] init];
     
     for (GTLRDrive_File* file in fileList.files) {

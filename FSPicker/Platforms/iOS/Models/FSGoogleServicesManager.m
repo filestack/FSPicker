@@ -1,10 +1,3 @@
-//
-//  FSGoogleServicesManager.m
-//  Pods
-//
-//  Created by Alexanedr on 4/18/17.
-//  Copyright (c) 2017 __MyCompanyName__. All rights reserved.
-//
 
 #import "FSGoogleServicesManager.h"
 #import <Google/SignIn.h>
@@ -57,10 +50,6 @@
     NSError* configureError;
     [[GGLContext sharedInstance] configureWithError: &configureError];
     NSAssert(!configureError, @"Error configuring Google services: %@", configureError);
-    
-//    [GIDSignIn sharedInstance].delegate = self;
-//    [GIDSignIn sharedInstance].scopes = @[@"https://www.googleapis.com/auth/drive"];
-
 }
 
 

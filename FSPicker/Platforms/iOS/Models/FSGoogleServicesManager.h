@@ -1,10 +1,3 @@
-//
-//  FSGoogleServicesManager.h
-//  Pods
-//
-//  Created by Alexanedr on 4/18/17.
-//  Copyright (c) 2017 __MyCompanyName__. All rights reserved.
-//
 
 
 @interface FSGoogleServicesManager : NSObject
