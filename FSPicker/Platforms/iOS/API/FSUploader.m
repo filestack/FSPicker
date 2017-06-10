@@ -20,6 +20,9 @@
 @import MobileCoreServices;
 #import "GTLRBase64.h"
 
+#import "GTMSessionFetcher.h"
+#import "GTMSessionFetcherService.h"
+
 @interface FSUploader ()
 
 @property (nonatomic, strong) FSConfig *config;
@@ -106,8 +109,6 @@
 - (void)uploadGoogleServiceItems:(NSArray<FSContentItem *> *)items {
     NSUInteger totalNumberOfItems = items.count;
     NSUInteger __block uploadedItems = 0;
-    FSDownloader *downloader;
-    FSSession *session = [[FSSession alloc] initWithConfig:self.config mimeTypes:self.source.mimeTypes];
     
     Filestack *filestack = [[Filestack alloc] initWithApiKey:self.config.apiKey];
 
@@ -147,8 +148,8 @@
             uploadedItems++;
             NSLog(@"%@%@", @"Uploaded ", fileURL);
 
-            FSBlob* blob = [[FSBlob alloc] initWithURL:fetcher.destinationFileURL];
-            blob.internalURL = fetcher.destinationFileURL;
+            FSBlob* blob = [[FSBlob alloc] initWithURL:fetcher.destinationFileURL.absoluteString];
+            blob.internalURL = fetcher.destinationFileURL.absoluteString;
             [self messageDelegateWithBlob:blob error:error];
             
             
@@ -179,7 +180,7 @@
                     completionHandler:^(FSBlob *blob, NSError *error) {
                         uploadedItems++;
                         
-                        blob.internalURL = fileURL;
+                        blob.internalURL = fileURL.absoluteString;
                         
                         [self updateProgress:uploadedItems total:totalNumberOfItems];
                         [self messageDelegateWithBlob:blob error:error];
@@ -218,8 +219,6 @@
 - (void)uploadGmailItems:(NSArray<FSContentItem *> *)items {
     NSUInteger totalNumberOfItems = items.count;
     NSUInteger __block uploadedItems = 0;
-    FSDownloader *downloader;
-    FSSession *session = [[FSSession alloc] initWithConfig:self.config mimeTypes:self.source.mimeTypes];
     
     Filestack *filestack = [[Filestack alloc] initWithApiKey:self.config.apiKey];
     
@@ -249,8 +248,8 @@
                                  [data writeToFile:[fileURL path] atomically:YES];
 
                                  
-                                 FSBlob* blob = [[FSBlob alloc] initWithURL:fileURL];
-                                 blob.internalURL = fileURL;
+                                 FSBlob* blob = [[FSBlob alloc] initWithURL:fileURL.absoluteString];
+                                 blob.internalURL = fileURL.absoluteString;
                                  [self messageDelegateWithBlob:blob error:callbackError];
 
                                  if (callbackError == nil) {
@@ -275,7 +274,7 @@
                                          completionHandler:^(FSBlob *blob, NSError *error) {
                                              uploadedItems++;
                                              
-                                             blob.internalURL = fileURL;
+                                             blob.internalURL = fileURL.absoluteString;
                                              
                                              [self updateProgress:uploadedItems total:totalNumberOfItems];
                                              [self messageDelegateWithBlob:blob error:error];
@@ -316,10 +315,12 @@
 - (NSString*)convertedGoogleMIMEType:(NSString*)mimeType{
 
     if ([mimeType isEqualToString:@"application/vnd.google-apps.document"]) {
+        //return @"application/vnd.oasis.opendocument.text";
         return @"application/vnd.openxmlformats-officedocument.wordprocessingml.document";
     }
     
     if ([mimeType isEqualToString:@"application/vnd.google-apps.spreadsheet"]) {
+        //return @"application/x-vnd.oasis.opendocument.spreadsheet";
         return @"application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
     }
     
