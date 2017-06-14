@@ -7,6 +7,7 @@
 	<string>https://dialog.filestackapi.com/api/client/</string>
 	<string>https://www.dropbox.com/1/oauth/authorize</string>
 	<string>https://www.dropbox.com/login</string>
+	<string>https://www.dropbox.com/oauth2/authorize</string>
 	<string>https://www.dropbox.com/m/connect_login</string>
 	<string>https://www.dropbox.com/verify_code</string>
 	<string>http://www.facebook.com/dialog/oauth</string>
