@@ -1,3 +1,7 @@
+## 1.1.5 (2017-06-16)
+
+- Fixed both Dropbox authentication and authorization.
+
 ## 1.1.4 (2017-06-14)
 
 - Fixed Dropbox authentication after recent Dropbox code migration on the backend.

@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = 'FSPicker'
-  s.version      = '1.1.4'
+  s.version      = '1.1.5'
   s.summary      = "Filestack's picker controller implementation."
 
   s.description  = <<-DESC
