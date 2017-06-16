@@ -8,7 +8,6 @@
 
 #import "FSSource.h"
 #import "FSConfig.h"
-#import "FSSettings.h"
 #import "FSAuthViewController.h"
 
 @interface FSAuthViewController () <UIWebViewDelegate>
@@ -16,7 +15,6 @@
 @property (nonatomic, strong) FSSource *source;
 @property (nonatomic, strong) FSConfig *config;
 @property (nonatomic, strong) UIWebView *webView;
-@property (nonatomic, strong) NSArray *allowedUrls;
 @property (nonatomic, strong) UIActivityIndicatorView *activityIndicator;
 
 @end
@@ -30,7 +28,6 @@ static NSString *const fsAuthURL = @"%@/api/client/%@/auth/open?m=*/*&key=%@&id=
     if ((self = [super init])) {
         _source = source;
         _config = config;
-        _allowedUrls = [FSSettings allowedUrlPrefixList];
     }
 
     return self;
@@ -70,8 +67,6 @@ static NSString *const fsAuthURL = @"%@/api/client/%@/auth/open?m=*/*&key=%@&id=
 }
 
 - (BOOL)webView:(UIWebView *)localWebView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType{
-    NSString *absoluteString = request.URL.absoluteString;
-
     if ([request.URL.path isEqualToString:@"/dialog/open"]) {
         [self.navigationController popViewControllerAnimated:YES];
 
@@ -82,17 +77,7 @@ static NSString *const fsAuthURL = @"%@/api/client/%@/auth/open?m=*/*&key=%@&id=
         return NO;
     }
 
-    for (NSString *url in self.allowedUrls) {
-        if ([url isEqualToString:@""]) {
-            continue;
-        }
-
-        if ([absoluteString containsString:url]) {
-            return YES;
-        }
-    }
-
-    return NO;
+    return YES;
 }
 
 - (void)webViewDidStartLoad:(UIWebView *)webView {
