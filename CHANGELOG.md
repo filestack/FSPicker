@@ -1,3 +1,7 @@
+## 1.1.6 (2017-06-16)
+
+- Removed unnecessary URL whitelist checks during the authentication process.
+
 ## 1.1.5 (2017-06-16)
 
 - Fixed both Dropbox authentication and authorization.
