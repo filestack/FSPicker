@@ -67,6 +67,9 @@ static NSString *const fsAuthURL = @"%@/api/client/%@/auth/open?m=*/*&key=%@&id=
 }
 
 - (BOOL)webView:(UIWebView *)localWebView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType{
+
+    // Detect authentication success response and notify the delegate
+
     if ([request.URL.path isEqualToString:@"/dialog/open"]) {
         [self.navigationController popViewControllerAnimated:YES];
 
@@ -75,6 +78,37 @@ static NSString *const fsAuthURL = @"%@/api/client/%@/auth/open?m=*/*&key=%@&id=
         }
 
         return NO;
+    }
+
+    // Detect authentication error response and notify the delegate
+
+    NSString *authCallbackOpenPath = [NSString stringWithFormat:@"/api/client/%@/authCallback/open", self.source.identifier];
+
+    if ([request.URL.path hasPrefix:authCallbackOpenPath]) {
+        BOOL didError = NO;
+
+        NSURLComponents *urlComponents = [NSURLComponents componentsWithURL:request.URL
+                                                    resolvingAgainstBaseURL:NO];
+
+        for (NSURLQueryItem *queryItem in urlComponents.queryItems) {
+            if ([queryItem.name isEqualToString:@"error"] ||
+                [queryItem.name isEqualToString:@"error_description"]) {
+
+                didError = YES;
+                break;
+            }
+        }
+
+        if (didError) {
+            [self.navigationController popViewControllerAnimated:YES];
+
+            if ([self.delegate respondsToSelector:@selector(didFailToAuthenticateWithSource)]) {
+                [self.delegate didFailToAuthenticateWithSource];
+            }
+
+            return NO;
+        }
+
     }
 
     return YES;

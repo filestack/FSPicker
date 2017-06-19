@@ -302,6 +302,10 @@
     [self loadSourceContent:nil isNextPage:NO];
 }
 
+- (void)didFailToAuthenticateWithSource {
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 - (BOOL)isContentItemSelected:(FSContentItem *)item {
     return [self.selectedContent containsObject:item];
 }
