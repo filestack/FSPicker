@@ -16,6 +16,7 @@
 @property (nonatomic, strong) FSConfig *config;
 @property (nonatomic, strong) UIWebView *webView;
 @property (nonatomic, strong) UIActivityIndicatorView *activityIndicator;
+@property (nonatomic, assign) BOOL didAuthenticate;
 
 @end
 
@@ -28,6 +29,7 @@ static NSString *const fsAuthURL = @"%@/api/client/%@/auth/open?m=*/*&key=%@&id=
     if ((self = [super init])) {
         _source = source;
         _config = config;
+        _didAuthenticate = NO;
     }
 
     return self;
@@ -44,6 +46,16 @@ static NSString *const fsAuthURL = @"%@/api/client/%@/auth/open?m=*/*&key=%@&id=
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     [self.webView stopLoading];
+
+    if (self.didAuthenticate) {
+        if ([self.delegate respondsToSelector:@selector(didAuthenticateWithSource)]) {
+            [self.delegate didAuthenticateWithSource];
+        }
+    } else {
+        if ([self.delegate respondsToSelector:@selector(didFailToAuthenticateWithSource)]) {
+            [self.delegate didFailToAuthenticateWithSource];
+        }
+    }
 }
 
 - (void)setupWebView {
@@ -72,10 +84,7 @@ static NSString *const fsAuthURL = @"%@/api/client/%@/auth/open?m=*/*&key=%@&id=
 
     if ([request.URL.path isEqualToString:@"/dialog/open"]) {
         [self.navigationController popViewControllerAnimated:YES];
-
-        if ([self.delegate respondsToSelector:@selector(didAuthenticateWithSource)]) {
-            [self.delegate didAuthenticateWithSource];
-        }
+        self.didAuthenticate = YES;
 
         return NO;
     }
@@ -101,10 +110,6 @@ static NSString *const fsAuthURL = @"%@/api/client/%@/auth/open?m=*/*&key=%@&id=
 
         if (didError) {
             [self.navigationController popViewControllerAnimated:YES];
-
-            if ([self.delegate respondsToSelector:@selector(didFailToAuthenticateWithSource)]) {
-                [self.delegate didFailToAuthenticateWithSource];
-            }
 
             return NO;
         }
