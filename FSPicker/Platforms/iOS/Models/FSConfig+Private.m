@@ -9,6 +9,12 @@
 @import MobileCoreServices;
 #import "FSConfig+Private.h"
 #import "FSSource.h"
+#import <GoogleSignIn/GoogleSignIn.h>
+
+@interface FSConfig ()
+@property (strong, nonatomic) GIDGoogleUser *user;
+
+@end
 
 @implementation FSConfig (Private)
 

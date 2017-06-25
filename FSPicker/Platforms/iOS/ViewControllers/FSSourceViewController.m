@@ -26,7 +26,10 @@
 
 #import "GTLRDrive.h"
 
-@interface FSSourceViewController () <FSAuthViewControllerDelegate, GIDSignInUIDelegate>
+#import <GoogleSignIn/GoogleSignIn.h>
+
+
+@interface FSSourceViewController () <FSAuthViewControllerDelegate>
 
 @property (nonatomic, assign) BOOL toolbarColorsSet;
 @property (nonatomic, assign) BOOL initialContentLoad;
@@ -294,7 +297,7 @@
                                                                   NSError *callbackError) {
                                                   [self.activityIndicator stopAnimating];
                                                   
-                                                  if (callbackError.code == 403 || callbackError.code == 400) {
+                                                  if (callbackError.code == 403 || callbackError.code == 400 || !GIDSignIn.sharedInstance.hasAuthInKeychain) {
                                                       [self authenticateWithCurrentSource];
                                                       return;
                                                   }
@@ -369,7 +372,7 @@
                                                                        GTLRGmail_ListMessagesResponse *fileList,
                                                                        NSError *callbackError) {
                                                        
-                                                       if (callbackError.code == 403 || callbackError.code == 401) {
+                                                       if (callbackError.code == 403 || callbackError.code == 401 || !GIDSignIn.sharedInstance.hasAuthInKeychain) {
                                                            [self.activityIndicator stopAnimating];
                                                            [self authenticateWithCurrentSource];
                                                            return;
@@ -445,7 +448,7 @@
                                                                   NSError *callbackError) {
                                                   [self.activityIndicator stopAnimating];
                                                   
-                                                  if (callbackError.code == 403 || callbackError.code == 400) {
+                                                  if (callbackError.code == 403 || callbackError.code == 400 || !GIDSignIn.sharedInstance.hasAuthInKeychain) {
                                                       [self authenticateWithCurrentSource];
                                                       return;
                                                   }
@@ -562,8 +565,9 @@
 }
 
 - (void)logoutFromGoogleService{
-    [GIDSignIn.sharedInstance signOut];
+    
     [[GIDSignIn sharedInstance] disconnect];
+    [GIDSignIn.sharedInstance signOut];
     
     [self.navigationController popViewControllerAnimated:YES];
 }
@@ -661,5 +665,7 @@
     [self setUIStateEnabled:NO disregardRefreshControl:YES];
     [self loadSourceContent:nil isNextPage:YES];
 }
+
+
 
 @end

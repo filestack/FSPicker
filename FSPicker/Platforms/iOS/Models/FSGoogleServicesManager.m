@@ -1,6 +1,6 @@
 
 #import "FSGoogleServicesManager.h"
-#import <Google/SignIn.h>
+#import <GoogleSignIn/GoogleSignIn.h>
 
 
 @interface FSGoogleServicesManager()<GIDSignInDelegate>
@@ -48,8 +48,13 @@
 - (void)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
     NSError* configureError;
-    [[GGLContext sharedInstance] configureWithError: &configureError];
+    //[[GGLContext sharedInstance] configureWithError: &configureError];
     NSAssert(!configureError, @"Error configuring Google services: %@", configureError);
+    
+    NSString* path = [[NSBundle mainBundle] pathForResource:@"GoogleService-Info" ofType:@"plist"];
+    NSDictionary* googleServiceInfo = [NSDictionary dictionaryWithContentsOfFile:path];
+    NSString* clientID = [googleServiceInfo objectForKey:@"CLIENT_ID"];
+    GIDSignIn.sharedInstance.clientID = clientID;
 }
 
 

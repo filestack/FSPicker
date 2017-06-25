@@ -16,6 +16,8 @@
 11. Add FSPicker to pod file and install pods ``` pod "FSPicker", :git => 'https://github.com/swebdevelopment/FSPicker.git', :branch => 'google-services'```
 12. Add code to AppDelegate:
 
+Objective-C:
+
 ```objectivec
 #import <FSPicker/FSPicker.h>
 
@@ -33,4 +35,22 @@ options:(NSDictionary *)options {
     
     return [[FSGoogleServicesManager shared] application:app openURL:url options:options];    
 }
+```
+SWIFT:
+
+```swift
+import FSPicker
+
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        // Override point for customization after application launch.
+        
+        FSGoogleServicesManager.shared().application(application, didFinishLaunchingWithOptions: launchOptions)
+        
+        return true
+    }
+
+    func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
+        return FSGoogleServicesManager.shared().application(app, open: url, options: options)
+    }
+
 ```

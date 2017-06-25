@@ -10,11 +10,9 @@
 #import "FSConfig.h"
 #import "FSSettings.h"
 #import "FSAuthViewController.h"
+#import <GoogleSignIn/GoogleSignIn.h>
 
-#import <Google/SignIn.h>
-
-
-@interface FSAuthViewController () <UIWebViewDelegate>
+@interface FSAuthViewController () <UIWebViewDelegate, GIDSignInUIDelegate, GIDSignInDelegate>
 
 @property (nonatomic, strong) FSSource *source;
 @property (nonatomic, strong) FSConfig *config;
@@ -175,7 +173,7 @@ didSignInForUser:(GIDGoogleUser *)user
      withError:(NSError *)error {
     
     if (error == nil && user) {
-        self.config.user = user;
+        //self.config.user = user;
         
         if ([self.source.identifier isEqualToString:FSSourceGoogleDrive] ||
             [self.source.identifier isEqualToString:FSSourcePicasa]) {
@@ -192,12 +190,12 @@ didSignInForUser:(GIDGoogleUser *)user
     }
     
     // Perform any operations on signed in user here.
-    NSString *userId = user.userID;                  // For client-side use only!
-    NSString *idToken = user.authentication.idToken; // Safe to send to the server
-    NSString *fullName = user.profile.name;
-    NSString *givenName = user.profile.givenName;
-    NSString *familyName = user.profile.familyName;
-    NSString *email = user.profile.email;
+//    NSString *userId = user.userID;                  // For client-side use only!
+//    NSString *idToken = user.authentication.idToken; // Safe to send to the server
+//    NSString *fullName = user.profile.name;
+//    NSString *givenName = user.profile.givenName;
+//    NSString *familyName = user.profile.familyName;
+//    NSString *email = user.profile.email;
     // ...
     
     if (error == nil) {
@@ -214,7 +212,7 @@ didDisconnectWithUser:(GIDGoogleUser *)user
      withError:(NSError *)error {
     // Perform any operations when the user disconnects from app here.
     // ...
-    self.config.user = nil;
+    //self.config.user = nil;
 }
 
 @end
