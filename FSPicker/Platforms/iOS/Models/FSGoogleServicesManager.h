@@ -11,6 +11,9 @@
 #import <GoogleAPIClientForREST/GTLRGmail.h>
 #import <GoogleAPIClientForREST/GTLRDrive.h>
 
+#import <AppAuth/AppAuth.h>
+#import <GTMAppAuth/GTMAppAuth.h>
+
 @protocol FSGoogleServicesManagerDelegate <NSObject>
 - (void)authForScopes:(NSArray*)scopes;
 @end
@@ -19,10 +22,12 @@
 
 @property (nonatomic, weak) id <FSGoogleServicesManagerDelegate>delegate;
 
-    
-+ (FSGoogleServicesManager*)shared;
+@property (strong, nonatomic) id<OIDAuthorizationFlowSession> currentAuthorizationFlow;
 
-- (NSString*)clientID;
+@property (strong, nonatomic) NSString* clientId;
+@property (strong, nonatomic) NSString* redirectURI;
+
++ (FSGoogleServicesManager*)shared;
     
 - (void)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions;
 

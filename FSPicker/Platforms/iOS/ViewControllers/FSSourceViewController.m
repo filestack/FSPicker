@@ -25,8 +25,8 @@
 #import <Filestack/Filestack+FSPicker.h>
 
 #import "GTLRDrive.h"
-
-#import <GoogleSignIn/GoogleSignIn.h>
+#import <AppAuth/AppAuth.h>
+#import <GTMAppAuth/GTMAppAuth.h>
 
 
 @interface FSSourceViewController () <FSAuthViewControllerDelegate>
@@ -87,6 +87,32 @@
     [self setupActivityIndicator];
     [self setupToolbar];
     [self disableUI];
+    
+    //! Load auth
+    if ([self.source.identifier isEqualToString:FSSourceGoogleDrive]) {
+        // Deserialize from Keychain
+        GTMAppAuthFetcherAuthorization* authorization = [GTMAppAuthFetcherAuthorization authorizationFromKeychainForName:@"kGTMAppAuthExampleAuthorizerKey-Drive"];
+        if (authorization.authState.isAuthorized == YES){
+            self.config.service.authorizer = authorization;
+        }
+    }
+    
+    if ([self.source.identifier isEqualToString:FSSourcePicasa]) {
+        // Deserialize from Keychain
+        GTMAppAuthFetcherAuthorization* authorization = [GTMAppAuthFetcherAuthorization authorizationFromKeychainForName:@"kGTMAppAuthExampleAuthorizerKey-Picasa"];
+        if (authorization.authState.isAuthorized == YES){
+            self.config.service.authorizer = authorization;
+        }
+    }
+    
+    if ([self.source.identifier isEqualToString:FSSourceGmail]) {
+        // Deserialize from Keychain
+        GTMAppAuthFetcherAuthorization* authorization = [GTMAppAuthFetcherAuthorization authorizationFromKeychainForName:@"kGTMAppAuthExampleAuthorizerKey-Gmail"];
+        if (authorization.authState.isAuthorized == YES){
+            self.config.gmailService.authorizer = authorization;
+        }
+    }
+    
     [self loadSourceContent:nil isNextPage:NO];
 }
 
@@ -297,7 +323,7 @@
                                                                   NSError *callbackError) {
                                                   [self.activityIndicator stopAnimating];
                                                   
-                                                  if (callbackError.code == 403 || callbackError.code == 400 || !GIDSignIn.sharedInstance.hasAuthInKeychain) {
+                                                  if (callbackError.code == 403 || callbackError.code == 400) {
                                                       [self authenticateWithCurrentSource];
                                                       return;
                                                   }
@@ -372,7 +398,7 @@
                                                                        GTLRGmail_ListMessagesResponse *fileList,
                                                                        NSError *callbackError) {
                                                        
-                                                       if (callbackError.code == 403 || callbackError.code == 401 || !GIDSignIn.sharedInstance.hasAuthInKeychain) {
+                                                       if (callbackError.code == 403 || callbackError.code == 401) {
                                                            [self.activityIndicator stopAnimating];
                                                            [self authenticateWithCurrentSource];
                                                            return;
@@ -448,7 +474,7 @@
                                                                   NSError *callbackError) {
                                                   [self.activityIndicator stopAnimating];
                                                   
-                                                  if (callbackError.code == 403 || callbackError.code == 400 || !GIDSignIn.sharedInstance.hasAuthInKeychain) {
+                                                  if (callbackError.code == 403 || callbackError.code == 400) {
                                                       [self authenticateWithCurrentSource];
                                                       return;
                                                   }
@@ -566,10 +592,30 @@
 
 - (void)logoutFromGoogleService{
     
-    [[GIDSignIn sharedInstance] disconnect];
-    [GIDSignIn.sharedInstance signOut];
+    //! Load auth
+    if ([self.source.identifier isEqualToString:FSSourceGoogleDrive]) {
+        // Remove from Keychain
+        [GTMAppAuthFetcherAuthorization
+         removeAuthorizationFromKeychainForName:@"kGTMAppAuthExampleAuthorizerKey-Drive"];
+        self.config.service.authorizer = nil;
+    }
     
-    [self.navigationController popViewControllerAnimated:YES];
+    if ([self.source.identifier isEqualToString:FSSourcePicasa]) {
+        // Remove from Keychain
+        [GTMAppAuthFetcherAuthorization
+         removeAuthorizationFromKeychainForName:@"kGTMAppAuthExampleAuthorizerKey-Picasa"];
+        self.config.service.authorizer = nil;
+    }
+    
+    if ([self.source.identifier isEqualToString:FSSourceGmail]) {
+        // Remove from Keychain
+        [GTMAppAuthFetcherAuthorization
+         removeAuthorizationFromKeychainForName:@"kGTMAppAuthExampleAuthorizerKey-Gmail"];
+        self.config.gmailService.authorizer = nil;
+
+    }
+    
+    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 - (void)performLogout {
@@ -665,7 +711,5 @@
     [self setUIStateEnabled:NO disregardRefreshControl:YES];
     [self loadSourceContent:nil isNextPage:YES];
 }
-
-
 
 @end

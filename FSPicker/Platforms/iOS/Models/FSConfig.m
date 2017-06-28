@@ -7,6 +7,8 @@
 //
 
 #import "FSConfig.h"
+#import <GTMAppAuth/GTMAppAuth.h>
+
 
 // NSString *const FSSourceFilesystem = @"filesystem";
 NSString *const FSSourceBox = @"box";

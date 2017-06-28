@@ -1,9 +1,8 @@
 
 #import "FSGoogleServicesManager.h"
-#import <GoogleSignIn/GoogleSignIn.h>
 
 
-@interface FSGoogleServicesManager()<GIDSignInDelegate>
+@interface FSGoogleServicesManager()
 
 @end
 
@@ -53,17 +52,24 @@
     
     NSString* path = [[NSBundle mainBundle] pathForResource:@"GoogleService-Info" ofType:@"plist"];
     NSDictionary* googleServiceInfo = [NSDictionary dictionaryWithContentsOfFile:path];
-    NSString* clientID = [googleServiceInfo objectForKey:@"CLIENT_ID"];
-    GIDSignIn.sharedInstance.clientID = clientID;
+    self.clientId = [googleServiceInfo objectForKey:@"CLIENT_ID"];
+    self.redirectURI = [googleServiceInfo objectForKey:@"REVERSED_CLIENT_ID"];
+
 }
 
 
 - (BOOL)application:(UIApplication *)app
             openURL:(NSURL *)url
             options:(NSDictionary *)options {
-    return [[GIDSignIn sharedInstance] handleURL:url
-                               sourceApplication:options[UIApplicationOpenURLOptionsSourceApplicationKey]
-                                      annotation:options[UIApplicationOpenURLOptionsAnnotationKey]];
+    
+    // Sends the URL to the current authorization flow (if any) which will process it if it relates to
+    // an authorization response.
+    if ([_currentAuthorizationFlow resumeAuthorizationFlowWithURL:url]) {
+        _currentAuthorizationFlow = nil;
+        return YES;
+    }
+    
+    return NO;
 }
 
 

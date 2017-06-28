@@ -13,7 +13,7 @@
 8. Open [Google Developers mobile](https://developers.google.com/mobile/add) pick iOS platform. Choose App Name and bundle. Choose and Enable Google SignIn. Generate and download configuration file. Add “GoogleService-Info.plist” to app bundle.
 9. Add ```REVERSED_CLIENT_ID``` to URL Scheme base on [Google SignIn integration](https://developers.google.com/identity/sign-in/ios/start-integrating)
 10. Double check ```CLIENT_ID```, ```REVERSED_CLIENT_ID```, ```URLScheme``` equal to ```OAuth 2.0 client IDs``` in google console. Some times ```GoogleService-Info.plist``` has ID for WEB client.
-11. Add FSPicker to pod file and install pods ``` pod "FSPicker", :git => 'https://github.com/swebdevelopment/FSPicker.git', :branch => 'google-services'```
+11. Add FSPicker to pod file and install pods ``` pod "FSPicker", :git => 'https://github.com/swebdevelopment/FSPicker.git', :branch => 'google-services-universal'```
 12. Add code to AppDelegate:
 
 Objective-C:

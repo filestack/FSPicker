@@ -10,15 +10,22 @@
 #import "FSConfig.h"
 #import "FSSettings.h"
 #import "FSAuthViewController.h"
-#import <GoogleSignIn/GoogleSignIn.h>
 
-@interface FSAuthViewController () <UIWebViewDelegate, GIDSignInUIDelegate, GIDSignInDelegate>
+#import <AppAuth/AppAuth.h>
+#import <GTMAppAuth/GTMAppAuth.h>
+#import <QuartzCore/QuartzCore.h>
+#import <SafariServices/SafariServices.h>
+
+#import "FSGoogleServicesManager.h"
+
+@interface FSAuthViewController () <UIWebViewDelegate>
 
 @property (nonatomic, strong) FSSource *source;
 @property (nonatomic, strong) FSConfig *config;
 @property (nonatomic, strong) UIWebView *webView;
 @property (nonatomic, strong) NSArray *allowedUrls;
 @property (nonatomic, strong) UIActivityIndicatorView *activityIndicator;
+
 
 @end
 
@@ -113,106 +120,143 @@ static NSString *const fsAuthURL = @"%@/api/client/%@/auth/open?m=*/*&key=%@&id=
     [self.activityIndicator stopAnimating];
 }
 
-
-#pragma mark - Auth to Google
-- (void)authenticateWithGoogleSource {
-    GIDSignIn.sharedInstance.uiDelegate = self;
-    GIDSignIn.sharedInstance.delegate = self;
+/*! @brief Logs a message to stdout and the textfield.
+ @param format The format string and arguments.
+ */
+- (void)logMessage:(NSString *)format, ... NS_FORMAT_FUNCTION(1,2) {
+    // gets message as string
+    va_list argp;
+    va_start(argp, format);
+    NSString *log = [[NSString alloc] initWithFormat:format arguments:argp];
+    va_end(argp);
     
+    // outputs to stdout
+    NSLog(@"%@", log);
+    
+}
+
+- (void)createServiceWith:(GTMAppAuthFetcherAuthorization*)authorization{
+    
+    //! Save auth
     if ([self.source.identifier isEqualToString:FSSourceGoogleDrive]) {
-        [GIDSignIn sharedInstance].scopes = @[@"https://www.googleapis.com/auth/drive",
-                                              @"https://www.googleapis.com/auth/drive.file",
-                                              @"https://www.googleapis.com/auth/drive.readonly"];
+        [GTMAppAuthFetcherAuthorization saveAuthorization:authorization
+                                        toKeychainForName:@"kGTMAppAuthExampleAuthorizerKey-Drive"];
+    }
+    if ([self.source.identifier isEqualToString:FSSourcePicasa]) {
+        [GTMAppAuthFetcherAuthorization saveAuthorization:authorization
+                                        toKeychainForName:@"kGTMAppAuthExampleAuthorizerKey-Picasa"];
+    }
+    if ([self.source.identifier isEqualToString:FSSourceGmail]) {
+        [GTMAppAuthFetcherAuthorization saveAuthorization:authorization
+                                        toKeychainForName:@"kGTMAppAuthExampleAuthorizerKey-Gmail"];
     }
     
-    if ([self.source.identifier isEqualToString:FSSourcePicasa]) {
-        [GIDSignIn sharedInstance].scopes = @[@"https://www.googleapis.com/auth/drive.photos.readonly"];
+    //! Create service
+    if ([self.source.identifier isEqualToString:FSSourceGoogleDrive] ||
+        [self.source.identifier isEqualToString:FSSourcePicasa]) {
+        
+        self.config.service = [[GTLRDriveService alloc] init];
+        self.config.service.authorizer = authorization;
     }
     
     if ([self.source.identifier isEqualToString:FSSourceGmail]) {
-        // kGTLRAuthScopeGmailMailGoogleCom
-        // kGTLRAuthScopeGmailMetadata
-        // kGTLRAuthScopeGmailModify
-        // kGTLRAuthScopeGmailReadonly
-        [GIDSignIn sharedInstance].scopes = @[@"https://www.googleapis.com/auth/userinfo.email",
+        self.config.gmailService = [[GTLRGmailService alloc] init];
+        self.config.gmailService.authorizer = authorization;
+    }
+    
+    if ([self.delegate respondsToSelector:@selector(didAuthenticateWithSource)]) {
+        [self.delegate didAuthenticateWithSource];
+    }
+    
+    [self logMessage:@"Got authorization tokens. Access token: %@",
+     authorization.authState.lastTokenResponse.accessToken];
+    
+    [self.navigationController popViewControllerAnimated:NO];
+
+}
+
+#pragma mark - Auth to Google
+- (void)authenticateWithGoogleSource {
+    NSURL *issuer = [NSURL URLWithString:@"https://accounts.google.com"];
+
+    // builds authentication request
+    NSArray<NSString *> *scopes = @[];
+    
+    if ([self.source.identifier isEqualToString:FSSourceGoogleDrive]) {
+        scopes = @[kGTLRAuthScopeDrive];
+    }
+
+    if ([self.source.identifier isEqualToString:FSSourcePicasa]) {
+        scopes = @[kGTLRAuthScopeDrivePhotosReadonly];
+    }
+
+    if ([self.source.identifier isEqualToString:FSSourceGmail]) {
+        scopes = @[@"https://www.googleapis.com/auth/userinfo.email",
                                               @"https://mail.google.com/",
                                               @"https://www.googleapis.com/auth/gmail.modify",
                                               @"https://www.googleapis.com/auth/gmail.readonly"];
     }
     
-    [self.activityIndicator startAnimating];
-    [GIDSignIn.sharedInstance signIn];
-}
-
-#pragma mark _______________________ Delegates _____________________________
-// The sign-in flow has finished selecting how to proceed, and the UI should no longer display
-// a spinner or other "please wait" element.
-- (void)signInWillDispatch:(GIDSignIn *)signIn error:(NSError *)error{
-    [self.activityIndicator stopAnimating];
-}
-
-// If implemented, this method will be invoked when sign in needs to display a view controller.
-// The view controller should be displayed modally (via UIViewController's |presentViewController|
-// method, and not pushed unto a navigation controller's stack.
-- (void)signIn:(GIDSignIn *)signIn presentViewController:(UIViewController *)viewController{
-    [self.navigationController presentViewController:viewController animated:NO completion:nil];
-}
-
-// If implemented, this method will be invoked when sign in needs to dismiss a view controller.
-// Typically, this should be implemented by calling |dismissViewController| on the passed
-// view controller.
-- (void)signIn:(GIDSignIn *)signIn dismissViewController:(UIViewController *)viewController{
-    [self dismissViewControllerAnimated:NO completion:nil];
-}
-
-
-///
-
-- (void)signIn:(GIDSignIn *)signIn
-didSignInForUser:(GIDGoogleUser *)user
-     withError:(NSError *)error {
     
-    if (error == nil && user) {
-        //self.config.user = user;
-        
-        if ([self.source.identifier isEqualToString:FSSourceGoogleDrive] ||
-            [self.source.identifier isEqualToString:FSSourcePicasa]) {
-            
-            self.config.service = [[GTLRDriveService alloc] init];
-            self.config.service.authorizer = user.authentication.fetcherAuthorizer;
-        }
-        
-        if ([self.source.identifier isEqualToString:FSSourceGmail]) {
-            self.config.gmailService = [[GTLRGmailService alloc] init];
-            self.config.gmailService.authorizer = user.authentication.fetcherAuthorizer;
-        }
+    // discovers endpoints
+    [OIDAuthorizationService discoverServiceConfigurationForIssuer:issuer
+                                                        completion:^(OIDServiceConfiguration *_Nullable configuration, NSError *_Nullable error) {
+                                                            
+                                                            if (!configuration) {
+                                                                [self logMessage:@"Error retrieving discovery document: %@", [error localizedDescription]];
+                                                            
+                                                                [self.navigationController popToRootViewControllerAnimated:NO];
+                                                                return;
+                                                            }
+                                                            
+                                                            [self logMessage:@"Got configuration: %@", configuration];
+                                                            
+                                                            
+                                                            
+                                                            NSString* redirectURI = [FSGoogleServicesManager shared].redirectURI;
+                                                            redirectURI = [redirectURI stringByAppendingString:@":/oauthredirect"];
+                                                            
+                                                            NSString* clientId = [FSGoogleServicesManager shared].clientId;
+                                                            
+                                                            OIDAuthorizationRequest *request =
+                                                            [[OIDAuthorizationRequest alloc] initWithConfiguration:configuration
+                                                                                                          clientId:clientId
+                                                                                                            scopes:scopes
+                                                                                                       redirectURL:[NSURL URLWithString:redirectURI]
+                                                                                                      responseType:OIDResponseTypeCode
+                                                                                              additionalParameters:nil];
+                                                            
+                                                            // performs authentication request
+                                                            [self logMessage:@"Initiating authorization request with scope: %@", request.scope];
+                                                            
+                                                            [FSGoogleServicesManager shared].currentAuthorizationFlow =
+                                                            [OIDAuthState authStateByPresentingAuthorizationRequest:request
+                                                                                           presentingViewController:self
+                                                                                                           callback:^(OIDAuthState *_Nullable authState,
+                                                                                                                      NSError *_Nullable error) {
+                                                                                                               if (authState) {
+                                                                                                                   GTMAppAuthFetcherAuthorization *authorization =
+                                                                                                                   [[GTMAppAuthFetcherAuthorization alloc] initWithAuthState:authState];
+                                                                                                                   
+                                                                                                                   
+                                                                                                                   if (error == nil) {
+                                                                                                                       // Serialize to Keychain
+                                                                                                                       
+                                                                                                                       [self createServiceWith:authorization];
+                                                                                                                   }else{
+                                                                                                                       [self logMessage:@"Authorization error: %@", [error localizedDescription]];
+                                                                                                                       [self.navigationController popToRootViewControllerAnimated:NO];
+                                                                                                                   }
 
-    }
-    
-    // Perform any operations on signed in user here.
-//    NSString *userId = user.userID;                  // For client-side use only!
-//    NSString *idToken = user.authentication.idToken; // Safe to send to the server
-//    NSString *fullName = user.profile.name;
-//    NSString *givenName = user.profile.givenName;
-//    NSString *familyName = user.profile.familyName;
-//    NSString *email = user.profile.email;
-    // ...
-    
-    if (error == nil) {
-        if ([self.delegate respondsToSelector:@selector(didAuthenticateWithSource)]) {
-            [self.delegate didAuthenticateWithSource];
-        }
-    }
-    
-    [self.navigationController popViewControllerAnimated:NO];
-}
+                                                                                                                   
+                                                                                                               } else {
+                                                                                                                   [self logMessage:@"Authorization error: %@", [error localizedDescription]];
+                                                                                                                   [self.navigationController popToRootViewControllerAnimated:NO];
 
-- (void)signIn:(GIDSignIn *)signIn
-didDisconnectWithUser:(GIDGoogleUser *)user
-     withError:(NSError *)error {
-    // Perform any operations when the user disconnects from app here.
-    // ...
-    //self.config.user = nil;
+                                                                                                               }
+                                                                                                           }];
+                                                        }];
+
 }
 
 @end

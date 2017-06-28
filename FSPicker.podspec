@@ -47,6 +47,7 @@ Pod::Spec.new do |s|
 
     s.ios.dependency 'Filestack'
     #s.ios.dependency 'GoogleSignIn'
+    s.ios.dependency 'GTMAppAuth'
     s.ios.dependency 'GoogleAPIClientForREST'
     s.ios.dependency 'GoogleAPIClientForREST/Drive'
     s.ios.dependency 'GoogleAPIClientForREST/Gmail'
@@ -54,30 +55,4 @@ Pod::Spec.new do |s|
 	s.ios.frameworks = 'SystemConfiguration', 'SafariServices'
 
 
-#----------------------------Sub Modules-----------------#
-  s.subspec 'GoogleAuthentication' do |ss|
-    ss.ios.deployment_target = '9.0'
-    ss.source_files = 'FSPicker/Dependency/GoogleDependency/**/*.{swift}'
-    ss.resources = ['FSPicker/Dependency/GoogleDependency/**/*.{xib,xcdatamodeld,bundle}']
-    ss.vendored_frameworks = ['FSPicker/Dependency/GoogleDependency/**/*.{framework}']
-    ss.preserve_paths = ['FSPicker/Dependency/GoogleDependency/**/*.{framework}']
-    frameworkPaths = ''
-    Dir.glob('FSPicker/Dependency/GoogleDependency/**/*.{framework}') do |filename|
-      filePath = Pathname.new(filename)
-      newFilename = filePath.dirname
-      if frameworkPaths != "" 
-        frameworkPaths = "#{frameworkPaths} \"$(PODS_ROOT)/#{newFilename}\""
-      else
-        frameworkPaths = "\"$(PODS_ROOT)/#{newFilename}\""
-      end
-    end
-    ss.xcconfig = { 
-      'FRAMEWORK_SEARCH_PATHS' => frameworkPaths,
-      'HEADER_SEARCH_PATHS' => '"$(PODS_ROOT)/FSPicker/Dependency/GoogleDependency"', 
-    }
-    #Authentication
-    # ss.dependency 'GoogleSignIn'
-    ss.dependency 'GoogleToolboxForMac/NSDictionary+URLArguments'
-    ss.dependency 'GoogleToolboxForMac/NSData+zlib'
-  end
 end
