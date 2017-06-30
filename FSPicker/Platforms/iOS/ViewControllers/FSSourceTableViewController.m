@@ -12,6 +12,7 @@
 #import "FSListTableViewCell.h"
 #import "FSContentItem.h"
 #import "FSImage.h"
+#import "NSURLResponse+ImageMimeType.h"
 
 @interface FSSourceTableViewController ()
 
@@ -292,7 +293,7 @@ static NSString *const reuseIdentifier = @"fsCell";
 
             UIImage *image;
 
-            if ([response.MIMEType isEqualToString:@"image/png"] && data && (cell.taskHash == cell.imageTask.hash)) {
+            if (response.hasImageMIMEType && data && (cell.taskHash == cell.imageTask.hash)) {
                 image = [UIImage imageWithData:data];
             }
 
