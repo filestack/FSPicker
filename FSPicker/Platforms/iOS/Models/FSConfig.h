@@ -9,6 +9,10 @@
 #import <Filestack/FSStoreOptions.h>
 #import <Filestack/FSSecurity.h>
 #import "FSMimeTypes.h"
+
+#import <GoogleAPIClientForREST/GTLRDrive.h>
+#import <GoogleAPIClientForREST/GTLRGmail.h>
+
 @import UIKit;
 
 // extern NSString *const FSSourceFilesystem;
@@ -33,6 +37,12 @@ extern NSString *const FSSourceCloudDrive;
 @property (nonatomic, copy) NSString *apiKey;
 @property (nonatomic, copy) NSString *title;
 @property (nonatomic, copy) NSArray<NSString *> *sources;
+
+//! Google user for Google servics
+//@property (strong, nonatomic) GIDGoogleUser *user;
+@property (strong, nonatomic) GTLRDriveService* service;
+@property (strong, nonatomic) GTLRGmailService* gmailService;
+
 
 /// FSPickerController only.
 @property (nonatomic, copy) NSArray<FSMimeType> *mimeTypes;

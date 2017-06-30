@@ -103,6 +103,8 @@
 		BEEE3BEE39BA046F9371E5E3 /* UILabel+Appearance.h in Headers */ = {isa = PBXBuildFile; fileRef = BEEE3D0CF343513EE4DE71DD /* UILabel+Appearance.h */; };
 		BEEE3D47E01AACA74D36EB1B /* FSTheme.h in Headers */ = {isa = PBXBuildFile; fileRef = BEEE3A6C57889784DB1FD074 /* FSTheme.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		BEEE3FCE119E2A7A40052FDE /* FSTableViewCell.h in Headers */ = {isa = PBXBuildFile; fileRef = BEEE317079B1C1EF09166E9B /* FSTableViewCell.h */; };
+		E86B1D5C1EA70B1300B4478F /* FSGoogleServicesManager.h in Headers */ = {isa = PBXBuildFile; fileRef = E86B1D5A1EA70B1300B4478F /* FSGoogleServicesManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E86B1D5D1EA70B1300B4478F /* FSGoogleServicesManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E86B1D5B1EA70B1300B4478F /* FSGoogleServicesManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -220,6 +222,8 @@
 		BEEE3D0CF343513EE4DE71DD /* UILabel+Appearance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+Appearance.h"; sourceTree = "<group>"; };
 		C1ABE4BCEA86C5D69F00FA80 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		CA04E448FD552409025F5729 /* Pods-FSPicker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FSPicker.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-FSPicker/Pods-FSPicker.debug.xcconfig"; sourceTree = "<group>"; };
+		E86B1D5A1EA70B1300B4478F /* FSGoogleServicesManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSGoogleServicesManager.h; sourceTree = "<group>"; };
+		E86B1D5B1EA70B1300B4478F /* FSGoogleServicesManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSGoogleServicesManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -389,6 +393,8 @@
 		B2CA0CBF1C7C975E00162F98 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				E86B1D5A1EA70B1300B4478F /* FSGoogleServicesManager.h */,
+				E86B1D5B1EA70B1300B4478F /* FSGoogleServicesManager.m */,
 				B214AB7D1C9853B5004D6978 /* FSTableViewCellTag.h */,
 				BEEE3A6C57889784DB1FD074 /* FSTheme.h */,
 				BEEE36C0A040E159AEC696CC /* FSTheme.m */,
@@ -509,6 +515,7 @@
 				B25519E81CBFAC1A00B16D46 /* KAProgressLabel.h in Headers */,
 				BEEE3BEE39BA046F9371E5E3 /* UILabel+Appearance.h in Headers */,
 				B27569851C8879A700BF4254 /* FSSourceTableViewCell.h in Headers */,
+				E86B1D5C1EA70B1300B4478F /* FSGoogleServicesManager.h in Headers */,
 				B26974801CE5C39A00DD4F8E /* FSSaveController.h in Headers */,
 				B217374D1C998B1900FE263F /* FSImage.h in Headers */,
 				B214AB731C98011E004D6978 /* FSActivityIndicatorView.h in Headers */,
@@ -652,6 +659,7 @@
 				B2BC57BD1C9300EA00317154 /* UINavigationController+Progress.m in Sources */,
 				B2068CDF1CF88D800029B4AD /* FSSaveController+Private.m in Sources */,
 				B25519EB1CBFAC1A00B16D46 /* TPPropertyAnimation.m in Sources */,
+				E86B1D5D1EA70B1300B4478F /* FSGoogleServicesManager.m in Sources */,
 				B22667451C873B76002E5BBA /* FSConfig+Private.m in Sources */,
 				B2BEBBB01C97025D00E6248F /* FSSession.m in Sources */,
 				B2858C7B1C7C933D00AE3690 /* FSPickerController.m in Sources */,
@@ -827,6 +835,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = " -ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.filestack.FSPicker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -847,6 +856,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = " -ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.filestack.FSPicker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;

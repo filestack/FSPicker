@@ -16,6 +16,13 @@
 #import "FSContentItem.h"
 #import "FSDownloader.h"
 @import Photos;
+
+@import MobileCoreServices;
+#import "GTLRBase64.h"
+
+#import "GTMSessionFetcher.h"
+#import "GTMSessionFetcherService.h"
+
 @interface FSUploader ()
 
 @property (nonatomic, strong) FSConfig *config;
@@ -37,6 +44,18 @@
 }
 
 - (void)uploadCloudItems:(NSArray<FSContentItem *> *)items {
+    
+    if ([self.source.identifier isEqualToString:FSSourceGoogleDrive]
+        || [self.source.identifier isEqualToString:FSSourcePicasa]) {
+        [self uploadGoogleServiceItems:items];
+        return;
+    }
+    
+    if ([self.source.identifier isEqualToString:FSSourceGmail]) {
+        [self uploadGmailItems:items];
+        return;
+    }
+    
     NSUInteger totalNumberOfItems = items.count;
     NSUInteger __block uploadedItems = 0;
     FSDownloader *downloader;
@@ -86,6 +105,249 @@
         }];
     }
 }
+
+- (void)uploadGoogleServiceItems:(NSArray<FSContentItem *> *)items {
+    NSUInteger totalNumberOfItems = items.count;
+    NSUInteger __block uploadedItems = 0;
+    
+    Filestack *filestack = [[Filestack alloc] initWithApiKey:self.config.apiKey];
+
+    
+    // We have to upload AND download the item.
+    totalNumberOfItems *= 2;
+
+    
+    for (FSContentItem *item in items) {
+        
+        NSString* convertedMIMEType = [self convertedGoogleMIMEType:item.mimeType];
+        NSString* likelyExtension = [self extensionForMIMEType:convertedMIMEType];
+
+        
+        GTLRQuery * query;
+        if (item.fileExtension || item.fullFileExtension) {
+            query = [GTLRDriveQuery_FilesGet queryForMediaWithFileId:item.linkPath];
+        }else{
+            query = [GTLRDriveQuery_FilesExport queryForMediaWithFileId:item.linkPath
+                                                            mimeType:convertedMIMEType];
+        }
+        
+        //@"application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+        NSURLRequest *downloadRequest = [self.config.service requestForQuery:query];
+        GTMSessionFetcher *fetcher = [self.config.service.fetcherService fetcherWithRequest:downloadRequest];
+        
+        [fetcher setCommentWithFormat:@"Downloading %@", item.fileName];
+        
+        NSString *uuidFileName = [NSString stringWithFormat:@"%@_%@", item.fileName, item.linkPath];
+        NSURL *tmpDirURL = [NSURL fileURLWithPath:NSTemporaryDirectory() isDirectory:YES];
+        NSURL *fileURL = [tmpDirURL URLByAppendingPathComponent:uuidFileName];
+        
+        fetcher.destinationFileURL = fileURL;
+        
+        NSLog(@"%@%@", @"Uploading ", fileURL);
+        [fetcher beginFetchWithCompletionHandler:^(NSData *data, NSError *error) {
+            uploadedItems++;
+            NSLog(@"%@%@", @"Uploaded ", fileURL);
+
+            FSBlob* blob = [[FSBlob alloc] initWithURL:fetcher.destinationFileURL.absoluteString];
+            blob.internalURL = fetcher.destinationFileURL.absoluteString;
+                        
+            if (error == nil) {
+                NSLog(@"Download succeeded.");
+                
+                FSStoreOptions *storeOptions = [self.config.storeOptions copy];
+                
+                if (!storeOptions) {
+                    storeOptions = [[FSStoreOptions alloc] init];
+                }
+                
+                storeOptions.mimeType = item.mimeType;
+                
+                if (item.fileExtension == nil && item.fullFileExtension == nil && likelyExtension) {
+                    storeOptions.fileName = [item.fileName stringByAppendingFormat:@".%@", likelyExtension];
+                }else{
+                    storeOptions.fileName = item.fileName;
+                }
+                
+                [self uploadLocalItem:item
+                         localFileURL:fileURL
+                       usingFilestack:filestack
+                         storeOptions:storeOptions
+                             progress:^(NSProgress *uploadProgress) {
+                                 
+                             }
+                    completionHandler:^(FSBlob *blob, NSError *error) {
+                        uploadedItems++;
+                        
+                        blob.internalURL = fileURL.absoluteString;
+                        
+                        [self updateProgress:uploadedItems total:totalNumberOfItems];
+                        [self messageDelegateWithBlob:blob error:error];
+                        
+                        if (!self.config.shouldDownload) {
+                            //! Remove uploaded file
+                            [[NSFileManager defaultManager] removeItemAtURL:fileURL error:nil];
+                        }
+                        
+                        if (uploadedItems == totalNumberOfItems) {
+                            [self finishUpload];
+                        }
+
+                    }];
+            }else{                
+                [self messageDelegateWithBlob:blob error:error];
+                
+                //! Check finish even if error
+                uploadedItems++;
+                [self updateProgress:uploadedItems total:totalNumberOfItems];
+                
+                if (uploadedItems == totalNumberOfItems) {
+                    [self finishUpload];
+                }
+            }
+            
+            [self updateProgress:uploadedItems total:totalNumberOfItems];
+            
+            if (uploadedItems == totalNumberOfItems) {
+                [self finishUpload];
+            }
+        }];
+    
+    }
+}
+
+- (void)uploadGmailItems:(NSArray<FSContentItem *> *)items {
+    NSUInteger totalNumberOfItems = items.count;
+    NSUInteger __block uploadedItems = 0;
+    
+    Filestack *filestack = [[Filestack alloc] initWithApiKey:self.config.apiKey];
+    
+    
+    // We have to upload AND download the item.
+    totalNumberOfItems *= 2;
+    
+    
+    for (FSContentItem *item in items) {
+        
+        
+        
+        GTLRGmailQuery_UsersMessagesAttachmentsGet* query1 = [GTLRGmailQuery_UsersMessagesAttachmentsGet queryWithUserId:@"me" messageId:item.messageId identifier:item.attachmentId];
+        
+        [self.config.gmailService executeQuery:query1
+                             completionHandler:^(GTLRServiceTicket * _Nonnull callbackTicket,
+                                                 GTLRGmail_MessagePartBody* object,
+                                                 NSError * _Nullable callbackError) {
+                                 uploadedItems++;
+
+                                 NSString *uuidFileName = [NSString stringWithFormat:@"%@_%@_%@", item.fileName, item.messageId, [[NSUUID UUID] UUIDString]];
+                                 NSURL *tmpDirURL = [NSURL fileURLWithPath:NSTemporaryDirectory() isDirectory:YES];
+                                 NSURL *fileURL = [tmpDirURL URLByAppendingPathComponent:uuidFileName];
+                                 NSLog(@"%@%@", @"Uploaded ", fileURL);
+
+                                 NSData * data = GTLRDecodeWebSafeBase64(object.data);
+                                 [data writeToFile:[fileURL path] atomically:YES];
+
+                                 
+                                 FSBlob* blob = [[FSBlob alloc] initWithURL:fileURL.absoluteString];
+                                 blob.internalURL = fileURL.absoluteString;
+
+                                 if (callbackError == nil) {
+                                     NSLog(@"Download succeeded.");
+                                     
+                                     FSStoreOptions *storeOptions = [self.config.storeOptions copy];
+                                     
+                                     if (!storeOptions) {
+                                         storeOptions = [[FSStoreOptions alloc] init];
+                                     }
+                                     
+                                    storeOptions.mimeType = item.mimeType;
+                                    storeOptions.fileName = item.fileName;
+                                     
+                                     [self uploadLocalItem:item
+                                              localFileURL:fileURL
+                                            usingFilestack:filestack
+                                              storeOptions:storeOptions
+                                                  progress:^(NSProgress *uploadProgress) {
+                                                      
+                                                  }
+                                         completionHandler:^(FSBlob *blob, NSError *error) {
+                                             uploadedItems++;
+                                             
+                                             blob.internalURL = fileURL.absoluteString;
+                                             
+                                             [self updateProgress:uploadedItems total:totalNumberOfItems];
+                                             [self messageDelegateWithBlob:blob error:error];
+                                             
+                                             if (!self.config.shouldDownload) {
+                                                 //! Remove uploaded file
+                                                 [[NSFileManager defaultManager] removeItemAtURL:fileURL error:nil];
+                                             }
+                                             
+                                             if (uploadedItems == totalNumberOfItems) {
+                                                 [self finishUpload];
+                                             }
+                                             
+                                         }];
+                                 }else{
+                                     [self messageDelegateWithBlob:blob error:callbackError];
+                                     
+                                     //! Check finish even if error
+                                     uploadedItems++;
+                                     [self updateProgress:uploadedItems total:totalNumberOfItems];
+                                     
+                                     if (uploadedItems == totalNumberOfItems) {
+                                         [self finishUpload];
+                                     }
+                                 }
+                                 
+                                 [self updateProgress:uploadedItems total:totalNumberOfItems];
+                                 
+                                 if (uploadedItems == totalNumberOfItems) {
+                                     [self finishUpload];
+                                 }
+
+                             }];
+        
+    }
+}
+
+
+- (NSString*)convertedGoogleMIMEType:(NSString*)mimeType{
+
+    if ([mimeType isEqualToString:@"application/vnd.google-apps.document"]) {
+        //return @"application/vnd.oasis.opendocument.text";
+        return @"application/vnd.openxmlformats-officedocument.wordprocessingml.document";
+    }
+    
+    if ([mimeType isEqualToString:@"application/vnd.google-apps.spreadsheet"]) {
+        //return @"application/x-vnd.oasis.opendocument.spreadsheet";
+        return @"application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+    }
+    
+    if ([mimeType isEqualToString:@"application/vnd.google-apps.drawing"]) {
+        return @"image/png";
+    }
+    if ([mimeType isEqualToString:@"application/vnd.google-apps.presentation"]) {
+        return @"application/pdf";
+    }
+    
+    return nil;
+}
+
+- (NSString *)extensionForMIMEType:(NSString *)mimeType {
+    // Try to convert a MIME type to an extension using the Mac's type identifiers.
+    NSString *result = nil;
+    CFStringRef uti = UTTypeCreatePreferredIdentifierForTag(kUTTagClassMIMEType,
+                                                            (__bridge CFStringRef)mimeType, NULL);
+    if (uti) {
+        CFStringRef cfExtn = UTTypeCopyPreferredTagWithClass(uti, kUTTagClassFilenameExtension);
+        if (cfExtn) {
+            result = CFBridgingRelease(cfExtn);
+        }
+        CFRelease(uti);
+    }
+    return result;
+}
+
 
 - (void)updateProgress:(NSUInteger)uploadedItems total:(NSUInteger)totalItems {
     if ([self.uploadModalDelegate respondsToSelector:@selector(fsUploadProgress:addToTotalProgress:)]) {
@@ -211,6 +473,24 @@
         }
     }
 }
+
+- (void)uploadLocalItem:(FSContentItem *)item
+                localFileURL:(NSURL*)fileURL
+               usingFilestack:(Filestack *)filestack
+                 storeOptions:(FSStoreOptions *)storeOptions
+                     progress:(void (^)(NSProgress *uploadProgress))progress
+            completionHandler:(void (^)(FSBlob *blob, NSError *error))completionHandler {
+    
+    NSData *fileData = [NSData dataWithContentsOfFile:fileURL.path];
+
+    [filestack store:fileData withOptions:storeOptions progress:^(NSProgress *uploadProgress) {
+        progress(uploadProgress);
+    } completionHandler:^(FSBlob *blob, NSError *error) {
+        completionHandler(blob, error);
+    }];
+    
+}
+
 
 - (void)uploadLocalImageAsset:(PHAsset *)asset
                usingFilestack:(Filestack *)filestack

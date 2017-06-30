@@ -10,6 +10,10 @@
 #import "FSConfig+Private.h"
 #import "FSSource.h"
 
+@interface FSConfig ()
+
+@end
+
 @implementation FSConfig (Private)
 
 - (NSArray<FSSource *> *)fsLocalSourcesForSaving:(BOOL)forSaving {

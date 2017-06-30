@@ -14,4 +14,5 @@ FOUNDATION_EXPORT const unsigned char FSPickerVersionString[];
 #import "FSPickerController.h"
 #import "FSSaveController.h"
 #import "FSConfig.h"
+#import "FSGoogleServicesManager.h"
 #import "FSTheme.h"
