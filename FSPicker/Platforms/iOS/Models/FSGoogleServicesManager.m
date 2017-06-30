@@ -45,11 +45,6 @@
 #pragma mark _______________________ Public Methods ________________________
 
 - (void)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    
-    NSError* configureError;
-    //[[GGLContext sharedInstance] configureWithError: &configureError];
-    NSAssert(!configureError, @"Error configuring Google services: %@", configureError);
-    
     NSString* path = [[NSBundle mainBundle] pathForResource:@"GoogleService-Info" ofType:@"plist"];
     NSDictionary* googleServiceInfo = [NSDictionary dictionaryWithContentsOfFile:path];
     self.clientId = [googleServiceInfo objectForKey:@"CLIENT_ID"];
