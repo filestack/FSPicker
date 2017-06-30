@@ -64,9 +64,15 @@ static NSString *const reuseIdentifier = @"fsCell";
 #pragma mark - Helper methods
 
 - (CGFloat)topInset {
-    CGFloat navBarHeight = self.navigationController.navigationBar.frame.size.height;
-    CGFloat navBarOriginY = self.navigationController.navigationBar.frame.origin.y;
-    CGFloat topInset = navBarHeight + navBarOriginY;
+    CGFloat topInset;
+
+    if (self.navigationController.navigationBar.isTranslucent) {
+        CGFloat navBarHeight = self.navigationController.navigationBar.frame.size.height;
+        CGFloat navBarOriginY = self.navigationController.navigationBar.frame.origin.y;
+        topInset = navBarHeight + navBarOriginY;
+    } else {
+        topInset = 0.0;
+    }
 
     if ([self.refreshControl isRefreshing]) {
         topInset += self.refreshControl.frame.size.height;
@@ -96,6 +102,7 @@ static NSString *const reuseIdentifier = @"fsCell";
 - (void)updateTableViewContentInsets {
     UIEdgeInsets currentInsets = self.tableView.contentInset;
     CGFloat topInset = [self topInset];
+
     if (currentInsets.top != 0 || !_alreadyDisplayed) {
         self.tableView.contentInset = UIEdgeInsetsMake(topInset, currentInsets.left, currentInsets.bottom, currentInsets.right);
         self.alreadyDisplayed = YES;

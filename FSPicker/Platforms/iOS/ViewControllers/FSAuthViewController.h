@@ -13,6 +13,7 @@
 @protocol FSAuthViewControllerDelegate <NSObject>
 
 - (void)didAuthenticateWithSource;
+- (void)didFailToAuthenticateWithSource;
 
 @end
 

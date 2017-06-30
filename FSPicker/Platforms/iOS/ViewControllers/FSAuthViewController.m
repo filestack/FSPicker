@@ -25,7 +25,6 @@
 @property (nonatomic, strong) UIActivityIndicatorView *activityIndicator;
 @property (nonatomic, assign) BOOL didAuthenticate;
 
-
 @end
 
 @implementation FSAuthViewController

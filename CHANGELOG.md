@@ -1,3 +1,19 @@
+## 1.1.7 (2017-06-19)
+
+- Improved auth flow when authentication fails or is cancelled by the user.
+
+## 1.1.6 (2017-06-16)
+
+- Removed unnecessary URL whitelist checks during the authentication process.
+
+## 1.1.5 (2017-06-16)
+
+- Fixed both Dropbox authentication and authorization.
+
+## 1.1.4 (2017-06-14)
+
+- Fixed Dropbox authentication after recent Dropbox code migration on the backend.
+
 ## 1.1.3 (2017-01-17)
 
 ### Fixed:
