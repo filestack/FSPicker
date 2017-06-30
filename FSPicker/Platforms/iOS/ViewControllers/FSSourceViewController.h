@@ -18,6 +18,7 @@
 @property (nonatomic, strong, readonly) NSString *nextPage;
 @property (nonatomic, assign, readonly) BOOL lastPage;
 @property (nonatomic, assign, readonly) BOOL inListView;
+@property (nonatomic, strong, readonly) FSSource *source;
 
 - (instancetype)initWithConfig:(FSConfig *)config source:(FSSource *)source;
 - (void)triggerDataRefresh:(void (^)(BOOL success))completion;

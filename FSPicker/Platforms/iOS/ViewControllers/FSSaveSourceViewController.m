@@ -15,10 +15,15 @@
 #import "FSConfig.h"
 #import "FSSource.h"
 
+@interface FSSourceViewController ()
+
+@property (nonatomic, strong, readwrite) FSSource *source;
+
+@end
+
 @interface FSSaveSourceViewController () <UITextFieldDelegate>
 
 @property (nonatomic, strong) FSConfig *config;
-@property (nonatomic, strong) FSSource *source;
 @property (nonatomic, assign) BOOL toolbarColorsSet;
 @property (nonatomic, strong) UITextField *textField;
 @property (nonatomic, assign, readwrite) BOOL inListView;
@@ -32,8 +37,8 @@
 
 - (instancetype)initWithConfig:(FSConfig *)config source:(FSSource *)source {
     if ((self = [super initWithConfig:config source:source])) {
-        _config = config;
-        _source = source;
+        self.config = config;
+        self.source = source;
     }
 
     return self;

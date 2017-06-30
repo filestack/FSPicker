@@ -22,6 +22,7 @@
 @property (nonatomic, assign) BOOL requiresAuth;
 @property (nonatomic, copy, readonly) NSString *service;
 @property (nonatomic, assign, readonly) BOOL isWriteable;
+@property (nonatomic, assign, readonly) BOOL itemsShouldPresentLabels;
 
 + (NSArray<FSSource *> *)localSourcesWithIdentifiers:(NSArray<NSString *> *)identifiers;
 + (NSArray<FSSource *> *)remoteSourcesWithIdentifiers:(NSArray<NSString *> *)identifiers;

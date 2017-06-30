@@ -36,7 +36,7 @@
 @property (nonatomic, assign, readwrite) BOOL lastPage;
 @property (nonatomic, assign, readwrite) BOOL inListView;
 @property (nonatomic, strong, readonly) FSConfig *config;
-@property (nonatomic, strong, readonly) FSSource *source;
+@property (readwrite) FSSource *source;
 @property (nonatomic, strong, readwrite) NSString *nextPage;
 @property (nonatomic, strong, readonly) UIBarButtonItem *uploadButton;
 @property (nonatomic, strong) UIActivityIndicatorView *activityIndicator;

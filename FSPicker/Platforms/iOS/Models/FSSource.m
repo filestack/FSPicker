@@ -14,6 +14,7 @@
 @property (nonatomic, copy, readwrite) NSArray *openMimeTypes;
 @property (nonatomic, copy, readwrite) NSArray *saveMimeTypes;
 @property (nonatomic, copy, readwrite) NSArray *mimeTypes;
+@property (readwrite) BOOL itemsShouldPresentLabels;
 
 @end
 
@@ -186,6 +187,7 @@
     source.saveMimeTypes = @[];
     source.overwritePossible = NO;
     source.externalDomains = @[];
+    source.itemsShouldPresentLabels = NO;
 
     return source;
 }
@@ -201,6 +203,7 @@
     source.saveMimeTypes = @[@"image/jpeg", @"image/png"];
     source.overwritePossible = NO;
     source.externalDomains = @[];
+    source.itemsShouldPresentLabels = NO;
 
     return source;
 }
@@ -217,6 +220,7 @@
     source.overwritePossible = YES;
     source.externalDomains = @[@"https://www.dropbox.com"];
     source.requiresAuth = YES;
+    source.itemsShouldPresentLabels = YES;
 
     return source;
 }
@@ -233,6 +237,7 @@
     source.overwritePossible = NO;
     source.externalDomains = @[@"https://www.facebook.com"];
     source.requiresAuth = YES;
+    source.itemsShouldPresentLabels = YES;
 
     return source;
 }
@@ -249,6 +254,7 @@
     source.overwritePossible = NO;
     source.externalDomains = @[@"https://www.google.com", @"https://accounts.google.com", @"https://google.com"];
     source.requiresAuth = YES;
+    source.itemsShouldPresentLabels = YES;
 
     return source;
 }
@@ -265,6 +271,7 @@
     source.overwritePossible = YES;
     source.externalDomains = @[@"https://www.box.com"];
     source.requiresAuth = YES;
+    source.itemsShouldPresentLabels = YES;
 
     return source;
 }
@@ -281,6 +288,7 @@
     source.overwritePossible = NO;
     source.externalDomains = @[@"https://www.github.com"];
     source.requiresAuth = YES;
+    source.itemsShouldPresentLabels = YES;
 
     return source;
 }
@@ -297,6 +305,7 @@
     source.overwritePossible = NO;
     source.externalDomains = @[@"https://www.google.com", @"https://accounts.google.com", @"https://google.com"];
     source.requiresAuth = YES;
+    source.itemsShouldPresentLabels = YES;
 
     return source;
 }
@@ -313,6 +322,7 @@
     source.overwritePossible = YES;
     source.externalDomains = @[@"https://www.instagram.com",  @"https://instagram.com"];
     source.requiresAuth = YES;
+    source.itemsShouldPresentLabels = NO;
 
     return source;
 }
@@ -329,6 +339,7 @@
     source.overwritePossible = NO;
     source.externalDomains = @[@"https://*.flickr.com", @"http://*.flickr.com"];
     source.requiresAuth = YES;
+    source.itemsShouldPresentLabels = NO;
 
     return source;
 }
@@ -345,6 +356,7 @@
     source.overwritePossible = YES;
     source.externalDomains = @[@"https://www.evernote.com",  @"https://evernote.com"];
     source.requiresAuth = YES;
+    source.itemsShouldPresentLabels = YES;
 
     return source;
 }
@@ -361,6 +373,7 @@
     source.overwritePossible = YES;
     source.externalDomains = @[@"https://www.google.com", @"https://accounts.google.com", @"https://google.com"];
     source.requiresAuth = YES;
+    source.itemsShouldPresentLabels = NO;
 
     return source;
 }
@@ -377,6 +390,7 @@
     source.overwritePossible = YES;
     source.externalDomains = @[@"https://login.live.com",  @"https://skydrive.live.com"];
     source.requiresAuth = YES;
+    source.itemsShouldPresentLabels = YES;
 
     return source;
 }
@@ -393,6 +407,7 @@
     source.overwritePossible = YES;
     source.externalDomains = @[@"https://www.amazon.com/clouddrive"];
     source.requiresAuth = YES;
+    source.itemsShouldPresentLabels = YES;
 
     return source;
 }
@@ -409,6 +424,7 @@
     source.overwritePossible = NO;
     source.externalDomains = @[];
     source.requiresAuth = NO;
+    source.itemsShouldPresentLabels = NO;
 
     return source;
 }

@@ -13,7 +13,9 @@
 #import "FSCollectionViewCell.h"
 #import "FSContentItem.h"
 #import "FSImage.h"
+#import "FSSource.h"
 #import "NSURLResponse+ImageMimeType.h"
+#import "UIImage+Scale.h"
 
 @interface FSSourceCollectionViewController ()
 
@@ -263,6 +265,8 @@ static NSString * const reuseIdentifier = @"fsCell";
         cell.titleLabel.hidden = YES;
     }
 
+    BOOL itemShouldPresentLabels = self.sourceController.source.itemsShouldPresentLabels;
+
     if (item.isDirectory) {
         cell.imageView.image = [FSImage iconNamed:@"icon-folder"];
         cell.type = FSCollectionViewCellTypeDirectory;
@@ -281,18 +285,22 @@ static NSString * const reuseIdentifier = @"fsCell";
                     image = [UIImage imageWithData:data];
                 }
 
+                if (!image) {
+                    image = [FSImage iconNamed:@"icon-file"];
+                }
+
                 dispatch_async(dispatch_get_main_queue(), ^{
-                    if (image) {
+                    if (itemShouldPresentLabels) {
+                        cell.type = FSCollectionViewCellTypeFile;
+                        cell.titleLabel.text = item.fileName;
+                        cell.titleLabel.hidden = NO;
+                        cell.imageView.image = [image scaledToSize:CGSizeMake(32, 32)];
+                    } else {
                         cell.type = FSCollectionViewCellTypeMedia;
                         cell.imageView.layer.borderWidth = 0;
                         cell.imageView.contentMode = UIViewContentModeScaleAspectFill;
                         cell.imageView.clipsToBounds = YES;
                         cell.imageView.image = image;
-                    } else {
-                        cell.type = FSCollectionViewCellTypeFile;
-                        cell.imageView.image = [FSImage iconNamed:@"icon-file"];
-                        cell.titleLabel.text = item.fileName;
-                        cell.titleLabel.hidden = NO;
                     }
                 });
 
