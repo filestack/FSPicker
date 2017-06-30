@@ -150,9 +150,7 @@
 
             FSBlob* blob = [[FSBlob alloc] initWithURL:fetcher.destinationFileURL.absoluteString];
             blob.internalURL = fetcher.destinationFileURL.absoluteString;
-            [self messageDelegateWithBlob:blob error:error];
-            
-            
+                        
             if (error == nil) {
                 NSLog(@"Download succeeded.");
                 
@@ -195,7 +193,8 @@
                         }
 
                     }];
-            }else{
+            }else{                
+                [self messageDelegateWithBlob:blob error:error];
                 
                 //! Check finish even if error
                 uploadedItems++;
@@ -250,7 +249,6 @@
                                  
                                  FSBlob* blob = [[FSBlob alloc] initWithURL:fileURL.absoluteString];
                                  blob.internalURL = fileURL.absoluteString;
-                                 [self messageDelegateWithBlob:blob error:callbackError];
 
                                  if (callbackError == nil) {
                                      NSLog(@"Download succeeded.");
@@ -290,6 +288,7 @@
                                              
                                          }];
                                  }else{
+                                     [self messageDelegateWithBlob:blob error:callbackError];
                                      
                                      //! Check finish even if error
                                      uploadedItems++;
