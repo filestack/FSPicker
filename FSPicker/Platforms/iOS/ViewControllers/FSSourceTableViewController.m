@@ -286,23 +286,34 @@ static NSString *const reuseIdentifier = @"fsCell";
     } else if (!item.thumbExists) {
         cell.imageView.image = [FSImage iconNamed:@"icon-file"];
     } else {
-        cell.imageView.contentMode = UIViewContentModeScaleAspectFill;
-        cell.imageView.clipsToBounds = YES;
-        cell.imageView.alpha = 0.0;
-
         NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:item.thumbnailURL] cachePolicy:NSURLRequestReturnCacheDataElseLoad timeoutInterval:120];
 
         cell.imageTask = [[NSURLSession sharedSession] dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-            if (data && (cell.taskHash == cell.imageTask.hash)) {
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    cell.imageView.image = [UIImage imageWithData:data];
-                    [UIView animateWithDuration:0.1 animations:^{
-                        cell.imageView.alpha = 1.0;
-                    } completion:^(BOOL finished) {
-                        [cell layoutSubviews];
-                    }];
-                });
+
+            UIImage *image;
+
+            if ([response.MIMEType isEqualToString:@"image/png"] && data && (cell.taskHash == cell.imageTask.hash)) {
+                image = [UIImage imageWithData:data];
             }
+
+            dispatch_async(dispatch_get_main_queue(), ^{
+                if (image) {
+                    cell.imageView.contentMode = UIViewContentModeScaleAspectFill;
+                    cell.imageView.clipsToBounds = YES;
+                    cell.imageView.alpha = 0.0;
+                    cell.imageView.image = image;
+                } else {
+                    cell.imageView.contentMode = UIViewContentModeScaleAspectFit;
+                    cell.imageView.image = [FSImage iconNamed:@"icon-file"];
+                }
+
+                [UIView animateWithDuration:0.1 animations:^{
+                    cell.imageView.alpha = 1.0;
+                } completion:^(BOOL finished) {
+                    [cell layoutSubviews];
+                }];
+            });
+
             cell.imageTask = nil;
         }];
 
