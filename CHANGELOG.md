@@ -1,3 +1,9 @@
+## 1.1.8 (2017-06-30)
+
+- Added new Google Services implementation.
+- Improved thumbnail handling both in source table view and source collection view.
+- Assorted UI fixes in source collection view.
+
 ## 1.1.7 (2017-06-19)
 
 - Improved auth flow when authentication fails or is cancelled by the user.

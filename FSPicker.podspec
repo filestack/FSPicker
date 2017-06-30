@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = 'FSPicker'
-  s.version      = '1.1.7'
+  s.version      = '1.1.8'
   s.summary      = "Filestack's picker controller implementation."
 
   s.description  = <<-DESC
@@ -43,16 +43,14 @@ Pod::Spec.new do |s|
     FSPicker/Platforms/iOS/Misc/*.{h,m}
   )
 
-  s.resources = 'FSPicker/Shared/Resources/fsImages.xcassets', 'FSPicker/Shared/Resources/fsAllowedUrlPrefix.plist'
+  s.resources = 'FSPicker/Shared/Resources/fsImages.xcassets'
 
-    s.ios.dependency 'Filestack'
-    #s.ios.dependency 'GoogleSignIn'
-    s.ios.dependency 'GTMAppAuth'
-    s.ios.dependency 'GoogleAPIClientForREST'
-    s.ios.dependency 'GoogleAPIClientForREST/Drive'
-    s.ios.dependency 'GoogleAPIClientForREST/Gmail'
+  s.ios.dependency 'Filestack'
+  s.ios.dependency 'GTMAppAuth'
+  s.ios.dependency 'GoogleAPIClientForREST'
+  s.ios.dependency 'GoogleAPIClientForREST/Drive'
+  s.ios.dependency 'GoogleAPIClientForREST/Gmail'
 
-	s.ios.frameworks = 'SystemConfiguration', 'SafariServices'
-
+  s.ios.frameworks = 'SystemConfiguration', 'SafariServices'
 
 end
