@@ -42,7 +42,7 @@ To begin using FSPicker you need to import the module:
 @import FSPicker;
 ```
 
-To integrete Google Services and Google SignIn please read```GoogleServicesIntegration```
+To integrate Google Services and Google SignIn please read```GoogleServicesIntegration```
 
 Initialize [config](#fsconfig), (optionally [theme](#fstheme) and [store options](#fsstoreoptions)) and finally FSPickerController:
 
